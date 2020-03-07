@@ -10,3 +10,16 @@ C:\Users\lucas.brclaro\Documents\GitHub\Azul\AzulClaro\AzulClaro\obj\Debug\AzulC
 C:\Users\lucas.brclaro\Documents\GitHub\Azul\AzulClaro\AzulClaro\obj\Debug\AzulClaro.csproj.CopyComplete
 C:\Users\lucas.brclaro\Documents\GitHub\Azul\AzulClaro\AzulClaro\obj\Debug\AzulClaro.exe
 C:\Users\lucas.brclaro\Documents\GitHub\Azul\AzulClaro\AzulClaro\obj\Debug\AzulClaro.pdb
+G:\Github\Azul\AzulClaro\AzulClaro\bin\Debug\AzulClaro.exe.config
+G:\Github\Azul\AzulClaro\AzulClaro\bin\Debug\AzulClaro.exe
+G:\Github\Azul\AzulClaro\AzulClaro\bin\Debug\AzulClaro.pdb
+G:\Github\Azul\AzulClaro\AzulClaro\bin\Debug\AzulServer.dll
+G:\Github\Azul\AzulClaro\AzulClaro\bin\Debug\AzulServer.xml
+G:\Github\Azul\AzulClaro\AzulClaro\obj\Debug\AzulClaro.csprojAssemblyReference.cache
+G:\Github\Azul\AzulClaro\AzulClaro\obj\Debug\AzulClaro.Form1.resources
+G:\Github\Azul\AzulClaro\AzulClaro\obj\Debug\AzulClaro.Properties.Resources.resources
+G:\Github\Azul\AzulClaro\AzulClaro\obj\Debug\AzulClaro.csproj.GenerateResource.cache
+G:\Github\Azul\AzulClaro\AzulClaro\obj\Debug\AzulClaro.csproj.CopyComplete
+G:\Github\Azul\AzulClaro\AzulClaro\obj\Debug\AzulClaro.exe
+G:\Github\Azul\AzulClaro\AzulClaro\obj\Debug\AzulClaro.pdb
+G:\Github\Azul\AzulClaro\AzulClaro\obj\Debug\AzulClaro.frmCriarPartida.resources
