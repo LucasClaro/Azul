@@ -1,0 +1,12 @@
+C:\Users\lucas.brclaro\Documents\GitHub\Azul\AzulClaro\AzulClaro\bin\Debug\AzulClaro.exe.config
+C:\Users\lucas.brclaro\Documents\GitHub\Azul\AzulClaro\AzulClaro\bin\Debug\AzulClaro.exe
+C:\Users\lucas.brclaro\Documents\GitHub\Azul\AzulClaro\AzulClaro\bin\Debug\AzulClaro.pdb
+C:\Users\lucas.brclaro\Documents\GitHub\Azul\AzulClaro\AzulClaro\bin\Debug\AzulServer.dll
+C:\Users\lucas.brclaro\Documents\GitHub\Azul\AzulClaro\AzulClaro\bin\Debug\AzulServer.xml
+C:\Users\lucas.brclaro\Documents\GitHub\Azul\AzulClaro\AzulClaro\obj\Debug\AzulClaro.csprojAssemblyReference.cache
+C:\Users\lucas.brclaro\Documents\GitHub\Azul\AzulClaro\AzulClaro\obj\Debug\AzulClaro.Form1.resources
+C:\Users\lucas.brclaro\Documents\GitHub\Azul\AzulClaro\AzulClaro\obj\Debug\AzulClaro.Properties.Resources.resources
+C:\Users\lucas.brclaro\Documents\GitHub\Azul\AzulClaro\AzulClaro\obj\Debug\AzulClaro.csproj.GenerateResource.cache
+C:\Users\lucas.brclaro\Documents\GitHub\Azul\AzulClaro\AzulClaro\obj\Debug\AzulClaro.csproj.CopyComplete
+C:\Users\lucas.brclaro\Documents\GitHub\Azul\AzulClaro\AzulClaro\obj\Debug\AzulClaro.exe
+C:\Users\lucas.brclaro\Documents\GitHub\Azul\AzulClaro\AzulClaro\obj\Debug\AzulClaro.pdb
