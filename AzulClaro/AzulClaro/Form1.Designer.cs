@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.btnListPartidas = new System.Windows.Forms.Button();
             this.cboPartidas = new System.Windows.Forms.ComboBox();
             this.txtIdPartida = new System.Windows.Forms.TextBox();
@@ -43,6 +44,11 @@
             this.label3 = new System.Windows.Forms.Label();
             this.btnEntrarPartida = new System.Windows.Forms.Button();
             this.lblErroEntrarPartida = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtIdjogador = new System.Windows.Forms.TextBox();
+            this.txtSenhaJogador = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.tmrMsgErro = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // btnListPartidas
@@ -67,6 +73,7 @@
             // 
             // txtIdPartida
             // 
+            this.txtIdPartida.Enabled = false;
             this.txtIdPartida.Location = new System.Drawing.Point(31, 128);
             this.txtIdPartida.Name = "txtIdPartida";
             this.txtIdPartida.Size = new System.Drawing.Size(36, 20);
@@ -182,11 +189,52 @@
             this.lblErroEntrarPartida.Size = new System.Drawing.Size(0, 13);
             this.lblErroEntrarPartida.TabIndex = 20;
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(31, 398);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(57, 13);
+            this.label2.TabIndex = 21;
+            this.label2.Text = "Id Jogador";
+            // 
+            // txtIdjogador
+            // 
+            this.txtIdjogador.Location = new System.Drawing.Point(94, 395);
+            this.txtIdjogador.Name = "txtIdjogador";
+            this.txtIdjogador.Size = new System.Drawing.Size(53, 20);
+            this.txtIdjogador.TabIndex = 22;
+            // 
+            // txtSenhaJogador
+            // 
+            this.txtSenhaJogador.Location = new System.Drawing.Point(94, 418);
+            this.txtSenhaJogador.Name = "txtSenhaJogador";
+            this.txtSenhaJogador.Size = new System.Drawing.Size(144, 20);
+            this.txtSenhaJogador.TabIndex = 24;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(9, 421);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(79, 13);
+            this.label5.TabIndex = 23;
+            this.label5.Text = "Senha Jogador";
+            // 
+            // tmrMsgErro
+            // 
+            this.tmrMsgErro.Interval = 10000;
+            this.tmrMsgErro.Tick += new System.EventHandler(this.tmrMsgErro_Tick);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.txtSenhaJogador);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.txtIdjogador);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.lblErroEntrarPartida);
             this.Controls.Add(this.btnEntrarPartida);
             this.Controls.Add(this.txtNomeJogador);
@@ -226,6 +274,11 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btnEntrarPartida;
         private System.Windows.Forms.Label lblErroEntrarPartida;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox txtIdjogador;
+        private System.Windows.Forms.TextBox txtSenhaJogador;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Timer tmrMsgErro;
     }
 }
 

@@ -61,6 +61,8 @@
     <Compile Include="frmCriarPartida.Designer.cs">
       <DependentUpon>frmCriarPartida.cs</DependentUpon>
     </Compile>
+    <Compile Include="Jogador.cs" />
+    <Compile Include="Partida.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
