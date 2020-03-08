@@ -49,6 +49,8 @@
             this.txtSenhaJogador = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.tmrMsgErro = new System.Windows.Forms.Timer(this.components);
+            this.btnIniciarPartida = new System.Windows.Forms.Button();
+            this.chkBot = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // btnListPartidas
@@ -149,7 +151,7 @@
             // 
             this.lblVersao.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lblVersao.AutoSize = true;
-            this.lblVersao.Location = new System.Drawing.Point(727, 428);
+            this.lblVersao.Location = new System.Drawing.Point(1561, 854);
             this.lblVersao.Name = "lblVersao";
             this.lblVersao.Size = new System.Drawing.Size(61, 13);
             this.lblVersao.TabIndex = 14;
@@ -173,7 +175,7 @@
             // 
             // btnEntrarPartida
             // 
-            this.btnEntrarPartida.Location = new System.Drawing.Point(12, 334);
+            this.btnEntrarPartida.Location = new System.Drawing.Point(12, 357);
             this.btnEntrarPartida.Name = "btnEntrarPartida";
             this.btnEntrarPartida.Size = new System.Drawing.Size(226, 31);
             this.btnEntrarPartida.TabIndex = 19;
@@ -184,7 +186,7 @@
             // lblErroEntrarPartida
             // 
             this.lblErroEntrarPartida.AutoSize = true;
-            this.lblErroEntrarPartida.Location = new System.Drawing.Point(12, 368);
+            this.lblErroEntrarPartida.Location = new System.Drawing.Point(9, 398);
             this.lblErroEntrarPartida.Name = "lblErroEntrarPartida";
             this.lblErroEntrarPartida.Size = new System.Drawing.Size(0, 13);
             this.lblErroEntrarPartida.TabIndex = 20;
@@ -192,7 +194,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(31, 398);
+            this.label2.Location = new System.Drawing.Point(31, 428);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(57, 13);
             this.label2.TabIndex = 21;
@@ -200,14 +202,14 @@
             // 
             // txtIdjogador
             // 
-            this.txtIdjogador.Location = new System.Drawing.Point(94, 395);
+            this.txtIdjogador.Location = new System.Drawing.Point(94, 425);
             this.txtIdjogador.Name = "txtIdjogador";
             this.txtIdjogador.Size = new System.Drawing.Size(53, 20);
             this.txtIdjogador.TabIndex = 22;
             // 
             // txtSenhaJogador
             // 
-            this.txtSenhaJogador.Location = new System.Drawing.Point(94, 418);
+            this.txtSenhaJogador.Location = new System.Drawing.Point(94, 448);
             this.txtSenhaJogador.Name = "txtSenhaJogador";
             this.txtSenhaJogador.Size = new System.Drawing.Size(144, 20);
             this.txtSenhaJogador.TabIndex = 24;
@@ -215,7 +217,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(9, 421);
+            this.label5.Location = new System.Drawing.Point(9, 451);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(79, 13);
             this.label5.TabIndex = 23;
@@ -226,11 +228,33 @@
             this.tmrMsgErro.Interval = 10000;
             this.tmrMsgErro.Tick += new System.EventHandler(this.tmrMsgErro_Tick);
             // 
+            // btnIniciarPartida
+            // 
+            this.btnIniciarPartida.Location = new System.Drawing.Point(12, 474);
+            this.btnIniciarPartida.Name = "btnIniciarPartida";
+            this.btnIniciarPartida.Size = new System.Drawing.Size(226, 31);
+            this.btnIniciarPartida.TabIndex = 25;
+            this.btnIniciarPartida.Text = "Iniciar Partida";
+            this.btnIniciarPartida.UseVisualStyleBackColor = true;
+            this.btnIniciarPartida.Click += new System.EventHandler(this.btnIniciarPartida_Click);
+            // 
+            // chkBot
+            // 
+            this.chkBot.AutoSize = true;
+            this.chkBot.Location = new System.Drawing.Point(12, 334);
+            this.chkBot.Name = "chkBot";
+            this.chkBot.Size = new System.Drawing.Size(138, 17);
+            this.chkBot.TabIndex = 26;
+            this.chkBot.Text = "Esse jogador é um Bot?";
+            this.chkBot.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1634, 876);
+            this.Controls.Add(this.chkBot);
+            this.Controls.Add(this.btnIniciarPartida);
             this.Controls.Add(this.txtSenhaJogador);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.txtIdjogador);
@@ -251,6 +275,7 @@
             this.Controls.Add(this.cboPartidas);
             this.Controls.Add(this.btnListPartidas);
             this.Name = "Form1";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Azul Claro";
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -279,6 +304,8 @@
         private System.Windows.Forms.TextBox txtSenhaJogador;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Timer tmrMsgErro;
+        private System.Windows.Forms.Button btnIniciarPartida;
+        private System.Windows.Forms.CheckBox chkBot;
     }
 }
 

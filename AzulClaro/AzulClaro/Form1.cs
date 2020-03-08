@@ -20,6 +20,11 @@ namespace AzulClaro
         //Criar as funções de jogar como public
         //Se ela for chamada pelo botão, ler os campos de txt
         //Se ela for chamada pelo Objeto, ler o próprio objeto
+        
+        //Se for um bot, chama a(s) funções do obj e só
+        //Se for um player, ler o comando dele e chame o jogar do Form
+
+        //Talvez a função jogar daqui (Form1) só seja usada pelo player
 
         //Talvez seja preciso colocar uma Check Box junto a criação de personagem para saber se é uma pessoa ou um bot
 
@@ -78,7 +83,7 @@ namespace AzulClaro
                         string[] jogadorFormatado = jogador.Split(',');//Separa cada elemento do jogador
 
                         Jogador j = new Jogador();//Cria os jogadores que vão ser inseridos no Objeto Partida
-                        j.Id = jogadorFormatado[0];//Preenche os Objetos
+                        j.Id = Convert.ToInt32(jogadorFormatado[0]);//Preenche os Objetos
                         j.Nome = jogadorFormatado[1];
                         j.Pontos = Convert.ToInt32(jogadorFormatado[2]);
 
@@ -105,11 +110,22 @@ namespace AzulClaro
         {
             frmCriarPartida frmCriarPartida = new frmCriarPartida();//Chama o formulário de nova partida
             frmCriarPartida.ShowDialog();
-            string senha = frmCriarPartida.senha;//Lê a senha criada nesse form
+            string senha = frmCriarPartida.senha;//Lê a senha criada nesse form    
+
+            int i = cboPartidas.SelectedIndex;//Guarda o item selecionado para caso a criação seja cancelar a combo ficar no mesmo lugar
 
             ListarPartidas();//Atualiza a combo de partidas
-            int max = cboPartidas.Items.Count;//Descobre a quantidade de elementos na combo (pode falahar quando tiver muita gente usando)
-            cboPartidas.SelectedIndex = max - 1;//Seleciona a última partida criada (se não for criada outra no mesmo instante), isso atualiza o campo de Id junto
+           
+            if(senha != "")//Não mexe na combo se a criação foi cancelada
+            {
+                int max = cboPartidas.Items.Count;//Descobre a quantidade de elementos na combo (pode falahar quando tiver muita gente usando)
+                cboPartidas.SelectedIndex = max - 1;//Seleciona a última partida criada (se não for criada outra no mesmo instante), isso atualiza o campo de Id junto
+            }
+            else
+            {
+                cboPartidas.SelectedIndex = i;
+            }
+           
             txtSenhaEntrar.Text = senha;//Coloca a senha da partida criada no campo de senha para jogar
         }        
 
@@ -142,25 +158,27 @@ namespace AzulClaro
                 string nome = txtNomeJogador.Text;
                 string senha = txtSenhaEntrar.Text;
                 if (nome != "" && senha != "")//Tenta adicionar o jogador
-                {
-                    jogador = new Jogador();
-
+                {                    
                     txt = Jogo.EntrarPartida(id, nome, senha);//Cria o jogador e lê see Id e senha
 
                     if(txt.Substring(0,4) != "ERRO")//Confere se não houve erro ao entrar na Partida
                     {
                         txtRecortado = txt.Split(',');//Formata o retorno para colocar no Objeto
 
-                        jogador.Nome = txtNomeJogador.Text;//Preenche o Objeto jogador
-                        jogador.Id = txtRecortado[0];
-                        jogador.Senha = txtRecortado[1];
+                        if (chkBot.Checked)//Verifica se o jogador é um bot
+                        {
+                            jogador = new Jogador();
+                            jogador.Nome = txtNomeJogador.Text;//Preenche o Objeto jogador
+                            jogador.Id = Convert.ToInt32(txtRecortado[0]);
+                            jogador.Senha = txtRecortado[1];
+                        }                        
 
-                        txtIdjogador.Text = jogador.Id;//Preenche os campos da tela
-                        txtSenhaJogador.Text = jogador.Senha;
+                        txtIdjogador.Text = txtRecortado[0];//Preenche os campos da tela
+                        txtSenhaJogador.Text = txtRecortado[1];
 
                         lblErroEntrarPartida.Text = "";//Remove a mensagem de Erro
                     }
-                    else
+                    else//Exibe a mensagem de erro do servidor
                     {
                         lblErroEntrarPartida.Text = txt.Substring(5);
                         tmrMsgErro.Enabled = true;
@@ -185,6 +203,22 @@ namespace AzulClaro
         {
             lblErroEntrarPartida.Text = "";
             tmrMsgErro.Enabled = false;
+        }
+
+        private void btnIniciarPartida_Click(object sender, EventArgs e)
+        {
+            if (jogador == null)//Vê se a partida deve ser iniciada pelo bot ou pelo player (não sei se faz tanta diferença)
+            {
+                Jogo.IniciarPartida(Convert.ToInt32(txtIdjogador.Text), txtSenhaJogador.Text);
+            }
+            else
+            {
+                Jogo.IniciarPartida(jogador.Id, jogador.Senha);
+            }
+
+            int i = cboPartidas.SelectedIndex;
+            cboPartidas.SelectedIndex = 0;
+            cboPartidas.SelectedIndex = i;
         }
     }
 }
