@@ -17,6 +17,8 @@ namespace AzulClaro
         Jogador jogador;//Objeto jogador. Será usado para jogar
 
         //NOTAS
+        //Ao criar uma partida com um nome que já existe, ele não cria nem dá erro
+
         //Criar as funções de jogar como public
         //Se ela for chamada pelo botão, ler os campos de txt
         //Se ela for chamada pelo Objeto, ler o próprio objeto
@@ -69,8 +71,7 @@ namespace AzulClaro
             lstJogadores.Items.Clear();//Limpa a combo box para preencher novamente
             if (txtIdPartida.Text != "")
             {
-                int id = Convert.ToInt32(txtIdPartida.Text);//Lê id e senha da nova partida
-                string txt = Jogo.ListarJogadores(id);//Recebe todas as partidas filtrando pelo status
+                string txt = Jogo.ListarJogadores(partida.Id);//Recebe todas as partidas filtrando pelo status
                 txt = txt.Replace("\r", "");//corta o caracter /r do retorno
                 string[] jogadores = txt.Split('\n');//Separa as linhas do retorno              
 
@@ -217,8 +218,27 @@ namespace AzulClaro
             }
 
             int i = cboPartidas.SelectedIndex;
-            cboPartidas.SelectedIndex = 0;
+            ListarPartidas();
             cboPartidas.SelectedIndex = i;
+        }
+        
+        public void DesenharFabricas()
+        {
+            string txt;
+            if (jogador != null)//Vê se a partida deve ser iniciada pelo bot ou pelo player (não sei se faz tanta diferença)
+            {
+                txt = Jogo.LerFabricas(Convert.ToInt32(txtIdjogador.Text), txtSenhaJogador.Text);                
+            }
+            else
+            {
+                txt = Jogo.LerFabricas(jogador.Id, jogador.Senha);
+            }
+            textBox1.Text = txt;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            DesenharFabricas();
         }
     }
 }

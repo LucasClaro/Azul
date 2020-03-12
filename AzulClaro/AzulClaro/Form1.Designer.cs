@@ -51,6 +51,10 @@
             this.tmrMsgErro = new System.Windows.Forms.Timer(this.components);
             this.btnIniciarPartida = new System.Windows.Forms.Button();
             this.chkBot = new System.Windows.Forms.CheckBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // btnListPartidas
@@ -248,11 +252,42 @@
             this.chkBot.Text = "Esse jogador é um Bot?";
             this.chkBot.UseVisualStyleBackColor = true;
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::AzulClaro.Properties.Resources.Fabrica;
+            this.pictureBox1.Location = new System.Drawing.Point(278, 12);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(175, 175);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBox1.TabIndex = 27;
+            this.pictureBox1.TabStop = false;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(12, 551);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(226, 273);
+            this.textBox1.TabIndex = 28;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(260, 549);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 29;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1634, 876);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.chkBot);
             this.Controls.Add(this.btnIniciarPartida);
             this.Controls.Add(this.txtSenhaJogador);
@@ -277,6 +312,7 @@
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Azul Claro";
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -306,6 +342,9 @@
         private System.Windows.Forms.Timer tmrMsgErro;
         private System.Windows.Forms.Button btnIniciarPartida;
         private System.Windows.Forms.CheckBox chkBot;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Button button1;
     }
 }
 

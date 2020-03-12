@@ -23,3 +23,4 @@ G:\Github\Azul\AzulClaro\AzulClaro\obj\Debug\AzulClaro.csproj.CopyComplete
 G:\Github\Azul\AzulClaro\AzulClaro\obj\Debug\AzulClaro.exe
 G:\Github\Azul\AzulClaro\AzulClaro\obj\Debug\AzulClaro.pdb
 G:\Github\Azul\AzulClaro\AzulClaro\obj\Debug\AzulClaro.frmCriarPartida.resources
+C:\Users\lucas.brclaro\Documents\GitHub\Azul\AzulClaro\AzulClaro\obj\Debug\AzulClaro.frmCriarPartida.resources

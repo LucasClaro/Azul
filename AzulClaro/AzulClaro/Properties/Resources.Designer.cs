@@ -63,9 +63,9 @@ namespace AzulClaro.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap parede {
+        internal static System.Drawing.Bitmap Fabrica {
             get {
-                object obj = ResourceManager.GetObject("parede", resourceCulture);
+                object obj = ResourceManager.GetObject("Fabrica", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -24,11 +24,19 @@ namespace AzulClaro
         private void btnCriarPartida_Click(object sender, EventArgs e)
         {
             string nome = txtNomePartida.Text;//Lê nome e senha da nova partida
+            string erro;//Recebe a mensagem de erro do servidor
             senha = txtSenhaPartida.Text;
             if (nome != "" && senha != "")//Cria a nova partida caso ambos estejam preenchidos
             {
-                Jogo.CriarPartida(nome, senha);
-                Close();
+                erro = Jogo.CriarPartida(nome, senha);
+                if (erro.Substring(0, 4) != "ERRO")
+                {
+                    lblErro.Text = erro.Substring(5);
+                }
+                else
+                {
+                    Close();
+                }
             }
             else
             {
