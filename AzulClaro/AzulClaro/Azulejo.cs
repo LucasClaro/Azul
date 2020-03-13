@@ -7,7 +7,7 @@ using System.Drawing;
 
 namespace AzulClaro
 {
-    class Azulejo
+    public class Azulejo
     {
         public int Id { get; set; }
         public Image image { get; set; }

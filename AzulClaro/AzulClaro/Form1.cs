@@ -17,6 +17,7 @@ namespace AzulClaro
         Jogador jogador;//Objeto jogador. Será usado para jogar
 
         //NOTAS
+        //Redesenhar só as coisas que foram mudadas baseadas no histórico
 
         //Ao criar uma partida com um nome que já existe, ele não cria nem dá erro
 
@@ -112,13 +113,14 @@ namespace AzulClaro
         {
             frmCriarPartida frmCriarPartida = new frmCriarPartida();//Chama o formulário de nova partida
             frmCriarPartida.ShowDialog();
-            string senha = frmCriarPartida.senha;//Lê a senha criada nesse form    
+            int IdPartidaCriada = frmCriarPartida.IdPartidaCriada;//Lê o id e a senha criada nesse form    
+            string senha = frmCriarPartida.senha;
 
             int i = cboPartidas.SelectedIndex;//Guarda o item selecionado para caso a criação seja cancelar a combo ficar no mesmo lugar
 
             ListarPartidas();//Atualiza a combo de partidas
            
-            if(senha != "")//Não mexe na combo se a criação foi cancelada
+            if(IdPartidaCriada > 0)//Não mexe na combo se a criação foi cancelada
             {
                 int max = cboPartidas.Items.Count;//Descobre a quantidade de elementos na combo (pode falahar quando tiver muita gente usando)
                 cboPartidas.SelectedIndex = max - 1;//Seleciona a última partida criada (se não for criada outra no mesmo instante), isso atualiza o campo de Id junto
@@ -138,12 +140,14 @@ namespace AzulClaro
             {
                 string txt = cboPartidas.SelectedItem.ToString();
                 string[] txt2 = txt.Split(',');
-                txtIdPartida.Text = txt2[0];                
+                txtIdPartida.Text = txt2[0];  
+                
 
                 partida = new Partida();//Instancia e preenche o Objeto partida
                 partida.jogadores = new List<Jogador>();
                 partida.Id = Convert.ToInt32(txt2[0]);
                 partida.Nome = txt2[1];
+                partida.Status = txt2[3];
 
                 ListarJogadores();//Att a lista de jogadores
             }
@@ -167,13 +171,12 @@ namespace AzulClaro
                     {
                         txtRecortado = txt.Split(',');//Formata o retorno para colocar no Objeto
 
-                        if (chkBot.Checked)//Verifica se o jogador é um bot
-                        {
-                            jogador = new Jogador();
-                            jogador.Nome = txtNomeJogador.Text;//Preenche o Objeto jogador
-                            jogador.Id = Convert.ToInt32(txtRecortado[0]);
-                            jogador.Senha = txtRecortado[1];
-                        }                        
+
+                        jogador = new Jogador();
+                        jogador.Nome = txtNomeJogador.Text;//Preenche o Objeto jogador
+                        jogador.Id = Convert.ToInt32(txtRecortado[0]);
+                        jogador.Senha = txtRecortado[1];
+                        jogador.Bot = chkBot.Checked;
 
                         txtIdjogador.Text = txtRecortado[0];//Preenche os campos da tela
                         txtSenhaJogador.Text = txtRecortado[1];
@@ -210,29 +213,34 @@ namespace AzulClaro
 
         private void btnIniciarPartida_Click(object sender, EventArgs e)
         {
-            if (jogador == null)//Vê se a partida deve ser iniciada pelo bot ou pelo player (não sei se faz tanta diferença)
+            if (txtIdjogador.Text != "" && txtSenhaJogador.Text != "")
             {
-                if (txtIdjogador.Text != "" && txtSenhaJogador.Text != "")
-                {
+                //Vê se a partida tá aberta
+                if (partida.Status == "A")
                     Jogo.IniciarPartida(Convert.ToInt32(txtIdjogador.Text), txtSenhaJogador.Text);
+
+                if (partida.Status == "J")
+                {
+                    frmTabuleiro tabuleiro = new frmTabuleiro(partida, jogador);
+                    tabuleiro.ShowDialog();
                 }
                 else
                 {
-                    lblErroIniciar.Text = "Preencha o Id e a Senha do Jogador";
-                    tmrMsgErro.Enabled = true;
-                    return;//Sai da função ao falhar em iniciar a partida;
-                }                
+                    lblErroIniciar.Text = "Partida ja encerrou";
+                }                    
             }
             else
             {
-                Jogo.IniciarPartida(jogador.Id, jogador.Senha);
-            }
+                lblErroIniciar.Text = "Preencha o Id e a Senha do Jogador";
+                tmrMsgErro.Enabled = true;
+                return;//Sai da função ao falhar em iniciar a partida;
+            }                
+
+
 
             int i = cboPartidas.SelectedIndex;//Atualiza as partidas e deixa a partida atual selecionada
             ListarPartidas();
             cboPartidas.SelectedIndex = i;
-
-            tmrDesenho.Enabled = true;//Inicia o temporizador de desenhos
         }
         
         public void DesenharFabricas()
@@ -246,7 +254,7 @@ namespace AzulClaro
             {
                 txt = Jogo.LerFabricas(jogador.Id, jogador.Senha);
             }
-            textBox1.Text = txt;
+            //textBox1.Text = txt;
             partida.preencherFabricas(txt);
         }
 

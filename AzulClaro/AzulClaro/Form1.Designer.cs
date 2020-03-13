@@ -52,9 +52,6 @@
             this.btnIniciarPartida = new System.Windows.Forms.Button();
             this.chkBot = new System.Windows.Forms.CheckBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.tmrDesenho = new System.Windows.Forms.Timer(this.components);
             this.lblErroIniciar = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -157,7 +154,7 @@
             // 
             this.lblVersao.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lblVersao.AutoSize = true;
-            this.lblVersao.Location = new System.Drawing.Point(1561, 854);
+            this.lblVersao.Location = new System.Drawing.Point(171, 524);
             this.lblVersao.Name = "lblVersao";
             this.lblVersao.Size = new System.Drawing.Size(61, 13);
             this.lblVersao.TabIndex = 14;
@@ -264,19 +261,6 @@
             this.pictureBox1.TabIndex = 27;
             this.pictureBox1.TabStop = false;
             // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(12, 551);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(226, 273);
-            this.textBox1.TabIndex = 28;
-            // 
-            // tmrDesenho
-            // 
-            this.tmrDesenho.Interval = 500;
-            this.tmrDesenho.Tick += new System.EventHandler(this.tmrDesenho_Tick);
-            // 
             // lblErroIniciar
             // 
             this.lblErroIniciar.AutoSize = true;
@@ -289,10 +273,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1634, 876);
+            this.ClientSize = new System.Drawing.Size(244, 546);
             this.Controls.Add(this.lblErroIniciar);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.chkBot);
             this.Controls.Add(this.btnIniciarPartida);
@@ -315,6 +297,8 @@
             this.Controls.Add(this.txtIdPartida);
             this.Controls.Add(this.cboPartidas);
             this.Controls.Add(this.btnListPartidas);
+            this.MaximumSize = new System.Drawing.Size(260, 585);
+            this.MinimumSize = new System.Drawing.Size(260, 585);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Azul Claro";
@@ -349,9 +333,6 @@
         private System.Windows.Forms.Button btnIniciarPartida;
         private System.Windows.Forms.CheckBox chkBot;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Timer tmrDesenho;
         private System.Windows.Forms.Label lblErroIniciar;
     }
 }

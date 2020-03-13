@@ -7,11 +7,12 @@ using AzulServer;
 
 namespace AzulClaro
 {
-    class Partida
+    public class Partida
     {
         public int Id { get; set; }
 
         public string Nome { get; set; }
+        public string Status { get; set; }
 
         public List<Jogador> jogadores { get; set; }
         public List<Fabrica> fabricas { get; set; }

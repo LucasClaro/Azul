@@ -10,10 +10,11 @@ using System.Windows.Forms;
 using AzulServer;
 
 namespace AzulClaro
-{
+{    
     public partial class frmCriarPartida : Form
     {
         public string senha { get; set; }
+        public int IdPartidaCriada { get; set; }
 
         public frmCriarPartida()
         {
@@ -29,8 +30,10 @@ namespace AzulClaro
             if (nome != "" && senha != "")//Cria a nova partida caso ambos estejam preenchidos
             {
                 erro = Jogo.CriarPartida(nome, senha);
-                if (erro.Substring(0, 4) == "ERRO")
+
+                if (erro.Length < 3)
                 {
+                    this.IdPartidaCriada = Convert.ToInt32(erro);
                     Close();
                 }
                 else

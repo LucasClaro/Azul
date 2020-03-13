@@ -12,5 +12,6 @@ namespace AzulClaro
         public string Nome { get; set; }
         public string Senha { get; set; }
         public int Pontos { get; set; }
+        public bool Bot { get; set; }
     }
 }
