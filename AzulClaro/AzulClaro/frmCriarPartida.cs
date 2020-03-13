@@ -29,13 +29,13 @@ namespace AzulClaro
             if (nome != "" && senha != "")//Cria a nova partida caso ambos estejam preenchidos
             {
                 erro = Jogo.CriarPartida(nome, senha);
-                if (erro.Substring(0, 4) != "ERRO")
+                if (erro.Substring(0, 4) == "ERRO")
                 {
-                    lblErro.Text = erro.Substring(5);
+                    Close();
                 }
                 else
                 {
-                    Close();
+                    lblErro.Text = erro.Substring(5);
                 }
             }
             else

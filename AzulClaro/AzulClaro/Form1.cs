@@ -17,6 +17,7 @@ namespace AzulClaro
         Jogador jogador;//Objeto jogador. Será usado para jogar
 
         //NOTAS
+
         //Ao criar uma partida com um nome que já existe, ele não cria nem dá erro
 
         //Criar as funções de jogar como public
@@ -203,6 +204,7 @@ namespace AzulClaro
         private void tmrMsgErro_Tick(object sender, EventArgs e)
         {
             lblErroEntrarPartida.Text = "";
+            lblErroIniciar.Text = "";
             tmrMsgErro.Enabled = false;
         }
 
@@ -210,22 +212,33 @@ namespace AzulClaro
         {
             if (jogador == null)//Vê se a partida deve ser iniciada pelo bot ou pelo player (não sei se faz tanta diferença)
             {
-                Jogo.IniciarPartida(Convert.ToInt32(txtIdjogador.Text), txtSenhaJogador.Text);
+                if (txtIdjogador.Text != "" && txtSenhaJogador.Text != "")
+                {
+                    Jogo.IniciarPartida(Convert.ToInt32(txtIdjogador.Text), txtSenhaJogador.Text);
+                }
+                else
+                {
+                    lblErroIniciar.Text = "Preencha o Id e a Senha do Jogador";
+                    tmrMsgErro.Enabled = true;
+                    return;//Sai da função ao falhar em iniciar a partida;
+                }                
             }
             else
             {
                 Jogo.IniciarPartida(jogador.Id, jogador.Senha);
             }
 
-            int i = cboPartidas.SelectedIndex;
+            int i = cboPartidas.SelectedIndex;//Atualiza as partidas e deixa a partida atual selecionada
             ListarPartidas();
             cboPartidas.SelectedIndex = i;
+
+            tmrDesenho.Enabled = true;//Inicia o temporizador de desenhos
         }
         
         public void DesenharFabricas()
         {
             string txt;
-            if (jogador != null)//Vê se a partida deve ser iniciada pelo bot ou pelo player (não sei se faz tanta diferença)
+            if (jogador == null)//Vê se a partida deve ser iniciada pelo bot ou pelo player (não sei se faz tanta diferença)
             {
                 txt = Jogo.LerFabricas(Convert.ToInt32(txtIdjogador.Text), txtSenhaJogador.Text);                
             }
@@ -234,9 +247,10 @@ namespace AzulClaro
                 txt = Jogo.LerFabricas(jogador.Id, jogador.Senha);
             }
             textBox1.Text = txt;
+            partida.preencherFabricas(txt);
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void tmrDesenho_Tick(object sender, EventArgs e)
         {
             DesenharFabricas();
         }
