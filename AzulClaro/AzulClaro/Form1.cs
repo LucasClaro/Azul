@@ -56,9 +56,9 @@ namespace AzulClaro
             cboPartidas.Items.Clear();//Limpa a combo box para preencher novamente
             foreach (string partida in partidas)//preenche a combo box
             {
-                existe1 = true;
                 if (partida != "")//Resolve o bug do elemento fantasma no fim
                 {
+                    existe1 = true;
                     cboPartidas.Items.Add(partida);
                 }
             }
@@ -211,18 +211,36 @@ namespace AzulClaro
             tmrMsgErro.Enabled = false;
         }
 
+        //Botão Iniciar partida
         private void btnIniciarPartida_Click(object sender, EventArgs e)
         {
             if (txtIdjogador.Text != "" && txtSenhaJogador.Text != "")
             {
                 //Vê se a partida tá aberta
                 if (partida.Status == "A")
-                    Jogo.IniciarPartida(Convert.ToInt32(txtIdjogador.Text), txtSenhaJogador.Text);
-
-                if (partida.Status == "J")
                 {
+                    string txt = Jogo.IniciarPartida(Convert.ToInt32(txtIdjogador.Text), txtSenhaJogador.Text);
+                    if (txt.Length < 3)
+                    {
+                        partida.Status = "J";
+                    }
+                }
+
+                if (partida.Status == "J")//Abre o Tabuleiro
+                {
+                    if(jogador == null)//Preenche o jogado caso ele esteja vazio para mandar para o Tabuleiro
+                    {                        
+                        jogador = new Jogador();
+                        jogador.Id = Convert.ToInt32(txtIdjogador.Text);
+                        jogador.Senha = txtSenhaJogador.Text;
+                        jogador.Nome = BuscarJogById(jogador.Id);
+                    }
+
                     frmTabuleiro tabuleiro = new frmTabuleiro(partida, jogador);
                     tabuleiro.ShowDialog();
+
+                    lblErroIniciar.Text = tabuleiro.erro;
+                    tmrMsgErro.Enabled = true;
                 }
                 else
                 {
@@ -234,33 +252,27 @@ namespace AzulClaro
                 lblErroIniciar.Text = "Preencha o Id e a Senha do Jogador";
                 tmrMsgErro.Enabled = true;
                 return;//Sai da função ao falhar em iniciar a partida;
-            }                
-
-
+            }
+            
+            jogador = null;
 
             int i = cboPartidas.SelectedIndex;//Atualiza as partidas e deixa a partida atual selecionada
             ListarPartidas();
             cboPartidas.SelectedIndex = i;
         }
-        
-        public void DesenharFabricas()
-        {
-            string txt;
-            if (jogador == null)//Vê se a partida deve ser iniciada pelo bot ou pelo player (não sei se faz tanta diferença)
-            {
-                txt = Jogo.LerFabricas(Convert.ToInt32(txtIdjogador.Text), txtSenhaJogador.Text);                
-            }
-            else
-            {
-                txt = Jogo.LerFabricas(jogador.Id, jogador.Senha);
-            }
-            //textBox1.Text = txt;
-            partida.preencherFabricas(txt);
-        }
 
-        private void tmrDesenho_Tick(object sender, EventArgs e)
+        //Usado no iniciar partida
+        public string BuscarJogById(int id)
         {
-            DesenharFabricas();
+            foreach (Jogador jogador in partida.jogadores)
+            {
+                if(jogador.Id == id)
+                {
+                    return jogador.Nome;
+                }
+            }
+
+            return "";
         }
-    }
+    }    
 }

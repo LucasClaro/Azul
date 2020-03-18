@@ -79,6 +79,9 @@
     <EmbeddedResource Include="frmCriarPartida.resx">
       <DependentUpon>frmCriarPartida.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmTabuleiro.resx">
+      <DependentUpon>frmTabuleiro.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -102,9 +105,17 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\f5.PNG" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Fabrica.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\f7.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\f9.PNG" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

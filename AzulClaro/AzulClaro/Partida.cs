@@ -32,8 +32,11 @@ namespace AzulClaro
 
                 while(i == Convert.ToInt32(fabs[p].Substring(0,1)))
                 {
-                    //9 ADB0F8
+                    Azulejo azul = new Azulejo();
+                    //azul.Id = 
                 }
+
+                this.fabricas.Add(fabrica);
             }
         }
     }
