@@ -46,8 +46,8 @@ namespace AzulClaro
 
             textBox1.Text = txt;
 
-            //partida.preencherFabricas(txt);//Preenche as fábricas do obj partida
-            //561F58
+            partida.preencherFabricas(txt);//Preenche as fábricas do obj partida
+            //9 B75BC1
 
         }
     }

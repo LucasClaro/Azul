@@ -11,5 +11,6 @@ namespace AzulClaro
     {
         public int Id { get; set; }
         public Image image { get; set; }
+        public int quantidade { get; set; }
     }
 }

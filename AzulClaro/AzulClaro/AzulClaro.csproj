@@ -117,5 +117,20 @@
   <ItemGroup>
     <None Include="Resources\f9.PNG" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\dotpict_20200307_220440.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\dotpict_20200307_223706.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\dotpict_20200307_232254.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\dotpict_20200308_000257.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\dotpict_20200308_003224.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
