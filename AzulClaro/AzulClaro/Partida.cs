@@ -19,8 +19,11 @@ namespace AzulClaro
 
         public void preencherFabricas(string txt)
         {
+            this.fabricas = new List<Fabrica>();
             txt = txt.Replace("\r", "");//corta o caracter /r do retorno
             string[] fabs = txt.Split('\n');//Separa as linhas do retorno    
+
+            fabs = fabs.Take(fabs.Count() - 1).ToArray();//Remove o elemento fantasma
 
             int numFabs = Convert.ToInt32(fabs[fabs.Length - 1].Substring(0,1));
             int p = 0;
@@ -28,13 +31,14 @@ namespace AzulClaro
             for (int i = 1; i <= numFabs; i++)//Controla as fábricas
             {
                 Fabrica fabrica = new Fabrica();
+                fabrica.azulejos = new List<Azulejo>();
                 fabrica.id = i;
 
-                while (i == Convert.ToInt32(fabs[p].Substring(0, 1)))//Controla o azulejo
+                while (p != 13 && i == Convert.ToInt32(fabs[p].Substring(0, 1)))//Controla o azulejo
                 {
                     Azulejo azul = new Azulejo();
-                    azul.Id = Convert.ToInt32(fabs[p].Substring(1, 1));
-                    azul.quantidade = Convert.ToInt32(fabs[p].Substring(fabs[p].Length, 1));//Lê o último caractere e pega a quantidade
+                    azul.Id = Convert.ToInt32(fabs[p].Substring(2, 1));
+                    azul.quantidade = Convert.ToInt32(fabs[p].Substring(fabs[p].Length-1, 1));//Lê o último caractere e pega a quantidade
 
                     //Define a imagem do Azulejo
                     switch (azul.Id)
@@ -59,6 +63,8 @@ namespace AzulClaro
                     }
 
                     p++;
+
+                    fabrica.azulejos.Add(azul);
                 }
 
                 //Definir o x y das fábricas aqui

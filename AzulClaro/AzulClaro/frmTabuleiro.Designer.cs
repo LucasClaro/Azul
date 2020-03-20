@@ -52,6 +52,7 @@
             this.pcbFabricas.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pcbFabricas.TabIndex = 1;
             this.pcbFabricas.TabStop = false;
+            this.pcbFabricas.Click += new System.EventHandler(this.pcbFabricas_Click);
             // 
             // textBox1
             // 

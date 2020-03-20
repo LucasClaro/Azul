@@ -47,8 +47,23 @@ namespace AzulClaro
             textBox1.Text = txt;
 
             partida.preencherFabricas(txt);//Preenche as fábricas do obj partida
-            //9 B75BC1
+            
+            //9 B75BC1 Usuário pra entrar na partida AzulClaro
 
+            //Desenahr fabricas aqui
+
+        }
+
+        private void pcbFabricas_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(Cursor.Position.X + " " + Cursor.Position.Y);
+
+            //5:
+            //370, 211
+            //139, 423
+            //210, 692
+            //532, 692
+            //602, 423
         }
     }
 }
