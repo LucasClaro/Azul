@@ -9,7 +9,7 @@ namespace AzulClaro
 {
     public class Azulejo
     {
-        public int Id { get; set; }
+        public int id { get; set; }
         public Image image { get; set; }
         public int quantidade { get; set; }
     }

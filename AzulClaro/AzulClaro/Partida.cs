@@ -9,10 +9,10 @@ namespace AzulClaro
 {
     public class Partida
     {
-        public int Id { get; set; }
+        public int id { get; set; }
 
-        public string Nome { get; set; }
-        public string Status { get; set; }
+        public string nome { get; set; }
+        public string status { get; set; }
 
         public List<Jogador> jogadores { get; set; }
         public List<Fabrica> fabricas { get; set; }
@@ -37,11 +37,11 @@ namespace AzulClaro
                 while (p != 13 && i == Convert.ToInt32(fabs[p].Substring(0, 1)))//Controla o azulejo
                 {
                     Azulejo azul = new Azulejo();
-                    azul.Id = Convert.ToInt32(fabs[p].Substring(2, 1));
+                    azul.id = Convert.ToInt32(fabs[p].Substring(2, 1));
                     azul.quantidade = Convert.ToInt32(fabs[p].Substring(fabs[p].Length-1, 1));//Lê o último caractere e pega a quantidade
 
                     //Define a imagem do Azulejo
-                    switch (azul.Id)
+                    switch (azul.id)
                     {
                         case 1:
                             azul.image = Properties.Resources.a1;
