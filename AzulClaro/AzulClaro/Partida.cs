@@ -17,6 +17,35 @@ namespace AzulClaro
         public List<Jogador> jogadores { get; set; }
         public List<Fabrica> fabricas { get; set; }
 
+        public static List<Partida> Listarpartidas(string status) {
+
+            List<Partida> partidas = new List<Partida>();
+
+            string txt = Jogo.ListarPartidas(status);//Recebe todas as partidas filtrando pelo status
+
+            txt = txt.Replace("\r", "");//corta o caracter /r do retorno
+            string[] txtPartidas = txt.Split('\n');//Separa as linhas do retorno
+
+            foreach (string txtPartida in txtPartidas)//preenche a combo box
+            {
+                if (txtPartida != "")//Resolve o bug do elemento fantasma no fim
+                {
+                    Partida partida = new Partida();
+
+                    string[] txtPicotado = txtPartida.Split(',');
+
+                    partida.Id = Convert.ToInt32(txtPicotado[0]);
+                    partida.Nome = txtPicotado[1];
+                    partida.Status = txtPicotado[3];
+
+
+                    partidas.Add(partida);
+                }
+            }
+
+            return partidas;
+        }
+
         public void preencherFabricas(string txt)
         {
             this.fabricas = new List<Fabrica>();

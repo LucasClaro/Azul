@@ -37,8 +37,29 @@ namespace AzulClaro
             InitializeComponent();
             cboStatusPartida.SelectedIndex = 0;//Define a opção "Todos" como padrão na combo box de status da seleção de partida
 
-            lblVersao.Text = "Versão: " + Jogo.Versao;//Exibe a versão da dll
+            lblVersao.Text = "Versão: " + Jogo.Versao;//Exibe a versão da dll            
+
             ListarPartidas();//Já inicia o cliente com as partidas preenchidas
+
+            lblErroIniciar.Text = "";
+            lblErroEntrarPartida.Text = "";
+
+            //Configura a DataGridView
+            dgvPartidas.RowHeadersVisible = false;
+            dgvPartidas.ReadOnly = true;
+            dgvPartidas.Columns[0].Visible = false;
+            dgvPartidas.AllowUserToResizeRows = false;
+            //gvwPartidas.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dgvPartidas.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvPartidas.MultiSelect = false;
+            //gvwPartidas.Columns[4].Width = 100;
+            //gvwPartidas.Columns[5].Width = 75;
+
+            dgvPartidas.Rows[0].Selected = true;//Seleciona a linha mais nova
+
+            partida = (Partida)dgvPartidas.SelectedRows[0].DataBoundItem;
+            txtIdPartida.Text = partida.Id.ToString();
+            ListarJogadores();
         }
 
         //Antigo código do botão listar partidas
@@ -47,32 +68,18 @@ namespace AzulClaro
         {
             bool existe1 = false;//Controla se existe pelo menos uma partida como resultado
 
-            string status = cboStatusPartida.SelectedItem.ToString().Substring(0, 1);//Pega o primeiro caracter da combo box de status da seleção de partida
-            string txt = Jogo.ListarPartidas(status);//Recebe todas as partidas filtrando pelo status
+            string status = cboStatusPartida.SelectedItem.ToString().Substring(0, 1);//Pega o primeiro caracter da combo box de status da seleção de partida            
 
-            txt = txt.Replace("\r", "");//corta o caracter /r do retorno
-            string[] partidas = txt.Split('\n');//Separa as linhas do retorno
-
-            cboPartidas.Items.Clear();//Limpa a combo box para preencher novamente
-            foreach (string partida in partidas)//preenche a combo box
-            {
-                if (partida != "")//Resolve o bug do elemento fantasma no fim
-                {
-                    existe1 = true;
-                    cboPartidas.Items.Add(partida);
-                }
-            }
-            if (existe1)//Seleciona a primeira partida
-            {
-                cboPartidas.SelectedIndex = 0;
-            }
+            dgvPartidas.DataSource = Partida.Listarpartidas(status);
         }
 
         public void ListarJogadores()
         {
+            partida.jogadores = new List<Jogador>();
             lstJogadores.Items.Clear();//Limpa a combo box para preencher novamente
-            if (txtIdPartida.Text != "")
+            if (partida != null)
             {
+                bool existe = false;
                 string txt = Jogo.ListarJogadores(partida.Id);//Recebe todas as partidas filtrando pelo status
                 txt = txt.Replace("\r", "");//corta o caracter /r do retorno
                 string[] jogadores = txt.Split('\n');//Separa as linhas do retorno              
@@ -81,6 +88,7 @@ namespace AzulClaro
                 {
                     if (jogador != "")//Resolve o bug do elemento fantasma no fim
                     {
+                        existe = true;
                         lstJogadores.Items.Add(jogador);//Adiciona os textos na List Box
 
                         string[] jogadorFormatado = jogador.Split(',');//Separa cada elemento do jogador
@@ -93,6 +101,11 @@ namespace AzulClaro
                         partida.jogadores.Add(j);//Adiciona os objetos na partida                        
                     }
                 }
+
+                if (!existe)
+                {
+                    lstJogadores.Items.Add("[Sem Jogadores]");
+                }
             }
         }
 
@@ -100,6 +113,10 @@ namespace AzulClaro
         private void btnListPartidas_Click(object sender, EventArgs e)
         {
             ListarPartidas();//Só chama essa função para ela poder ser acessada por outros lugares
+            txtIdPartida.Text = "";
+            txtSenhaEntrar.Text = "";
+            lstJogadores.Items.Clear();
+            partida = null;
         }
 
         //Botão Listar Jogadores
@@ -116,41 +133,26 @@ namespace AzulClaro
             int IdPartidaCriada = frmCriarPartida.IdPartidaCriada;//Lê o id e a senha criada nesse form    
             string senha = frmCriarPartida.senha;
 
-            int i = cboPartidas.SelectedIndex;//Guarda o item selecionado para caso a criação seja cancelar a combo ficar no mesmo lugar
-
             ListarPartidas();//Atualiza a combo de partidas
-           
-            if(IdPartidaCriada > 0)//Não mexe na combo se a criação foi cancelada
+
+            if(IdPartidaCriada != 0)
             {
-                int max = cboPartidas.Items.Count;//Descobre a quantidade de elementos na combo (pode falahar quando tiver muita gente usando)
-                cboPartidas.SelectedIndex = max - 1;//Seleciona a última partida criada (se não for criada outra no mesmo instante), isso atualiza o campo de Id junto
-            }
-            else
-            {
-                cboPartidas.SelectedIndex = i;
-            }
-           
-            txtSenhaEntrar.Text = senha;//Coloca a senha da partida criada no campo de senha para jogar
+                txtSenhaEntrar.Text = senha;//Coloca a senha da partida criada no campo de senha para jogar
+                
+                dgvPartidas.Rows[dgvPartidas.Rows.Count - 1].Selected = true;//Seleciona a linha mais nova
+
+                partida = (Partida)dgvPartidas.SelectedRows[0].DataBoundItem;
+                txtIdPartida.Text = partida.Id.ToString();
+                ListarJogadores();
+            }                
         }        
 
-        //Alterar Combo de partidas
-        private void cboPartidas_SelectedIndexChanged(object sender, EventArgs e)
+        //Clicar na DataGridView
+        private void dgvPartidas_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (cboPartidas.SelectedItem != null)//preenche o campo Id quando selecionar uma linha
-            {
-                string txt = cboPartidas.SelectedItem.ToString();
-                string[] txt2 = txt.Split(',');
-                txtIdPartida.Text = txt2[0];  
-                
-
-                partida = new Partida();//Instancia e preenche o Objeto partida
-                partida.jogadores = new List<Jogador>();
-                partida.Id = Convert.ToInt32(txt2[0]);
-                partida.Nome = txt2[1];
-                partida.Status = txt2[3];
-
-                ListarJogadores();//Att a lista de jogadores
-            }
+            partida = (Partida)dgvPartidas.SelectedRows[0].DataBoundItem;
+            txtIdPartida.Text = partida.Id.ToString();
+            ListarJogadores();
         }
         
         //Botão Entrar na Partida
@@ -256,9 +258,7 @@ namespace AzulClaro
             
             jogador = null;
 
-            int i = cboPartidas.SelectedIndex;//Atualiza as partidas e deixa a partida atual selecionada
             ListarPartidas();
-            cboPartidas.SelectedIndex = i;
         }
 
         //Usado no iniciar partida
@@ -274,5 +274,6 @@ namespace AzulClaro
 
             return "";
         }
+
     }    
 }

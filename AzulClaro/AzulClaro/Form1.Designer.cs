@@ -30,7 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             this.btnListPartidas = new System.Windows.Forms.Button();
-            this.cboPartidas = new System.Windows.Forms.ComboBox();
             this.txtIdPartida = new System.Windows.Forms.TextBox();
             this.cboStatusPartida = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -51,14 +50,14 @@
             this.tmrMsgErro = new System.Windows.Forms.Timer(this.components);
             this.btnIniciarPartida = new System.Windows.Forms.Button();
             this.chkBot = new System.Windows.Forms.CheckBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lblErroIniciar = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.dgvPartidas = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPartidas)).BeginInit();
             this.SuspendLayout();
             // 
             // btnListPartidas
             // 
-            this.btnListPartidas.Location = new System.Drawing.Point(12, 39);
+            this.btnListPartidas.Location = new System.Drawing.Point(243, 12);
             this.btnListPartidas.Name = "btnListPartidas";
             this.btnListPartidas.Size = new System.Drawing.Size(138, 23);
             this.btnListPartidas.TabIndex = 0;
@@ -66,20 +65,10 @@
             this.btnListPartidas.UseVisualStyleBackColor = true;
             this.btnListPartidas.Click += new System.EventHandler(this.btnListPartidas_Click);
             // 
-            // cboPartidas
-            // 
-            this.cboPartidas.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboPartidas.FormattingEnabled = true;
-            this.cboPartidas.Location = new System.Drawing.Point(12, 12);
-            this.cboPartidas.Name = "cboPartidas";
-            this.cboPartidas.Size = new System.Drawing.Size(226, 21);
-            this.cboPartidas.TabIndex = 1;
-            this.cboPartidas.SelectedIndexChanged += new System.EventHandler(this.cboPartidas_SelectedIndexChanged);
-            // 
             // txtIdPartida
             // 
             this.txtIdPartida.Enabled = false;
-            this.txtIdPartida.Location = new System.Drawing.Point(31, 128);
+            this.txtIdPartida.Location = new System.Drawing.Point(265, 90);
             this.txtIdPartida.Name = "txtIdPartida";
             this.txtIdPartida.Size = new System.Drawing.Size(36, 20);
             this.txtIdPartida.TabIndex = 2;
@@ -92,7 +81,7 @@
             "Todas",
             "Abertas",
             "Encerradas"});
-            this.cboStatusPartida.Location = new System.Drawing.Point(156, 39);
+            this.cboStatusPartida.Location = new System.Drawing.Point(390, 14);
             this.cboStatusPartida.Name = "cboStatusPartida";
             this.cboStatusPartida.Size = new System.Drawing.Size(82, 21);
             this.cboStatusPartida.TabIndex = 3;
@@ -100,7 +89,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(9, 131);
+            this.label1.Location = new System.Drawing.Point(243, 93);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(16, 13);
             this.label1.TabIndex = 4;
@@ -108,9 +97,9 @@
             // 
             // btnCriarPartida
             // 
-            this.btnCriarPartida.Location = new System.Drawing.Point(12, 68);
+            this.btnCriarPartida.Location = new System.Drawing.Point(243, 41);
             this.btnCriarPartida.Name = "btnCriarPartida";
-            this.btnCriarPartida.Size = new System.Drawing.Size(226, 31);
+            this.btnCriarPartida.Size = new System.Drawing.Size(229, 24);
             this.btnCriarPartida.TabIndex = 7;
             this.btnCriarPartida.Text = "Criar Partida...";
             this.btnCriarPartida.UseVisualStyleBackColor = true;
@@ -118,7 +107,7 @@
             // 
             // btnListarJogadores
             // 
-            this.btnListarJogadores.Location = new System.Drawing.Point(12, 153);
+            this.btnListarJogadores.Location = new System.Drawing.Point(246, 115);
             this.btnListarJogadores.Name = "btnListarJogadores";
             this.btnListarJogadores.Size = new System.Drawing.Size(226, 23);
             this.btnListarJogadores.TabIndex = 10;
@@ -129,14 +118,14 @@
             // lstJogadores
             // 
             this.lstJogadores.FormattingEnabled = true;
-            this.lstJogadores.Location = new System.Drawing.Point(12, 184);
+            this.lstJogadores.Location = new System.Drawing.Point(246, 146);
             this.lstJogadores.Name = "lstJogadores";
             this.lstJogadores.Size = new System.Drawing.Size(226, 95);
             this.lstJogadores.TabIndex = 11;
             // 
             // txtSenhaEntrar
             // 
-            this.txtSenhaEntrar.Location = new System.Drawing.Point(117, 128);
+            this.txtSenhaEntrar.Location = new System.Drawing.Point(351, 90);
             this.txtSenhaEntrar.Name = "txtSenhaEntrar";
             this.txtSenhaEntrar.Size = new System.Drawing.Size(121, 20);
             this.txtSenhaEntrar.TabIndex = 13;
@@ -144,7 +133,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(73, 131);
+            this.label4.Location = new System.Drawing.Point(307, 93);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(38, 13);
             this.label4.TabIndex = 12;
@@ -154,7 +143,7 @@
             // 
             this.lblVersao.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lblVersao.AutoSize = true;
-            this.lblVersao.Location = new System.Drawing.Point(171, 524);
+            this.lblVersao.Location = new System.Drawing.Point(411, 524);
             this.lblVersao.Name = "lblVersao";
             this.lblVersao.Size = new System.Drawing.Size(61, 13);
             this.lblVersao.TabIndex = 14;
@@ -162,7 +151,7 @@
             // 
             // txtNomeJogador
             // 
-            this.txtNomeJogador.Location = new System.Drawing.Point(91, 308);
+            this.txtNomeJogador.Location = new System.Drawing.Point(325, 277);
             this.txtNomeJogador.Name = "txtNomeJogador";
             this.txtNomeJogador.Size = new System.Drawing.Size(147, 20);
             this.txtNomeJogador.TabIndex = 18;
@@ -170,7 +159,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(9, 311);
+            this.label3.Location = new System.Drawing.Point(243, 280);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(76, 13);
             this.label3.TabIndex = 16;
@@ -178,7 +167,7 @@
             // 
             // btnEntrarPartida
             // 
-            this.btnEntrarPartida.Location = new System.Drawing.Point(12, 357);
+            this.btnEntrarPartida.Location = new System.Drawing.Point(246, 326);
             this.btnEntrarPartida.Name = "btnEntrarPartida";
             this.btnEntrarPartida.Size = new System.Drawing.Size(226, 31);
             this.btnEntrarPartida.TabIndex = 19;
@@ -189,15 +178,16 @@
             // lblErroEntrarPartida
             // 
             this.lblErroEntrarPartida.AutoSize = true;
-            this.lblErroEntrarPartida.Location = new System.Drawing.Point(9, 398);
+            this.lblErroEntrarPartida.Location = new System.Drawing.Point(243, 360);
             this.lblErroEntrarPartida.Name = "lblErroEntrarPartida";
-            this.lblErroEntrarPartida.Size = new System.Drawing.Size(0, 13);
+            this.lblErroEntrarPartida.Size = new System.Drawing.Size(38, 13);
             this.lblErroEntrarPartida.TabIndex = 20;
+            this.lblErroEntrarPartida.Text = "ERRO";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(31, 428);
+            this.label2.Location = new System.Drawing.Point(265, 405);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(57, 13);
             this.label2.TabIndex = 21;
@@ -205,14 +195,14 @@
             // 
             // txtIdjogador
             // 
-            this.txtIdjogador.Location = new System.Drawing.Point(94, 425);
+            this.txtIdjogador.Location = new System.Drawing.Point(328, 402);
             this.txtIdjogador.Name = "txtIdjogador";
             this.txtIdjogador.Size = new System.Drawing.Size(53, 20);
             this.txtIdjogador.TabIndex = 22;
             // 
             // txtSenhaJogador
             // 
-            this.txtSenhaJogador.Location = new System.Drawing.Point(94, 448);
+            this.txtSenhaJogador.Location = new System.Drawing.Point(328, 425);
             this.txtSenhaJogador.Name = "txtSenhaJogador";
             this.txtSenhaJogador.Size = new System.Drawing.Size(144, 20);
             this.txtSenhaJogador.TabIndex = 24;
@@ -220,7 +210,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(9, 451);
+            this.label5.Location = new System.Drawing.Point(243, 428);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(79, 13);
             this.label5.TabIndex = 23;
@@ -233,7 +223,7 @@
             // 
             // btnIniciarPartida
             // 
-            this.btnIniciarPartida.Location = new System.Drawing.Point(12, 474);
+            this.btnIniciarPartida.Location = new System.Drawing.Point(246, 451);
             this.btnIniciarPartida.Name = "btnIniciarPartida";
             this.btnIniciarPartida.Size = new System.Drawing.Size(226, 31);
             this.btnIniciarPartida.TabIndex = 25;
@@ -244,38 +234,38 @@
             // chkBot
             // 
             this.chkBot.AutoSize = true;
-            this.chkBot.Location = new System.Drawing.Point(12, 334);
+            this.chkBot.Location = new System.Drawing.Point(246, 303);
             this.chkBot.Name = "chkBot";
             this.chkBot.Size = new System.Drawing.Size(138, 17);
             this.chkBot.TabIndex = 26;
             this.chkBot.Text = "Esse jogador é um Bot?";
             this.chkBot.UseVisualStyleBackColor = true;
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::AzulClaro.Properties.Resources.Fabrica;
-            this.pictureBox1.Location = new System.Drawing.Point(278, 12);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(175, 175);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.pictureBox1.TabIndex = 27;
-            this.pictureBox1.TabStop = false;
-            // 
             // lblErroIniciar
             // 
             this.lblErroIniciar.AutoSize = true;
-            this.lblErroIniciar.Location = new System.Drawing.Point(9, 506);
+            this.lblErroIniciar.Location = new System.Drawing.Point(243, 485);
             this.lblErroIniciar.Name = "lblErroIniciar";
-            this.lblErroIniciar.Size = new System.Drawing.Size(0, 13);
+            this.lblErroIniciar.Size = new System.Drawing.Size(38, 13);
             this.lblErroIniciar.TabIndex = 30;
+            this.lblErroIniciar.Text = "ERRO";
+            // 
+            // dgvPartidas
+            // 
+            this.dgvPartidas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvPartidas.Location = new System.Drawing.Point(12, 12);
+            this.dgvPartidas.Name = "dgvPartidas";
+            this.dgvPartidas.Size = new System.Drawing.Size(225, 525);
+            this.dgvPartidas.TabIndex = 31;
+            this.dgvPartidas.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPartidas_CellClick);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(244, 546);
+            this.ClientSize = new System.Drawing.Size(481, 546);
+            this.Controls.Add(this.dgvPartidas);
             this.Controls.Add(this.lblErroIniciar);
-            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.chkBot);
             this.Controls.Add(this.btnIniciarPartida);
             this.Controls.Add(this.txtSenhaJogador);
@@ -295,14 +285,13 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.cboStatusPartida);
             this.Controls.Add(this.txtIdPartida);
-            this.Controls.Add(this.cboPartidas);
             this.Controls.Add(this.btnListPartidas);
-            this.MaximumSize = new System.Drawing.Size(260, 585);
+            this.MaximumSize = new System.Drawing.Size(760, 585);
             this.MinimumSize = new System.Drawing.Size(260, 585);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Azul Claro";
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.Text = "ERRO";
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPartidas)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -311,7 +300,6 @@
         #endregion
 
         private System.Windows.Forms.Button btnListPartidas;
-        private System.Windows.Forms.ComboBox cboPartidas;
         private System.Windows.Forms.TextBox txtIdPartida;
         private System.Windows.Forms.ComboBox cboStatusPartida;
         private System.Windows.Forms.Label label1;
@@ -332,8 +320,8 @@
         private System.Windows.Forms.Timer tmrMsgErro;
         private System.Windows.Forms.Button btnIniciarPartida;
         private System.Windows.Forms.CheckBox chkBot;
-        private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label lblErroIniciar;
+        private System.Windows.Forms.DataGridView dgvPartidas;
     }
 }
 
