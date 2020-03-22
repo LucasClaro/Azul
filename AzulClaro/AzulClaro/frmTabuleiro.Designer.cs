@@ -73,6 +73,7 @@
             this.MaximumSize = new System.Drawing.Size(1920, 1080);
             this.MinimumSize = new System.Drawing.Size(1366, 768);
             this.Name = "frmTabuleiro";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "frmTabuleiro";
             this.Load += new System.EventHandler(this.frmTabuleiro_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pcbFabricas)).EndInit();

@@ -56,14 +56,17 @@ namespace AzulClaro
 
         private void pcbFabricas_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(Cursor.Position.X + " " + Cursor.Position.Y);
+            // MessageBox.Show(e.X);
 
+            //Posição do centro das fábricas
             //5:
-            //370, 211
-            //139, 423
-            //210, 692
-            //532, 692
-            //602, 423
+            //337; 154
+            //569; 365
+            //497; 635
+            //175; 636
+            //103; 367
         }
+
+
     }
 }
