@@ -26,7 +26,7 @@ namespace AzulClaro
 
         private void frmTabuleiro_Load(object sender, EventArgs e)
         {
-            lblCabecalho.Text = "Partida: " + partida.Nome;
+            lblCabecalho.Text = "Partida: " + partida.nome;
             DesenharFabricas();///////////////
             pcbTeste.Location = new Point(337, 154);
         }
@@ -35,7 +35,7 @@ namespace AzulClaro
         {
             string txt;
 
-            txt = Jogo.LerFabricas(jogador.Id, jogador.Senha);
+            txt = Jogo.LerFabricas(jogador.id, jogador.senha);
 
             if (txt.Substring(0, 4) == "ERRO")
             {

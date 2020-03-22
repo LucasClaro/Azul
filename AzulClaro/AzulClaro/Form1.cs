@@ -94,9 +94,9 @@ namespace AzulClaro
                         string[] jogadorFormatado = jogador.Split(',');//Separa cada elemento do jogador
 
                         Jogador j = new Jogador();//Cria os jogadores que vão ser inseridos no Objeto Partida
-                        j.Id = Convert.ToInt32(jogadorFormatado[0]);//Preenche os Objetos
-                        j.Nome = jogadorFormatado[1];
-                        j.Pontos = Convert.ToInt32(jogadorFormatado[2]);
+                        j.id = Convert.ToInt32(jogadorFormatado[0]);//Preenche os Objetos
+                        j.nome = jogadorFormatado[1];
+                        j.pontos = Convert.ToInt32(jogadorFormatado[2]);
 
                         partida.jogadores.Add(j);//Adiciona os objetos na partida                        
                     }
@@ -130,7 +130,7 @@ namespace AzulClaro
         {
             frmCriarPartida frmCriarPartida = new frmCriarPartida();//Chama o formulário de nova partida
             frmCriarPartida.ShowDialog();
-            int IdPartidaCriada = frmCriarPartida.IdPartidaCriada;//Lê o id e a senha criada nesse form    
+            int IdPartidaCriada = frmCriarPartida.idPartidaCriada;//Lê o id e a senha criada nesse form    
             string senha = frmCriarPartida.senha;
 
             ListarPartidas();//Atualiza a combo de partidas
@@ -175,10 +175,10 @@ namespace AzulClaro
 
 
                         jogador = new Jogador();
-                        jogador.Nome = txtNomeJogador.Text;//Preenche o Objeto jogador
-                        jogador.Id = Convert.ToInt32(txtRecortado[0]);
-                        jogador.Senha = txtRecortado[1];
-                        jogador.Bot = chkBot.Checked;
+                        jogador.nome = txtNomeJogador.Text;//Preenche o Objeto jogador
+                        jogador.id = Convert.ToInt32(txtRecortado[0]);
+                        jogador.senha = txtRecortado[1];
+                        jogador.bot = chkBot.Checked;
 
                         txtIdjogador.Text = txtRecortado[0];//Preenche os campos da tela
                         txtSenhaJogador.Text = txtRecortado[1];
@@ -219,23 +219,23 @@ namespace AzulClaro
             if (txtIdjogador.Text != "" && txtSenhaJogador.Text != "")
             {
                 //Vê se a partida tá aberta
-                if (partida.Status == "A")
+                if (partida.status == "A")
                 {
                     string txt = Jogo.IniciarPartida(Convert.ToInt32(txtIdjogador.Text), txtSenhaJogador.Text);
                     if (txt.Length < 3)
                     {
-                        partida.Status = "J";
+                        partida.status = "J";
                     }
                 }
 
-                if (partida.Status == "J")//Abre o Tabuleiro
+                if (partida.status == "J")//Abre o Tabuleiro
                 {
                     if(jogador == null)//Preenche o jogado caso ele esteja vazio para mandar para o Tabuleiro
                     {                        
                         jogador = new Jogador();
-                        jogador.Id = Convert.ToInt32(txtIdjogador.Text);
-                        jogador.Senha = txtSenhaJogador.Text;
-                        jogador.Nome = BuscarJogById(jogador.Id);
+                        jogador.id = Convert.ToInt32(txtIdjogador.Text);
+                        jogador.senha = txtSenhaJogador.Text;
+                        jogador.nome = BuscarJogById(jogador.id);
                     }
 
                     frmTabuleiro tabuleiro = new frmTabuleiro(partida, jogador);
@@ -266,9 +266,9 @@ namespace AzulClaro
         {
             foreach (Jogador jogador in partida.jogadores)
             {
-                if(jogador.Id == id)
+                if(jogador.id == id)
                 {
-                    return jogador.Nome;
+                    return jogador.nome;
                 }
             }
 

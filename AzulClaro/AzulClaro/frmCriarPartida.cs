@@ -14,7 +14,7 @@ namespace AzulClaro
     public partial class frmCriarPartida : Form
     {
         public string senha { get; set; }
-        public int IdPartidaCriada { get; set; }
+        public int idPartidaCriada { get; set; }
 
         public frmCriarPartida()
         {
@@ -33,7 +33,7 @@ namespace AzulClaro
 
                 if (erro.Length < 3)
                 {
-                    this.IdPartidaCriada = Convert.ToInt32(erro);
+                    this.idPartidaCriada = Convert.ToInt32(erro);
                     Close();
                 }
                 else
