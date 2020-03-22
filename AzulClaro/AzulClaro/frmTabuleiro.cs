@@ -28,7 +28,7 @@ namespace AzulClaro
         {
             lblCabecalho.Text = "Partida: " + partida.Nome;
             DesenharFabricas();///////////////
-
+            pcbTeste.Location = new Point(337, 154);
         }
 
         public void DesenharFabricas()
@@ -47,8 +47,8 @@ namespace AzulClaro
             textBox1.Text = txt;
 
             partida.preencherFabricas(txt);//Preenche as fábricas do obj partida
-            
-            //9 B75BC1 Usuário pra entrar na partida AzulClaro
+
+            //60 4E050C  Usuário pra entrar na partida IgorTeste
 
             //Desenahr fabricas aqui
 
