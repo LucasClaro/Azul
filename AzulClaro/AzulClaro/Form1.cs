@@ -58,7 +58,7 @@ namespace AzulClaro
             dgvPartidas.Rows[0].Selected = true;//Seleciona a linha mais nova
 
             partida = (Partida)dgvPartidas.SelectedRows[0].DataBoundItem;
-            txtIdPartida.Text = partida.Id.ToString();
+            txtIdPartida.Text = partida.id.ToString();
             ListarJogadores();
         }
 
@@ -80,7 +80,7 @@ namespace AzulClaro
             if (partida != null)
             {
                 bool existe = false;
-                string txt = Jogo.ListarJogadores(partida.Id);//Recebe todas as partidas filtrando pelo status
+                string txt = Jogo.ListarJogadores(partida.id);//Recebe todas as partidas filtrando pelo status
                 txt = txt.Replace("\r", "");//corta o caracter /r do retorno
                 string[] jogadores = txt.Split('\n');//Separa as linhas do retorno              
 
@@ -142,7 +142,7 @@ namespace AzulClaro
                 dgvPartidas.Rows[dgvPartidas.Rows.Count - 1].Selected = true;//Seleciona a linha mais nova
 
                 partida = (Partida)dgvPartidas.SelectedRows[0].DataBoundItem;
-                txtIdPartida.Text = partida.Id.ToString();
+                txtIdPartida.Text = partida.id.ToString();
                 ListarJogadores();
             }                
         }        
@@ -151,7 +151,7 @@ namespace AzulClaro
         private void dgvPartidas_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             partida = (Partida)dgvPartidas.SelectedRows[0].DataBoundItem;
-            txtIdPartida.Text = partida.Id.ToString();
+            txtIdPartida.Text = partida.id.ToString();
             ListarJogadores();
         }
         

@@ -34,9 +34,9 @@ namespace AzulClaro
 
                     string[] txtPicotado = txtPartida.Split(',');
 
-                    partida.Id = Convert.ToInt32(txtPicotado[0]);
-                    partida.Nome = txtPicotado[1];
-                    partida.Status = txtPicotado[3];
+                    partida.id = Convert.ToInt32(txtPicotado[0]);
+                    partida.nome = txtPicotado[1];
+                    partida.status = txtPicotado[3];
 
 
                     partidas.Add(partida);
@@ -63,7 +63,7 @@ namespace AzulClaro
                 fabrica.azulejos = new List<Azulejo>();
                 fabrica.id = i;
 
-                while (p != 13 && i == Convert.ToInt32(fabs[p].Substring(0, 1)))//Controla o azulejo
+                while (p != fabs.Length && i == Convert.ToInt32(fabs[p].Substring(0, 1)))//Controla o azulejo
                 {
                     Azulejo azul = new Azulejo();
                     azul.id = Convert.ToInt32(fabs[p].Substring(2, 1));

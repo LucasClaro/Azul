@@ -31,9 +31,7 @@
             this.lblCabecalho = new System.Windows.Forms.Label();
             this.pcbFabricas = new System.Windows.Forms.PictureBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.pcbTeste = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pcbFabricas)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pcbTeste)).BeginInit();
             this.SuspendLayout();
             // 
             // lblCabecalho
@@ -64,32 +62,21 @@
             this.textBox1.Size = new System.Drawing.Size(180, 341);
             this.textBox1.TabIndex = 2;
             // 
-            // pcbTeste
-            // 
-            this.pcbTeste.Image = global::AzulClaro.Properties.Resources.a1;
-            this.pcbTeste.Location = new System.Drawing.Point(822, 104);
-            this.pcbTeste.Name = "pcbTeste";
-            this.pcbTeste.Size = new System.Drawing.Size(100, 50);
-            this.pcbTeste.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pcbTeste.TabIndex = 3;
-            this.pcbTeste.TabStop = false;
-            // 
             // frmTabuleiro
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1350, 729);
-            this.Controls.Add(this.pcbTeste);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.pcbFabricas);
             this.Controls.Add(this.lblCabecalho);
             this.MaximumSize = new System.Drawing.Size(1920, 1080);
             this.MinimumSize = new System.Drawing.Size(1366, 768);
             this.Name = "frmTabuleiro";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "frmTabuleiro";
             this.Load += new System.EventHandler(this.frmTabuleiro_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pcbFabricas)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pcbTeste)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -100,6 +87,5 @@
         private System.Windows.Forms.Label lblCabecalho;
         private System.Windows.Forms.PictureBox pcbFabricas;
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.PictureBox pcbTeste;
     }
 }
