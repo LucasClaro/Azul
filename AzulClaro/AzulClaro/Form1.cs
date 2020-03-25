@@ -24,7 +24,7 @@ namespace AzulClaro
         //Criar as funções de jogar como public
         //Se ela for chamada pelo botão, ler os campos de txt
         //Se ela for chamada pelo Objeto, ler o próprio objeto
-        
+
         //Se for um bot, chama a(s) funções do obj e só
         //Se for um player, ler o comando dele e chame o jogar do Form
 
@@ -35,7 +35,6 @@ namespace AzulClaro
         public Form1()
         {
             InitializeComponent();
-            cboStatusPartida.SelectedIndex = 0;//Define a opção "Todos" como padrão na combo box de status da seleção de partida
 
             lblVersao.Text = "Versão: " + Jogo.Versao;//Exibe a versão da dll            
 
@@ -66,9 +65,13 @@ namespace AzulClaro
         //Movido pra cá para ser acessado por mais lugares
         public void ListarPartidas()
         {
-            bool existe1 = false;//Controla se existe pelo menos uma partida como resultado
-
-            string status = cboStatusPartida.SelectedItem.ToString().Substring(0, 1);//Pega o primeiro caracter da combo box de status da seleção de partida            
+            string status = "";
+            if (rdbTodos.Checked)
+                status = "T";
+            else if (rdbAbertas.Checked)
+                status = "A";
+            else
+                status = "E";
 
             dgvPartidas.DataSource = Partida.Listarpartidas(status);
         }
@@ -135,17 +138,17 @@ namespace AzulClaro
 
             ListarPartidas();//Atualiza a combo de partidas
 
-            if(IdPartidaCriada != 0)
+            if (IdPartidaCriada != 0)
             {
                 txtSenhaEntrar.Text = senha;//Coloca a senha da partida criada no campo de senha para jogar
-                
+
                 dgvPartidas.Rows[dgvPartidas.Rows.Count - 1].Selected = true;//Seleciona a linha mais nova
 
                 partida = (Partida)dgvPartidas.SelectedRows[0].DataBoundItem;
                 txtIdPartida.Text = partida.id.ToString();
                 ListarJogadores();
-            }                
-        }        
+            }
+        }
 
         //Clicar na DataGridView
         private void dgvPartidas_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -154,11 +157,11 @@ namespace AzulClaro
             txtIdPartida.Text = partida.id.ToString();
             ListarJogadores();
         }
-        
+
         //Botão Entrar na Partida
         private void btnEntrarPartida_Click(object sender, EventArgs e)
         {
-            if(txtIdPartida.Text != "")//Confere se o Id está preenchido
+            if (txtIdPartida.Text != "")//Confere se o Id está preenchido
             {
                 string txt;
                 string[] txtRecortado;
@@ -166,10 +169,10 @@ namespace AzulClaro
                 string nome = txtNomeJogador.Text;
                 string senha = txtSenhaEntrar.Text;
                 if (nome != "" && senha != "")//Tenta adicionar o jogador
-                {                    
+                {
                     txt = Jogo.EntrarPartida(id, nome, senha);//Cria o jogador e lê see Id e senha
 
-                    if(txt.Substring(0,4) != "ERRO")//Confere se não houve erro ao entrar na Partida
+                    if (txt.Substring(0, 4) != "ERRO")//Confere se não houve erro ao entrar na Partida
                     {
                         txtRecortado = txt.Split(',');//Formata o retorno para colocar no Objeto
 
@@ -222,7 +225,7 @@ namespace AzulClaro
                 if (partida.status == "A")
                 {
                     string txt = Jogo.IniciarPartida(Convert.ToInt32(txtIdjogador.Text), txtSenhaJogador.Text);
-                    if (txt.Length < 3)
+                    if (txt.Length <= 4)
                     {
                         partida.status = "J";
                     }
@@ -230,8 +233,8 @@ namespace AzulClaro
 
                 if (partida.status == "J")//Abre o Tabuleiro
                 {
-                    if(jogador == null)//Preenche o jogado caso ele esteja vazio para mandar para o Tabuleiro
-                    {                        
+                    if (jogador == null)//Preenche o jogado caso ele esteja vazio para mandar para o Tabuleiro
+                    {
                         jogador = new Jogador();
                         jogador.id = Convert.ToInt32(txtIdjogador.Text);
                         jogador.senha = txtSenhaJogador.Text;
@@ -247,7 +250,7 @@ namespace AzulClaro
                 else
                 {
                     lblErroIniciar.Text = "Partida ja encerrou";
-                }                    
+                }
             }
             else
             {
@@ -255,7 +258,7 @@ namespace AzulClaro
                 tmrMsgErro.Enabled = true;
                 return;//Sai da função ao falhar em iniciar a partida;
             }
-            
+
             jogador = null;
 
             ListarPartidas();
@@ -266,7 +269,7 @@ namespace AzulClaro
         {
             foreach (Jogador jogador in partida.jogadores)
             {
-                if(jogador.id == id)
+                if (jogador.id == id)
                 {
                     return jogador.nome;
                 }
@@ -275,5 +278,42 @@ namespace AzulClaro
             return "";
         }
 
-    }    
+
+        //Fecahr Minimizar
+        private void pcbFechar_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void pcbMinimizar_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+        }
+
+
+        //Mover janela
+        private Point downPoint = Point.Empty;
+
+        private void pnlBarraWindows_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+                downPoint = Point.Empty;
+        }
+
+        private void pnlBarraWindows_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (downPoint != Point.Empty)
+                Location = new Point(Left + e.X - downPoint.X, Top + e.Y - downPoint.Y);
+        }
+
+        private void pnlBarraWindows_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                downPoint = new Point(e.X, e.Y);
+            }
+        }
+
+
+    }
 }

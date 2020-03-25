@@ -58,10 +58,9 @@ namespace AzulClaro
 
         public void desenharAzulejos()
         {
-            List<Fabrica> lista = partida.fabricas;
             int i;
             int ang = 0;
-            foreach (Fabrica fab in lista)
+            foreach (Fabrica fab in partida.fabricas)
             {
                 i = 0;
                 ang = 0;

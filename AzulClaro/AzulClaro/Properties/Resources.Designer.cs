@@ -113,6 +113,16 @@ namespace AzulClaro.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap close {
+            get {
+                object obj = ResourceManager.GetObject("close", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap f5 {
             get {
                 object obj = ResourceManager.GetObject("f5", resourceCulture);
@@ -146,6 +156,16 @@ namespace AzulClaro.Properties {
         internal static System.Drawing.Bitmap Fabrica {
             get {
                 object obj = ResourceManager.GetObject("Fabrica", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap mini {
+            get {
+                object obj = ResourceManager.GetObject("mini", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

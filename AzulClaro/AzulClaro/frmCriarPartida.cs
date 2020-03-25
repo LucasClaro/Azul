@@ -31,7 +31,7 @@ namespace AzulClaro
             {
                 erro = Jogo.CriarPartida(nome, senha);
 
-                if (erro.Length < 3)
+                if (erro.Length <= 4)
                 {
                     this.idPartidaCriada = Convert.ToInt32(erro);
                     Close();
