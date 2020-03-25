@@ -60,17 +60,19 @@ namespace AzulClaro
         {
             List<Fabrica> lista = partida.fabricas;
             int i;
+            int ang = 0;
             foreach (Fabrica fab in lista)
             {
                 i = 0;
+                ang = 0;
                 foreach (Azulejo azul in fab.azulejos)
                 {
                     for (int j = 0; j < azul.quantidade; j++)
                     {
                         PictureBox pcbAzul = new PictureBox();
                         pcbAzul.Image = azul.image;
-                        pcbAzul.Location = new Point(fab.x - 100 + i, fab.y - 50);
-                        i += 50;
+                        pcbAzul.Location = new Point(fab.x + 50 * Convert.ToInt32(Math.Round(Math.Cos((ang * Math.PI)/180))), fab.y + 50 * Convert.ToInt32(Math.Round(Math.Sin(ang * Math.PI / 180))) - 50);
+                        ang += 90;
                         pcbAzul.Width = 50;
                         pcbAzul.Height = 50;
                         pcbAzul.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -80,7 +82,9 @@ namespace AzulClaro
                 }
             }
         }
-
+        //O porquê do cos(270) retornar -1
+        //https://stackoverflow.com/questions/9652695/why-does-math-cos90-math-pi-180-yield-6-123031769111-and-not-zero
+        //https://stackoverflow.com/questions/6082632/math-cos-math-sin-in-c-sharp
         private void pcbFabricas_Click(object sender, EventArgs e)
         {
             MessageBox.Show(Cursor.Position.X + " , " + Cursor.Position.Y);
