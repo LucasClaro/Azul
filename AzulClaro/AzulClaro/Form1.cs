@@ -35,7 +35,6 @@ namespace AzulClaro
         public Form1()
         {
             InitializeComponent();
-            cboStatusPartida.SelectedIndex = 0;//Define a opção "Todos" como padrão na combo box de status da seleção de partida
 
             lblVersao.Text = "Versão: " + Jogo.Versao;//Exibe a versão da dll            
 
@@ -66,9 +65,13 @@ namespace AzulClaro
         //Movido pra cá para ser acessado por mais lugares
         public void ListarPartidas()
         {
-            bool existe1 = false;//Controla se existe pelo menos uma partida como resultado
-
-            string status = cboStatusPartida.SelectedItem.ToString().Substring(0, 1);//Pega o primeiro caracter da combo box de status da seleção de partida            
+            string status = "";
+            if (rdbTodos.Checked)
+                status = "T";
+            else if(rdbAbertas.Checked)
+                status = "A";
+            else
+                status = "E";
 
             dgvPartidas.DataSource = Partida.Listarpartidas(status);
         }
@@ -274,6 +277,43 @@ namespace AzulClaro
 
             return "";
         }
+
+        
+        //Fecahr Minimizar
+        private void pcbFechar_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void pcbMinimizar_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+        }
+
+
+        //Mover janela
+        private  Point downPoint = Point.Empty;
+
+        private void pnlBarraWindows_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+                downPoint = Point.Empty;
+        }
+
+        private void pnlBarraWindows_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (downPoint != Point.Empty)
+                Location = new Point(Left + e.X - downPoint.X, Top + e.Y -downPoint.Y);
+        }
+
+        private void pnlBarraWindows_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                downPoint = new Point(e.X, e.Y);
+            }
+        }
+
 
     }    
 }
