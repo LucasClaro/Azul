@@ -73,42 +73,23 @@ namespace AzulClaro
             else
                 status = "E";
 
-            dgvPartidas.DataSource = Partida.Listarpartidas(status);
+            dgvPartidas.DataSource = Partida.ListarPartidas(status);
         }
 
         public void ListarJogadores()
         {
-            partida.jogadores = new List<Jogador>();
             lstJogadores.Items.Clear();//Limpa a combo box para preencher novamente
-            if (partida != null)
+            partida.ListarJogadores();
+
+            bool existe = false;
+            foreach (Jogador jogador in partida.jogadores)
             {
-                bool existe = false;
-                string txt = Jogo.ListarJogadores(partida.id);//Recebe todas as partidas filtrando pelo status
-                txt = txt.Replace("\r", "");//corta o caracter /r do retorno
-                string[] jogadores = txt.Split('\n');//Separa as linhas do retorno              
-
-                foreach (string jogador in jogadores)//preenche a lista de jogadores
-                {
-                    if (jogador != "")//Resolve o bug do elemento fantasma no fim
-                    {
-                        existe = true;
-                        lstJogadores.Items.Add(jogador);//Adiciona os textos na List Box
-
-                        string[] jogadorFormatado = jogador.Split(',');//Separa cada elemento do jogador
-
-                        Jogador j = new Jogador();//Cria os jogadores que vão ser inseridos no Objeto Partida
-                        j.id = Convert.ToInt32(jogadorFormatado[0]);//Preenche os Objetos
-                        j.nome = jogadorFormatado[1];
-                        j.pontos = Convert.ToInt32(jogadorFormatado[2]);
-
-                        partida.jogadores.Add(j);//Adiciona os objetos na partida                        
-                    }
-                }
-
-                if (!existe)
-                {
+                existe = true;
+                lstJogadores.Items.Add(jogador.nome);//Adiciona os textos na List Box
+            }          
+            if (!existe)
+            {
                     lstJogadores.Items.Add("[Sem Jogadores]");
-                }
             }
         }
 
@@ -250,6 +231,7 @@ namespace AzulClaro
                 else
                 {
                     lblErroIniciar.Text = "Partida ja encerrou";
+                    tmrMsgErro.Enabled = true;
                 }
             }
             else
