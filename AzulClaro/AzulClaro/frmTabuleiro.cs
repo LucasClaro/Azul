@@ -29,24 +29,23 @@ namespace AzulClaro
         {
             lblCabecalho.Text = "Partida: " + partida.nome;
             DesenharFabricas();///////////////
+            DesenharCentro();
         }
 
         public void DesenharFabricas()
         {
-            string txt;
+            string txtF;
 
-            txt = Jogo.LerFabricas(jogador.id, jogador.senha);
+            txtF = Jogo.LerFabricas(jogador.id, jogador.senha);
+            
 
-            if (txt.Substring(0, 4) == "ERRO")
+            if (txtF.Substring(0, 4) == "ERRO")
             {
-                this.erro = txt.Substring(5);
-                Close();
-                
-            }
+                this.erro = txtF.Substring(5);
+                Close();                
+            }                        
 
-            textBox1.Text = txt;
-
-            partida.preencherFabricas(txt);//Preenche as fábricas do obj partida
+            partida.preencherFabricas(txtF);//Preenche as fábricas do obj partida
 
             //60 4E050C  Usuário pra entrar na partida IgorTeste
 
@@ -54,6 +53,20 @@ namespace AzulClaro
             int qtdfab = partida.fabricas.Count();
             definePos(qtdfab);
             desenharAzulejos();
+        }
+
+        public void DesenharCentro()
+        {
+            string txtC;
+            txtC = Jogo.LerCentro(jogador.id, jogador.senha);
+
+            if (txtC.Substring(0, 4) == "ERRO")
+            {
+                this.erro = txtC.Substring(5);
+                Close();
+            }
+
+            textBox1.Text = txtC;
         }
 
         public void desenharAzulejos()
