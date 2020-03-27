@@ -43,7 +43,9 @@ namespace AzulClaro
             {
                 this.erro = txtF.Substring(5);
                 Close();                
-            }                        
+            }
+
+            textBox1.Text = txtF;
 
             partida.preencherFabricas(txtF);//Preenche as fábricas do obj partida
 
@@ -65,9 +67,7 @@ namespace AzulClaro
             {
                 this.erro = txtC.Substring(5);
                 Close();
-            }
-
-            textBox1.Text = txtC;
+            }            
         }
 
         public void desenharAzulejos()

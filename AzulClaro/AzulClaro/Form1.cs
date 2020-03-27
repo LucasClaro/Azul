@@ -102,10 +102,6 @@ namespace AzulClaro
         private void btnListPartidas_Click(object sender, EventArgs e)
         {
             ListarPartidas();//Só chama essa função para ela poder ser acessada por outros lugares
-            txtIdPartida.Text = "";
-            txtSenhaEntrar.Text = "";
-            lstJogadores.Items.Clear();
-            partida = null;
         }
 
         //Botão Listar Jogadores
@@ -207,6 +203,11 @@ namespace AzulClaro
         {
             if (txtIdjogador.Text != "" && txtSenhaJogador.Text != "")
             {
+                ListarPartidas();
+                if(partida == null)
+                {
+                    partida = new Partida();
+                }
                 if (!VerificaInicializacao(partida))//Caso o jogador iniciando a partida não esteja na partida selecionada, busca a partida desse jogador
                 {
                     foreach (Partida p in Partida.ListarPartidas("T"))
