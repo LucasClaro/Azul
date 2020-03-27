@@ -31,7 +31,7 @@ namespace AzulClaro
             DesenharFabricas();///////////////
             DesenharCentro();
         }
-
+        
         public void DesenharFabricas()
         {
             string txtF;
