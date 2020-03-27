@@ -47,18 +47,14 @@ namespace AzulClaro
             dgvPartidas.RowHeadersVisible = false;
             dgvPartidas.ReadOnly = true;
             dgvPartidas.Columns[0].Visible = false;
+            dgvPartidas.Columns[3].Visible = false;
             dgvPartidas.AllowUserToResizeRows = false;
             //gvwPartidas.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             dgvPartidas.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvPartidas.MultiSelect = false;
             //gvwPartidas.Columns[4].Width = 100;
             //gvwPartidas.Columns[5].Width = 75;
-
-            dgvPartidas.Rows[0].Selected = true;//Seleciona a linha mais nova
-
-            partida = (Partida)dgvPartidas.SelectedRows[0].DataBoundItem;
-            txtIdPartida.Text = partida.id.ToString();
-            ListarJogadores();
+            dgvPartidas.Font = new Font("Oxanium", 12);                        
         }
 
         //Antigo código do botão listar partidas
@@ -74,6 +70,15 @@ namespace AzulClaro
                 status = "E";
 
             dgvPartidas.DataSource = Partida.ListarPartidas(status);
+
+            if (dgvPartidas.Rows.Count > 0)
+            {
+                dgvPartidas.Rows[0].Selected = true;//Seleciona a linha mais nova
+                partida = (Partida)dgvPartidas.SelectedRows[0].DataBoundItem;
+                txtIdPartida.Text = partida.id.ToString();
+                ListarJogadores();
+            }
+            
         }
 
         public void ListarJogadores()
@@ -202,6 +207,17 @@ namespace AzulClaro
         {
             if (txtIdjogador.Text != "" && txtSenhaJogador.Text != "")
             {
+                if (!VerificaInicializacao(partida))//Caso o jogador iniciando a partida não esteja na partida selecionada, busca a partida desse jogador
+                {
+                    foreach (Partida p in Partida.ListarPartidas("T"))
+                    {
+                        if (VerificaInicializacao(p))
+                        {
+                            partida = p;
+                        }
+                    }
+                }                
+
                 //Vê se a partida tá aberta
                 if (partida.status == "A")
                 {
@@ -260,6 +276,24 @@ namespace AzulClaro
             return "";
         }
 
+        //Verifica se o jogador que está iniciando a partida está na partida selecionada
+        public bool VerificaInicializacao(Partida p)
+        {
+            bool retorno = false;
+            if (p.jogadores != null)
+            {
+                foreach (Jogador j in p.jogadores)
+                {
+                    if (Convert.ToInt32(txtIdjogador.Text) == j.id)
+                    {
+                        return true;
+                    }
+                }
+            }            
+
+            return false;
+        }
+
 
         //Fecahr Minimizar
         private void pcbFechar_Click(object sender, EventArgs e)
@@ -295,7 +329,5 @@ namespace AzulClaro
                 downPoint = new Point(e.X, e.Y);
             }
         }
-
-
     }
 }

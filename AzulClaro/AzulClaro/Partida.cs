@@ -38,7 +38,7 @@ namespace AzulClaro
                     partida.id = Convert.ToInt32(txtPicotado[0]);
                     partida.nome = txtPicotado[1];
                     partida.status = txtPicotado[3];
-
+                    partida.ListarJogadores();
 
                     partidas.Add(partida);
                 }
