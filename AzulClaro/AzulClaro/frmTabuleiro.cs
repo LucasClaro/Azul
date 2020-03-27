@@ -47,10 +47,11 @@ namespace AzulClaro
 
             partida.preencherFabricas(txtF);//Preenche as fábricas do obj partida
 
-            //60 4E050C  Usuário pra entrar na partida IgorTeste
+            //227 86A3EB  Usuário pra entrar na partida IgorTeste
 
             //Desenahr azulejos aqui
             int qtdfab = partida.fabricas.Count();
+            pcbFabricas.Image = Properties.Resources.f5;
             definePos(qtdfab);
             desenharAzulejos();
         }
@@ -114,32 +115,38 @@ namespace AzulClaro
         private void pcbFabricas_Click(object sender, EventArgs e)
         {
             MessageBox.Show(Cursor.Position.X + " , " + Cursor.Position.Y);
-
-            //Posição do centro das fábricas
-            //Sentido horário
-
-            //5:
-            //337; 154
-            //569; 365
-            //497; 635
-            //175; 636
-            //103; 367
         }
 
-        //Define X e Y das fabricas na lista manualmente, pensar num jeito automatizado pra fazer
+        //Posição do centro das fábricas
+        //Sentido horário
+        //Define X e Y das fabricas na lista
         public void definePos(int qtd)
         {
-            int[] posX = { 345, 577, 505, 183, 113 };
-            int[] posY = { 185, 397, 667, 667, 397 };
+            int[] posX = { };// = { 345, 577, 505, 183, 113 };
+            int[] posY = { };// = { 185, 397, 667, 667, 397 };
             switch(qtd)
             {
                 case 5:
-                    for (int i = 0; i < qtd; i++)
-                    {
-                        partida.fabricas[i].x = posX[i];
-                        partida.fabricas[i].y = posY[i];
-                    }
+                    pcbFabricas.Image = Properties.Resources.f5;
+                    posX = new int[] { 345, 577, 505, 183, 113 };
+                    posY = new int[] { 185, 397, 667, 667, 397 };
                     break;
+                case 7:
+                    pcbFabricas.Image = Properties.Resources.f7;
+                    posX = new int[] { 345, 555, 590, 460, 230, 103, 135 };
+                    posY = new int[] { 185, 290, 505, 665, 665, 505, 290 };
+                    break;
+                case 9:
+                    pcbFabricas.Image = Properties.Resources.f9;
+                    posX = new int[] { 345, 518, 592, 574, 426, 245, 122, 102, 174 };
+                    posY = new int[] { 175, 223, 388, 548, 672, 672, 548, 388, 223 };
+                    break;
+            }
+
+            for (int i = 0; i < qtd; i++)
+            {
+                partida.fabricas[i].x = posX[i];
+                partida.fabricas[i].y = posY[i];
             }
         }
     }
