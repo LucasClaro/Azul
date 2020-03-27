@@ -45,7 +45,7 @@
             // 
             // pcbFabricas
             // 
-            this.pcbFabricas.Image = global::AzulClaro.Properties.Resources.f5;
+            this.pcbFabricas.Image = global::AzulClaro.Properties.Resources.f7;
             this.pcbFabricas.Location = new System.Drawing.Point(12, 70);
             this.pcbFabricas.Name = "pcbFabricas";
             this.pcbFabricas.Size = new System.Drawing.Size(650, 650);
