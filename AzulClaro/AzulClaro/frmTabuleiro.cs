@@ -47,7 +47,7 @@ namespace AzulClaro
 
             partida.preencherFabricas(txtF);//Preenche as fábricas do obj partida
 
-            //227 86A3EB  Usuário pra entrar na partida IgorTeste
+            //35 F40397 Usuário pra entrar na partida IgorTeste
 
             //Desenahr azulejos aqui
             int qtdfab = partida.fabricas.Count();
@@ -70,37 +70,44 @@ namespace AzulClaro
             textBox1.Text = txtC;
         }
 
+        //Função que tira os azulejos da tela a coloca de novo
+        public void atualizarAzulejos()
+        {
+            tirarAzulejos();
+            desenharAzulejos();
+        }
+
+        //Arruma os azulejos em quadrado em cima das fábricas
         public void desenharAzulejos()
         {
             int i;
             int ang = 0;
-            foreach (Fabrica fab in partida.fabricas)
+            foreach (Fabrica fab in partida.fabricas) //Para cada fabrica na aprtida
             {
-                i = 0;
-                ang = 0;
-                foreach (Azulejo azul in fab.azulejos)
+                i = 0; //Qual é o azulejo, vai de 0 a 3
+                ang = 0; //Qual o angulo, será usado para definir se fica em cima ou em baixo
+
+                foreach (Azulejo azul in fab.azulejos) //Para cada azulejo da fabrica
                 {
-                    for (int j = 0; j < azul.quantidade; j++)
+                    for (int j = 0; j < azul.quantidade; j++) //Ver a quantidade de azulejos
                     {
-                        if(i % 2 == 0)
-                        {
+                        if(i % 2 == 0) // Ver se é o 1º, 2º, 3º ou 4º e coloca um angulo pra cima ou baixo;
                             ang = 90;
-                        }
                         else
-                        {
                             ang = 270;
-                        }
-                        PictureBox pcbAzul = new PictureBox();
+
+                        PictureBox pcbAzul = new PictureBox(); //Azulejo
                         pcbAzul.Image = azul.image;
-                        int x = fab.x - 60;
-                        if (i > 1) x += 52;
-                        pcbAzul.Location = new Point(x, fab.y + 26 * Convert.ToInt32(Math.Round(Math.Sin(ang * Math.PI / 180))) - 55);
+                        int x = fab.x - 60;                    //Pega o centro da fabrica e volta 50
+                        if (i > 1) x += 52;                    //Se for o 3º e 4º azulejo, move eles pro lado
+                        pcbAzul.Location = new Point(x, fab.y + 26 * Convert.ToInt32(Math.Round(Math.Sin(ang * Math.PI / 180))) - 55); //Define a posição do azulejo x -> calculado anteriomente, y -> y da fabrica + ou - sen do ang
                         i++;
                         pcbAzul.Width = 50;
                         pcbAzul.Height = 50;
                         pcbAzul.SizeMode = PictureBoxSizeMode.StretchImage;
-                        this.Controls.Add(pcbAzul);
-                        pcbAzul.BringToFront();
+                        pcbAzul.Name = "azul" + fab.id +""+i    ;
+                        this.Controls.Add(pcbAzul);            //Adiciona no form
+                        pcbAzul.BringToFront();                //Puxa pra frente
                     }
                 }
             }
@@ -122,32 +129,59 @@ namespace AzulClaro
         //Define X e Y das fabricas na lista
         public void definePos(int qtd)
         {
-            int[] posX = { };// = { 345, 577, 505, 183, 113 };
-            int[] posY = { };// = { 185, 397, 667, 667, 397 };
-            switch(qtd)
+            int[] posX = { }; //Array dos Xs dos centros das fabricas
+            int[] posY = { }; //Array dos Ys dos centros das fabricas
+            switch (qtd)
             {
                 case 5:
-                    pcbFabricas.Image = Properties.Resources.f5;
+                    pcbFabricas.Image = Properties.Resources.f5; //5 fabricas
                     posX = new int[] { 345, 577, 505, 183, 113 };
                     posY = new int[] { 185, 397, 667, 667, 397 };
                     break;
                 case 7:
-                    pcbFabricas.Image = Properties.Resources.f7;
+                    pcbFabricas.Image = Properties.Resources.f7; //7 fabricas
                     posX = new int[] { 345, 555, 590, 460, 230, 103, 135 };
                     posY = new int[] { 185, 290, 505, 665, 665, 505, 290 };
                     break;
                 case 9:
-                    pcbFabricas.Image = Properties.Resources.f9;
+                    pcbFabricas.Image = Properties.Resources.f9; //9 fabricas
                     posX = new int[] { 345, 518, 592, 574, 426, 245, 122, 102, 174 };
                     posY = new int[] { 175, 223, 388, 548, 672, 672, 548, 388, 223 };
                     break;
             }
-
+            
+            //Define as posições    
             for (int i = 0; i < qtd; i++)
             {
                 partida.fabricas[i].x = posX[i];
                 partida.fabricas[i].y = posY[i];
             }
+        }
+
+        //Tira os PictureBoxs dos azulejos da tela e atribui null a eles;
+        public void tirarAzulejos()
+        {
+            List<Control> pcbs = new List<Control>(); //Lista dos PictureBoxs
+            foreach(Control pcb in Controls)
+            {
+                if(pcb.GetType() == typeof(PictureBox)) //Vê na lista de controles quais são PictureBoxs
+                {
+                    pcbs.Add(pcb);
+                }
+            }
+
+            pcbs.Remove(pcbs.Find(pcb => pcb.Name.Equals("pcbFabricas"))); //Remove o PictureBox do fundo (Fabricas)
+
+            for (int i = 0; i < pcbs.Count; i++)
+            {
+                Controls.Remove(pcbs[i]);       //Remove do Form
+                pcbs[i] = null;                 //Deixa null a PictureBox (e torcer para o GC fazer o resto)
+            }
+        }
+
+        private void Button1_Click(object sender, EventArgs e)
+        {
+            atualizarAzulejos();
         }
     }
 }
