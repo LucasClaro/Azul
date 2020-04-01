@@ -163,6 +163,16 @@ namespace AzulClaro.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap marcaUm {
+            get {
+                object obj = ResourceManager.GetObject("marcaUm", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap mini {
             get {
                 object obj = ResourceManager.GetObject("mini", resourceCulture);
