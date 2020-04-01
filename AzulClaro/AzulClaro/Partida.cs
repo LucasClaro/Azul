@@ -93,27 +93,7 @@ namespace AzulClaro
                         azul.id = Convert.ToInt32(fabs[p].Substring(2, 1));
                         azul.quantidade = Convert.ToInt32(fabs[p].Substring(fabs[p].Length - 1, 1));//Lê o último caractere e pega a quantidade
 
-                        //Define a imagem do Azulejo
-                        switch (azul.id)
-                        {
-                            case 1:
-                                azul.image = Properties.Resources.a1;
-                                break;
-                            case 2:
-                                azul.image = Properties.Resources.a2;
-                                break;
-                            case 3:
-                                azul.image = Properties.Resources.a3;
-                                break;
-                            case 4:
-                                azul.image = Properties.Resources.a4;
-                                break;
-                            case 5:
-                                azul.image = Properties.Resources.a5;
-                                break;
-                            default:
-                                break;
-                        }
+                        azul.DefinirCor();//Define a imagem do Azulejo                        
 
                         p++;
 

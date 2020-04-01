@@ -9,12 +9,8 @@ namespace AzulClaro
 {
     public class Tabuleiro
     {
-        public bool[,,] parede { get; set; }
-        public Azulejo Fileira1 { get; set; }
-        public List<Azulejo> Fileira2 { get; set; }
-        public List<Azulejo> Fileira3 { get; set; }
-        public List<Azulejo> Fileira4 { get; set; }
-        public List<Azulejo> Fileira5 { get; set; }
-        public List<Azulejo> Chao { get; set; }        
+        public bool[,] parede { get; set; }
+        public Azulejo[] modelo { get; set; }
+        public List<Azulejo> chao { get; set; }        
     }
 }
