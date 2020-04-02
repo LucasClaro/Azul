@@ -32,6 +32,16 @@
             this.pcbFabricas = new System.Windows.Forms.PictureBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
+            this.btnVez = new System.Windows.Forms.Button();
+            this.lblVez = new System.Windows.Forms.Label();
+            this.rdbFab = new System.Windows.Forms.RadioButton();
+            this.rdbCentro = new System.Windows.Forms.RadioButton();
+            this.cboNumFab = new System.Windows.Forms.ComboBox();
+            this.cboCor = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.cboModelo = new System.Windows.Forms.ComboBox();
+            this.btnJogar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pcbFabricas)).BeginInit();
             this.SuspendLayout();
             // 
@@ -73,11 +83,129 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.Button1_Click);
             // 
+            // btnVez
+            // 
+            this.btnVez.Location = new System.Drawing.Point(12, 738);
+            this.btnVez.Name = "btnVez";
+            this.btnVez.Size = new System.Drawing.Size(75, 23);
+            this.btnVez.TabIndex = 4;
+            this.btnVez.Text = "Ver vez";
+            this.btnVez.UseVisualStyleBackColor = true;
+            this.btnVez.Click += new System.EventHandler(this.btnVez_Click);
+            // 
+            // lblVez
+            // 
+            this.lblVez.AutoSize = true;
+            this.lblVez.Location = new System.Drawing.Point(93, 743);
+            this.lblVez.Name = "lblVez";
+            this.lblVez.Size = new System.Drawing.Size(51, 13);
+            this.lblVez.TabIndex = 5;
+            this.lblVez.Text = "Jogador: ";
+            // 
+            // rdbFab
+            // 
+            this.rdbFab.AutoSize = true;
+            this.rdbFab.Location = new System.Drawing.Point(16, 782);
+            this.rdbFab.Name = "rdbFab";
+            this.rdbFab.Size = new System.Drawing.Size(60, 17);
+            this.rdbFab.TabIndex = 6;
+            this.rdbFab.TabStop = true;
+            this.rdbFab.Text = "Fábrica";
+            this.rdbFab.UseVisualStyleBackColor = true;
+            // 
+            // rdbCentro
+            // 
+            this.rdbCentro.AutoSize = true;
+            this.rdbCentro.Location = new System.Drawing.Point(16, 805);
+            this.rdbCentro.Name = "rdbCentro";
+            this.rdbCentro.Size = new System.Drawing.Size(56, 17);
+            this.rdbCentro.TabIndex = 7;
+            this.rdbCentro.TabStop = true;
+            this.rdbCentro.Text = "Centro";
+            this.rdbCentro.UseVisualStyleBackColor = true;
+            // 
+            // cboNumFab
+            // 
+            this.cboNumFab.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboNumFab.FormattingEnabled = true;
+            this.cboNumFab.Location = new System.Drawing.Point(82, 781);
+            this.cboNumFab.Name = "cboNumFab";
+            this.cboNumFab.Size = new System.Drawing.Size(84, 21);
+            this.cboNumFab.TabIndex = 8;
+            // 
+            // cboCor
+            // 
+            this.cboCor.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboCor.FormattingEnabled = true;
+            this.cboCor.Items.AddRange(new object[] {
+            "Azul",
+            "Amarelo",
+            "Vermelho",
+            "Preto",
+            "Branco"});
+            this.cboCor.Location = new System.Drawing.Point(64, 845);
+            this.cboCor.Name = "cboCor";
+            this.cboCor.Size = new System.Drawing.Size(102, 21);
+            this.cboCor.TabIndex = 9;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(13, 848);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(26, 13);
+            this.label2.TabIndex = 10;
+            this.label2.Text = "Cor:";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(13, 881);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(45, 13);
+            this.label3.TabIndex = 11;
+            this.label3.Text = "Modelo:";
+            // 
+            // cboModelo
+            // 
+            this.cboModelo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboModelo.FormattingEnabled = true;
+            this.cboModelo.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"});
+            this.cboModelo.Location = new System.Drawing.Point(64, 878);
+            this.cboModelo.Name = "cboModelo";
+            this.cboModelo.Size = new System.Drawing.Size(102, 21);
+            this.cboModelo.TabIndex = 12;
+            // 
+            // btnJogar
+            // 
+            this.btnJogar.Location = new System.Drawing.Point(196, 845);
+            this.btnJogar.Name = "btnJogar";
+            this.btnJogar.Size = new System.Drawing.Size(236, 54);
+            this.btnJogar.TabIndex = 13;
+            this.btnJogar.Text = "Jogar";
+            this.btnJogar.UseVisualStyleBackColor = true;
+            this.btnJogar.Click += new System.EventHandler(this.btnJogar_Click);
+            // 
             // frmTabuleiro
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1350, 729);
+            this.ClientSize = new System.Drawing.Size(1350, 920);
+            this.Controls.Add(this.btnJogar);
+            this.Controls.Add(this.cboModelo);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.cboCor);
+            this.Controls.Add(this.cboNumFab);
+            this.Controls.Add(this.rdbCentro);
+            this.Controls.Add(this.rdbFab);
+            this.Controls.Add(this.lblVez);
+            this.Controls.Add(this.btnVez);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.pcbFabricas);
@@ -100,5 +228,15 @@
         private System.Windows.Forms.PictureBox pcbFabricas;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnVez;
+        private System.Windows.Forms.Label lblVez;
+        private System.Windows.Forms.RadioButton rdbFab;
+        private System.Windows.Forms.RadioButton rdbCentro;
+        private System.Windows.Forms.ComboBox cboNumFab;
+        private System.Windows.Forms.ComboBox cboCor;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ComboBox cboModelo;
+        private System.Windows.Forms.Button btnJogar;
     }
 }

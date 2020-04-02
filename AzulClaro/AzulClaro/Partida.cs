@@ -13,6 +13,7 @@ namespace AzulClaro
 
         public string nome { get; set; }
         public string status { get; set; }
+        public int qtdFabricas { get; set; }
 
         public List<Jogador> jogadores { get; set; }
         public List<Fabrica> fabricas { get; set; }
@@ -38,7 +39,7 @@ namespace AzulClaro
                     partida.id = Convert.ToInt32(txtPicotado[0]);
                     partida.nome = txtPicotado[1];
                     partida.status = txtPicotado[3];
-                    partida.ListarJogadores();
+                    //partida.ListarJogadores();
 
                     partidas.Add(partida);
                 }
@@ -68,6 +69,8 @@ namespace AzulClaro
                     this.jogadores.Add(j);//Adiciona os objetos na partida                        
                 }
             }
+
+            this.qtdFabricas = (this.jogadores.Count * 2) + 1;
         }
 
         public void preencherFabricas(string txt)
@@ -77,11 +80,10 @@ namespace AzulClaro
                 string[] fabs = txt.Split('\n');//Separa as linhas do retorno    
 
                 fabs = fabs.Take(fabs.Count() - 1).ToArray();//Remove o elemento fantasma
-
-                int numFabs = Convert.ToInt32(fabs[fabs.Length - 1].Substring(0, 1));
+                
                 int p = 0;
 
-                for (int i = 1; i <= numFabs; i++)//Controla as fábricas
+                for (int i = 1; i <= this.qtdFabricas; i++)//Controla as fábricas
                 {
                     Fabrica fabrica = new Fabrica();
                     fabrica.azulejos = new List<Azulejo>();

@@ -207,48 +207,54 @@ namespace AzulClaro
         {
             if (txtIdjogador.Text != "" && txtSenhaJogador.Text != "")
             {
-                if (!VerificaInicializacao(partida))//Caso o jogador iniciando a partida não esteja na partida selecionada, busca a partida desse jogador
+                if (VerificaInicializacao(partida))//Caso o jogador iniciando a partida não esteja na partida selecionada, busca a partida desse jogador
                 {
-                    foreach (Partida p in Partida.ListarPartidas("T"))
+                    /*foreach (Partida p in Partida.ListarPartidas("T"))
                     {
                         if (VerificaInicializacao(p))
                         {
                             partida = p;
                         }
-                    }
-                }                
+                    }*/
 
-                //Vê se a partida tá aberta
-                if (partida.status == "A")
-                {
-                    string txt = Jogo.IniciarPartida(Convert.ToInt32(txtIdjogador.Text), txtSenhaJogador.Text);
-                    if (txt.Length <= 4)
+                    //Vê se a partida tá aberta
+                    if (partida.status == "A")
                     {
-                        partida.status = "J";
+                        string txt = Jogo.IniciarPartida(Convert.ToInt32(txtIdjogador.Text), txtSenhaJogador.Text);
+                        if (txt.Length <= 4)
+                        {
+                            partida.status = "J";
+                        }
                     }
-                }
 
-                if (partida.status == "J")//Abre o Tabuleiro
-                {
-                    if (jogador == null)//Preenche o jogado caso ele esteja vazio para mandar para o Tabuleiro
+                    if (partida.status == "J")//Abre o Tabuleiro
                     {
-                        jogador = new Jogador();
-                        jogador.id = Convert.ToInt32(txtIdjogador.Text);
-                        jogador.senha = txtSenhaJogador.Text;
-                        jogador.nome = BuscarJogById(jogador.id);
+                        if (jogador == null)//Preenche o jogado caso ele esteja vazio para mandar para o Tabuleiro
+                        {
+                            jogador = new Jogador();
+                            jogador.id = Convert.ToInt32(txtIdjogador.Text);
+                            jogador.senha = txtSenhaJogador.Text;
+                            jogador.nome = BuscarJogById(jogador.id);
+                        }
+
+                        frmTabuleiro tabuleiro = new frmTabuleiro(partida, jogador);
+                        tabuleiro.ShowDialog();
+
+                        lblErroIniciar.Text = tabuleiro.erro;
+                        tmrMsgErro.Enabled = true;
                     }
-
-                    frmTabuleiro tabuleiro = new frmTabuleiro(partida, jogador);
-                    tabuleiro.ShowDialog();
-
-                    lblErroIniciar.Text = tabuleiro.erro;
-                    tmrMsgErro.Enabled = true;
+                    else
+                    {
+                        lblErroIniciar.Text = "Partida ja encerrou";
+                        tmrMsgErro.Enabled = true;
+                    }
                 }
                 else
                 {
-                    lblErroIniciar.Text = "Partida ja encerrou";
+                    lblErroIniciar.Text = "Esse Jogador não está nessa partida";
                     tmrMsgErro.Enabled = true;
-                }
+                    return;//Sai da função ao falhar em iniciar a partida;
+                }                
             }
             else
             {

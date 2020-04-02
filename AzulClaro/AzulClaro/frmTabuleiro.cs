@@ -28,6 +28,11 @@ namespace AzulClaro
         private void frmTabuleiro_Load(object sender, EventArgs e)
         {
             lblCabecalho.Text = "Partida: " + partida.nome;
+            for (int i = 0; i < partida.qtdFabricas; i++)
+            {
+                cboNumFab.Items.Add(i.ToString());
+            }
+
             DesenharFabricas();///////////////
             DesenharCentro();
         }
@@ -50,9 +55,8 @@ namespace AzulClaro
             //35 F40397 Usuário pra entrar na partida IgorTeste
 
             //Desenahr azulejos aqui
-            int qtdfab = partida.fabricas.Count();
             pcbFabricas.Image = Properties.Resources.f5;
-            definePos(qtdfab);
+            definePos(partida.qtdFabricas);
             desenharAzulejos();
         }
 
@@ -182,6 +186,32 @@ namespace AzulClaro
         private void Button1_Click(object sender, EventArgs e)
         {
             atualizarAzulejos();
+        }
+
+        private void btnJogar_Click(object sender, EventArgs e)
+        {
+            string tipo;
+            int fab = 0;
+            int cor = cboCor.SelectedIndex + 1;
+            int modelo = cboModelo.SelectedIndex + 1;
+            if (rdbFab.Checked)
+            {
+                tipo = "f";
+                fab = Convert.ToInt32(cboNumFab.SelectedItem);
+
+            }
+            else
+            {
+                tipo = "c";
+            }
+
+            Jogo.Jogar(jogador.id, jogador.senha, tipo, fab, cor, modelo);
+        }
+
+        private void btnVez_Click(object sender, EventArgs e)
+        {
+            string txt = Jogo.VerificarVez(jogador.id, jogador.senha);
+            lblVez.Text = "jogador: " + txt;
         }
     }
 }
