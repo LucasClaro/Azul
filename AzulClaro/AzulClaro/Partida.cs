@@ -114,6 +114,8 @@ namespace AzulClaro
             txt = txt.Replace("\r", "");//corta o caracter /r do retorno
             string[] cent = txt.Split('\n');//Separa as linhas do retorno   
 
+            this.centro.azulejos = new List<Azulejo>();
+
             cent = cent.Take(cent.Count() - 1).ToArray();//Remove o elemento fantasma
 
             for (int i = 0; i < 5; i++)
@@ -122,8 +124,8 @@ namespace AzulClaro
                 Azulejo a = new Azulejo();
                 a.id = Convert.ToInt32(itens[0]);
                 a.quantidade = Convert.ToInt32(itens[2]);
-                this.centro.marca1 = Convert.ToBoolean(itens[3]);
-
+                this.centro.marca1 = Convert.ToBoolean(Convert.ToInt16(itens[3]));
+                a.DefinirCor();
                 this.centro.azulejos.Add(a);
             }
 

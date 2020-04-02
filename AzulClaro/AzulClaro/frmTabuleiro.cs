@@ -30,11 +30,13 @@ namespace AzulClaro
             lblCabecalho.Text = "Partida: " + partida.nome;
             for (int i = 0; i < partida.qtdFabricas; i++)
             {
-                cboNumFab.Items.Add(i.ToString());
+                cboNumFab.Items.Add((i+1).ToString());
             }
 
             DesenharFabricas();///////////////
             DesenharCentro();
+            definePos(partida.qtdFabricas);
+            desenharAzulejos();
         }
         
         public void DesenharFabricas()
@@ -56,8 +58,7 @@ namespace AzulClaro
 
             //Desenahr azulejos aqui
             pcbFabricas.Image = Properties.Resources.f5;
-            definePos(partida.qtdFabricas);
-            desenharAzulejos();
+           
         }
 
         public void DesenharCentro()
@@ -72,12 +73,45 @@ namespace AzulClaro
             }
 
             textBox1.Text = txtC;
+            partida.preencherCentro(txtC);
+            //Desenhar centro controla i e j
+            //Vai do canto superior esquerdo e somando +50 (altura e largura)
+            //Quando atingir um certo numero no horizontal, incrementar 1 na altura e zerar horizontal e ir até acabar
+            int Xcentro = 0, Ycentro = 0;
+            foreach(Azulejo azul in partida.centro.azulejos)
+            {
+                for(int i = 0; i < azul.quantidade; i++)
+                {
+                    PictureBox pcbAzul = new PictureBox(); //Azulejo
+                    pcbAzul.Image = azul.image;
+                                      
+                    pcbAzul.Location = new Point(195 + 50 * Xcentro, 230 + 50 * Ycentro);
+                    pcbAzul.Width = 50;
+                    pcbAzul.Height = 50;
+                    pcbAzul.SizeMode = PictureBoxSizeMode.StretchImage;
+                    pcbAzul.Name = "centro" + "" + i;
+                    this.Controls.Add(pcbAzul);            //Adiciona no form
+                    pcbAzul.BringToFront();                //Puxa pra frente
+
+                    if (i > 5)
+                    {
+                        Xcentro = 0;
+                        Ycentro++;
+                    }
+                    else
+                        Xcentro++;
+                }
+            }
         }
 
         //Função que tira os azulejos da tela a coloca de novo
         public void atualizarAzulejos()
         {
             tirarAzulejos();
+
+            DesenharFabricas();
+            //DesenharCentro();
+            definePos(partida.qtdFabricas);
             desenharAzulejos();
         }
 
@@ -109,7 +143,7 @@ namespace AzulClaro
                         pcbAzul.Width = 50;
                         pcbAzul.Height = 50;
                         pcbAzul.SizeMode = PictureBoxSizeMode.StretchImage;
-                        pcbAzul.Name = "azul" + fab.id +""+i    ;
+                        pcbAzul.Name = "azul" + fab.id +""+i;
                         this.Controls.Add(pcbAzul);            //Adiciona no form
                         pcbAzul.BringToFront();                //Puxa pra frente
                     }
@@ -162,7 +196,7 @@ namespace AzulClaro
             }
         }
 
-        //Tira os PictureBoxs dos azulejos da tela e atribui null a eles;
+        //Tira os PictureBoxs dos azulejos da tela e atribui null a eles (e torce para o GC fazer o resto);
         public void tirarAzulejos()
         {
             List<Control> pcbs = new List<Control>(); //Lista dos PictureBoxs
@@ -179,7 +213,7 @@ namespace AzulClaro
             for (int i = 0; i < pcbs.Count; i++)
             {
                 Controls.Remove(pcbs[i]);       //Remove do Form
-                pcbs[i] = null;                 //Deixa null a PictureBox (e torcer para o GC fazer o resto)
+                pcbs[i] = null;                 //Deixa null a PictureBox
             }
         }
 
@@ -206,6 +240,7 @@ namespace AzulClaro
             }
 
             Jogo.Jogar(jogador.id, jogador.senha, tipo, fab, cor, modelo);
+            atualizarAzulejos();
         }
 
         private void btnVez_Click(object sender, EventArgs e)
