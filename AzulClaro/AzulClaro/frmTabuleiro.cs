@@ -245,6 +245,8 @@ namespace AzulClaro
         private void Button1_Click(object sender, EventArgs e)
         {
             atualizarAzulejos();
+
+            textBox1.Text = Jogo.LerTabuleiro(jogador.id, jogador.senha, jogador.id);
         }
 
         private void btnJogar_Click(object sender, EventArgs e)
