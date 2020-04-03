@@ -110,6 +110,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtNomePartida);
             this.Name = "frmCriarPartida";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Criar Partida";
             this.ResumeLayout(false);
             this.PerformLayout();

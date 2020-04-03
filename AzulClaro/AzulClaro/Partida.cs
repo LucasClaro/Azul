@@ -118,13 +118,25 @@ namespace AzulClaro
 
             cent = cent.Take(cent.Count() - 1).ToArray();//Remove o elemento fantasma
 
+            string[] checa1 = cent[0].Split(',');
+
+            if(Convert.ToBoolean(Convert.ToInt16(checa1[3])))
+            {
+                Azulejo a = new Azulejo();
+                a.id = 0;
+                a.quantidade = 1;
+                //this.centro.marca1 = Convert.ToBoolean(Convert.ToInt16(itens[3]));
+                a.DefinirCor();
+                this.centro.azulejos.Add(a);
+            }
+
             for (int i = 0; i < 5; i++)
             {
                 string[] itens = cent[i].Split(',');
                 Azulejo a = new Azulejo();
                 a.id = Convert.ToInt32(itens[0]);
                 a.quantidade = Convert.ToInt32(itens[2]);
-                this.centro.marca1 = Convert.ToBoolean(Convert.ToInt16(itens[3]));
+                //this.centro.marca1 = Convert.ToBoolean(Convert.ToInt16(itens[3]));
                 a.DefinirCor();
                 this.centro.azulejos.Add(a);
             }

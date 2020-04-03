@@ -33,23 +33,46 @@ namespace AzulClaro
                 cboNumFab.Items.Add((i+1).ToString());
             }
 
-            DesenharFabricas();///////////////
-            DesenharCentro();
-            definePos(partida.qtdFabricas);
-            desenharAzulejos();
+            if (verificaLogin().Equals("ERRO"))
+            {
+                this.Close();
+            }
+            else
+            {
+                DesenharFabricas();///////////////
+                DesenharCentro();
+                definePos(partida.qtdFabricas);
+                desenharAzulejos();
+            }
         }
-        
+
+        public string verificaLogin()
+        {
+            string txtF;
+
+            txtF = Jogo.LerFabricas(jogador.id, jogador.senha);
+
+            if (txtF.Equals("")) { return "NAODEUERRO"; }
+            else if (txtF.Substring(0, 4) == "ERRO")
+            {
+                this.erro = txtF.Substring(5);
+                this.Close();
+                return "ERRO";
+            }
+            return "NAODEUERRO";
+        }
         public void DesenharFabricas()
         {
             string txtF;
 
             txtF = Jogo.LerFabricas(jogador.id, jogador.senha);
-            
 
-            if (txtF.Substring(0, 4) == "ERRO")
+            if (txtF.Equals("")) { }
+            else if (txtF.Substring(0, 4) == "ERRO")
             {
                 this.erro = txtF.Substring(5);
-                Close();                
+                this.Close();
+                return;
             }                        
 
             partida.preencherFabricas(txtF);//Preenche as fábricas do obj partida
@@ -70,6 +93,7 @@ namespace AzulClaro
             {
                 this.erro = txtC.Substring(5);
                 Close();
+                return;
             }
 
             textBox1.Text = txtC;
@@ -77,7 +101,7 @@ namespace AzulClaro
             //Desenhar centro controla i e j
             //Vai do canto superior esquerdo e somando +50 (altura e largura)
             //Quando atingir um certo numero no horizontal, incrementar 1 na altura e zerar horizontal e ir até acabar
-            int Xcentro = 0, Ycentro = 0;
+            int Xcentro = 0, Ycentro = 0,qtdAzul = 0;
             foreach(Azulejo azul in partida.centro.azulejos)
             {
                 for(int i = 0; i < azul.quantidade; i++)
@@ -85,7 +109,7 @@ namespace AzulClaro
                     PictureBox pcbAzul = new PictureBox(); //Azulejo
                     pcbAzul.Image = azul.image;
                                       
-                    pcbAzul.Location = new Point(195 + 50 * Xcentro, 230 + 50 * Ycentro);
+                    pcbAzul.Location = new Point(190 + 50 * Xcentro, 265 + 50 * Ycentro);
                     pcbAzul.Width = 50;
                     pcbAzul.Height = 50;
                     pcbAzul.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -93,10 +117,11 @@ namespace AzulClaro
                     this.Controls.Add(pcbAzul);            //Adiciona no form
                     pcbAzul.BringToFront();                //Puxa pra frente
 
-                    if (i > 5)
+                    if (qtdAzul++ > 4)
                     {
                         Xcentro = 0;
                         Ycentro++;
+                        qtdAzul = 0;
                     }
                     else
                         Xcentro++;
@@ -110,7 +135,7 @@ namespace AzulClaro
             tirarAzulejos();
 
             DesenharFabricas();
-            //DesenharCentro();
+            DesenharCentro();
             definePos(partida.qtdFabricas);
             desenharAzulejos();
         }
