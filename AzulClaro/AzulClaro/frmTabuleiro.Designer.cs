@@ -42,6 +42,11 @@
             this.label3 = new System.Windows.Forms.Label();
             this.cboModelo = new System.Windows.Forms.ComboBox();
             this.btnJogar = new System.Windows.Forms.Button();
+            this.btnModelo1 = new System.Windows.Forms.Button();
+            this.btnModelo2 = new System.Windows.Forms.Button();
+            this.btnModelo3 = new System.Windows.Forms.Button();
+            this.btnModelo4 = new System.Windows.Forms.Button();
+            this.btnModelo5 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pcbFabricas)).BeginInit();
             this.SuspendLayout();
             // 
@@ -63,7 +68,6 @@
             this.pcbFabricas.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pcbFabricas.TabIndex = 1;
             this.pcbFabricas.TabStop = false;
-            this.pcbFabricas.Click += new System.EventHandler(this.pcbFabricas_Click);
             // 
             // textBox1
             // 
@@ -191,11 +195,62 @@
             this.btnJogar.UseVisualStyleBackColor = true;
             this.btnJogar.Click += new System.EventHandler(this.btnJogar_Click);
             // 
+            // btnModelo1
+            // 
+            this.btnModelo1.Location = new System.Drawing.Point(669, 70);
+            this.btnModelo1.Name = "btnModelo1";
+            this.btnModelo1.Size = new System.Drawing.Size(75, 23);
+            this.btnModelo1.TabIndex = 14;
+            this.btnModelo1.Text = "Modelo1";
+            this.btnModelo1.UseVisualStyleBackColor = true;
+            this.btnModelo1.Click += new System.EventHandler(this.btnModelo1_Click);
+            // 
+            // btnModelo2
+            // 
+            this.btnModelo2.Location = new System.Drawing.Point(669, 99);
+            this.btnModelo2.Name = "btnModelo2";
+            this.btnModelo2.Size = new System.Drawing.Size(75, 23);
+            this.btnModelo2.TabIndex = 15;
+            this.btnModelo2.Text = "Modelo2";
+            this.btnModelo2.UseVisualStyleBackColor = true;
+            // 
+            // btnModelo3
+            // 
+            this.btnModelo3.Location = new System.Drawing.Point(669, 128);
+            this.btnModelo3.Name = "btnModelo3";
+            this.btnModelo3.Size = new System.Drawing.Size(75, 23);
+            this.btnModelo3.TabIndex = 16;
+            this.btnModelo3.Text = "Modelo3";
+            this.btnModelo3.UseVisualStyleBackColor = true;
+            // 
+            // btnModelo4
+            // 
+            this.btnModelo4.Location = new System.Drawing.Point(669, 157);
+            this.btnModelo4.Name = "btnModelo4";
+            this.btnModelo4.Size = new System.Drawing.Size(75, 23);
+            this.btnModelo4.TabIndex = 17;
+            this.btnModelo4.Text = "Modelo4";
+            this.btnModelo4.UseVisualStyleBackColor = true;
+            // 
+            // btnModelo5
+            // 
+            this.btnModelo5.Location = new System.Drawing.Point(669, 186);
+            this.btnModelo5.Name = "btnModelo5";
+            this.btnModelo5.Size = new System.Drawing.Size(75, 23);
+            this.btnModelo5.TabIndex = 18;
+            this.btnModelo5.Text = "Modelo5";
+            this.btnModelo5.UseVisualStyleBackColor = true;
+            // 
             // frmTabuleiro
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1350, 920);
+            this.Controls.Add(this.btnModelo5);
+            this.Controls.Add(this.btnModelo4);
+            this.Controls.Add(this.btnModelo3);
+            this.Controls.Add(this.btnModelo2);
+            this.Controls.Add(this.btnModelo1);
             this.Controls.Add(this.btnJogar);
             this.Controls.Add(this.cboModelo);
             this.Controls.Add(this.label3);
@@ -238,5 +293,10 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox cboModelo;
         private System.Windows.Forms.Button btnJogar;
+        private System.Windows.Forms.Button btnModelo1;
+        private System.Windows.Forms.Button btnModelo2;
+        private System.Windows.Forms.Button btnModelo3;
+        private System.Windows.Forms.Button btnModelo4;
+        private System.Windows.Forms.Button btnModelo5;
     }
 }
