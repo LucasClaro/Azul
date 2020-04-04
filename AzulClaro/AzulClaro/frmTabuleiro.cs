@@ -16,7 +16,7 @@ namespace AzulClaro
         public string erro { get; set; }
         public Partida partida { get; set; }
         public Jogador jogador { get; set; }
-        public Azulejo carrinho { get; set; }
+        public Compra compra { get; set; }
 
         public frmTabuleiro(Partida partida, Jogador jogador)
         {
@@ -29,11 +29,6 @@ namespace AzulClaro
         private void frmTabuleiro_Load(object sender, EventArgs e)
         {
             lblCabecalho.Text = "Partida: " + partida.nome;
-
-            for (int i = 0; i < partida.qtdFabricas; i++)///Remover logo
-            {
-                cboNumFab.Items.Add((i+1).ToString());
-            }
 
             if (verificaLogin().Equals("ERRO"))//Confere senha do jogador
             {
@@ -118,7 +113,7 @@ namespace AzulClaro
                         pcbAzul.SizeMode = PictureBoxSizeMode.StretchImage;
                         pcbAzul.Name = "azul" + fab.id + "" + i;
 
-                        pcbAzul.AccessibleName = "f," + fab.id + "," + azul.id + "," + azul.quantidade;//Informações para o carrinho
+                        pcbAzul.AccessibleName = "f" + fab.id + azul.id + azul.quantidade;//Informações para o carrinho
                         pcbAzul.Click += azulejo_Click;
 
                         this.Controls.Add(pcbAzul);            //Adiciona no form
@@ -158,7 +153,7 @@ namespace AzulClaro
                     pcbAzul.SizeMode = PictureBoxSizeMode.StretchImage;
                     pcbAzul.Name = "centro" + "" + i;
 
-                    pcbAzul.AccessibleName = "c," + azul.id + "," + azul.quantidade;//Informações para o carrinho
+                    pcbAzul.AccessibleName = "c0" + azul.id + azul.quantidade;//Informações para o carrinho
                     pcbAzul.Click += azulejo_Click;
 
                     this.Controls.Add(pcbAzul);            //Adiciona no form
@@ -249,40 +244,62 @@ namespace AzulClaro
 
             textBox1.Text = Jogo.LerTabuleiro(jogador.id, jogador.senha, jogador.id);
         }//Recarrega azulejos (REMOVER)
-        public void Jogar(string tipo, int fab, int cor, int modelo)
+        public void Jogar()
         {
-            Jogo.Jogar(jogador.id, jogador.senha, tipo, fab, cor, modelo);
+            Jogo.Jogar(jogador.id, jogador.senha, compra.tipo, compra.fabrica, compra.azulejo, compra.modelo);
             atualizarAzulejos();
+            compra = null;
         }//Manda um pedido de compra
         private void azulejo_Click(object sender, EventArgs e)
         {
-            PictureBox a = new PictureBox();
-            a = (PictureBox)sender;
-            MessageBox.Show(a.AccessibleName);
-        }//Clique em um azulejo das fábricas e centro: adiciona o azulejo no carrinho
-        private void btnJogar_Click(object sender, EventArgs e)
-        {
-            string tipo;
-            int fab = 0;
-            int cor = cboCor.SelectedIndex + 1;
-            int modelo = cboModelo.SelectedIndex + 1;
-            if (rdbFab.Checked)
-            {
-                tipo = "f";
-                fab = Convert.ToInt32(cboNumFab.SelectedItem);
+            compra = new Compra();//Instacia o objeto compra
 
-            }
+            PictureBox pcb = (PictureBox)sender;//Recebe a picturebox que mandou o evento
+
+            //Preence o objeto compra
+            compra.tipo = pcb.AccessibleName.Substring(0,1);
+            compra.fabrica = Convert.ToInt32(pcb.AccessibleName.Substring(1, 1));
+            compra.azulejo = Convert.ToInt32(pcb.AccessibleName.Substring(2, 1));
+            compra.qtd = Convert.ToInt32(pcb.AccessibleName.Substring(3, 1));
+
+            string cor = Azulejo.LembraCor(compra.azulejo, compra.qtd > 1);//Pega a cor na função da classe azulejo, essa comparação diz se é plural ou não
+            string azu = "azulejo";//Pego o plural ou o singular de Azulejos
+            if (compra.qtd > 1)
+                azu += "s";
+            string dx;//Vê se a compra é da fábrica ou do centro
+            if (compra.tipo == "f")
+                dx = "da fábrica " + compra.fabrica;
             else
-            {
-                tipo = "c";
-            }
+                dx = "do centro";
 
-            Jogar(tipo, fab, cor, modelo);   
-        }//Botão Jogar: pega as infos dos componentes e faz uma compra (REMOVER)        
+            lblCompra.Text = "Compra: " + compra.qtd + " " + azu + " " + cor + " " + dx;//Escreve a corrinho de compras na tela
+
+        }//Clique em um azulejo das fábricas e centro: adiciona o azulejo no carrinho     
         private void btnModelo1_Click(object sender, EventArgs e)
         {
-
+            compra.modelo = 1;
+            Jogar();
         }//Botão modelo 1: Chama jogar mandando 1 como modelo
+        private void btnModelo2_Click(object sender, EventArgs e)
+        {
+            compra.modelo = 2;
+            Jogar();
+        }//Botão modelo 2: Chama jogar mandando 2 como modelo
+        private void btnModelo3_Click(object sender, EventArgs e)
+        {
+            compra.modelo = 3;
+            Jogar();
+        }//Botão modelo 3: Chama jogar mandando 3 como modelo
+        private void btnModelo4_Click(object sender, EventArgs e)
+        {
+            compra.modelo = 4;
+            Jogar();
+        }//Botão modelo 4: Chama jogar mandando 4 como modelo
+        private void btnModelo5_Click(object sender, EventArgs e)
+        {
+            compra.modelo = 5;
+            Jogar();
+        }//Botão modelo 5: Chama jogar mandando 5 como modelo
     }
 }
 

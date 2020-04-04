@@ -39,5 +39,53 @@ namespace AzulClaro
                     break;
             }
         }
+
+        public static string LembraCor(int id, bool plural)
+        {
+            string retorno;
+            switch (id)
+            {
+                case 1:
+                    retorno = "Azul";
+                    if (plural)
+                    {
+                        retorno = "Azuis";
+                    }
+                    break;
+                case 2:
+                    retorno = "Amarelo";
+                    if (plural)
+                    {
+                        retorno += "s";
+                    }
+                    break;
+                case 3:
+                    retorno = "Vermelho";
+                    if (plural)
+                    {
+                        retorno += "s";
+                    }
+                    break;
+                case 4:
+                    retorno = "Preto";
+                    if (plural)
+                    {
+                        retorno += "s";
+                    }
+                    break;
+                case 5:
+                    retorno = "Branco";
+                    if (plural)
+                    {
+                        retorno += "s";
+                    }
+                    break;
+                default:
+                    retorno = "";
+                    break;
+            }
+
+            return retorno;
+        }
     }
 }

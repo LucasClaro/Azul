@@ -19,9 +19,7 @@ namespace AzulClaro
         public frmCriarPartida()
         {
             InitializeComponent();
-        }
-
-        //Botão Criar Partida
+        }//Construtor
         private void btnCriarPartida_Click(object sender, EventArgs e)
         {
             string nome = txtNomePartida.Text;//Lê nome e senha da nova partida
@@ -45,13 +43,11 @@ namespace AzulClaro
             {
                 lblErro.Text = "Preencha ambos os campos!";
             }
-        }
-
-        //Botão Cancelar
+        }//Botão Criar Partida: se os campos estiverem preenchidos e sem erro na criação, cria a partida e retorna o id da partida criada         
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             senha = "";
             Close();
-        }
+        }//Botão Cancelar: cancela a criação e não retorna nada pra tela anterior
     }
-}
+}          
