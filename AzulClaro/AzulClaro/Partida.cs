@@ -10,7 +10,6 @@ namespace AzulClaro
     public class Partida
     {
         public int id { get; set; }
-
         public string nome { get; set; }
         public string status { get; set; }
         public int qtdFabricas { get; set; }

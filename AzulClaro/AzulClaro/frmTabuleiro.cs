@@ -134,7 +134,6 @@ namespace AzulClaro
                 return;
             }
 
-            textBox1.Text = txtC;
             partida.preencherCentro(txtC);
             //Desenhar centro controla i e j
             //Vai do canto superior esquerdo e somando +50 (altura e largura)

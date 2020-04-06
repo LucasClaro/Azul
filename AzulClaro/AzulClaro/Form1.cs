@@ -275,7 +275,6 @@ namespace AzulClaro
         }//Usado no iniciar partida
         public bool VerificaInicializacao(Partida p)
         {
-            bool retorno = false;
             if (p.jogadores != null)
             {
                 foreach (Jogador j in p.jogadores)
@@ -296,7 +295,6 @@ namespace AzulClaro
         {
             this.Close();
         }//Botão Fechar
-
         private void pcbMinimizar_Click(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Minimized;
