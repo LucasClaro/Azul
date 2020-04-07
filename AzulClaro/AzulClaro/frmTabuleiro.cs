@@ -139,14 +139,19 @@ namespace AzulClaro
             //Vai do canto superior esquerdo e somando +50 (altura e largura)
             //Quando atingir um certo numero no horizontal, incrementar 1 na altura e zerar horizontal e ir até acabar
             int Xcentro = 0, Ycentro = 0,qtdAzul = 0;
+            Point[] points = partida.centro.organizarEmLinhas();
+            int w = 0;
+
             foreach(Azulejo azul in partida.centro.azulejos)
             {
                 for(int i = 0; i < azul.quantidade; i++)
                 {
                     PictureBox pcbAzul = new PictureBox(); //Azulejo
                     pcbAzul.Image = azul.image;
-                                      
-                    pcbAzul.Location = new Point(190 + 50 * Xcentro, 265 + 50 * Ycentro);
+
+                    //pcbAzul.Location = new Point(190 + 50 * Xcentro, 265 + 50 * Ycentro);
+                    pcbAzul.Location = points[w++];
+
                     pcbAzul.Width = 50;
                     pcbAzul.Height = 50;
                     pcbAzul.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -158,14 +163,14 @@ namespace AzulClaro
                     this.Controls.Add(pcbAzul);            //Adiciona no form
                     pcbAzul.BringToFront();                //Puxa pra frente
 
-                    if (qtdAzul++ > 4)
-                    {
-                        Xcentro = 0;
-                        Ycentro++;
-                        qtdAzul = 0;
-                    }
-                    else
-                        Xcentro++;
+                    //if (qtdAzul++ > 4)
+                    //{
+                    //    Xcentro = 0;
+                    //    Ycentro++;
+                    //    qtdAzul = 0;
+                    //}
+                    //else
+                    //    Xcentro++;
                 }
             }
         }//Configura Texto do centro, chama preencher centro e desenha seus azulejos
@@ -228,7 +233,7 @@ namespace AzulClaro
                 Controls.Remove(pcbs[i]);       //Remove do Form
                 pcbs[i] = null;                 //Deixa null a PictureBox
             }
-        }//Tira os PictureBoxs dos azulejos da tela e atribui null a eles (e torce para o GC fazer o resto);
+        }//Tira os PictureBoxes dos azulejos da tela e atribui null a eles (e torce para o GC fazer o resto);
 
         /////////////////////////////////////////////////////////////                    
 
