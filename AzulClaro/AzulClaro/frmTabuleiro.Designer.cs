@@ -64,7 +64,7 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(926, 261);
+            this.textBox1.Location = new System.Drawing.Point(699, 567);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(180, 341);
@@ -72,7 +72,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(926, 143);
+            this.button1.Location = new System.Drawing.Point(1026, 99);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 3;

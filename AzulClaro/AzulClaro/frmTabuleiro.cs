@@ -40,7 +40,7 @@ namespace AzulClaro
                 configurarFabricas();
                 desenharCentro();                
                 desenharFabricas();
-
+                desenharTabuleiro();
             }
         }//Load do form: Verifica senha e Desenha Tudo
 
@@ -247,6 +247,7 @@ namespace AzulClaro
             atualizarAzulejos();
 
             textBox1.Text = Jogo.LerTabuleiro(jogador.id, jogador.senha, jogador.id);
+            desenharTabuleiro();
         }//Recarrega azulejos (REMOVER)
         public void Jogar()
         {
@@ -304,6 +305,53 @@ namespace AzulClaro
             compra.modelo = 5;
             Jogar();
         }//Botão modelo 5: Chama jogar mandando 5 como modelo
+
+        public void desenharTabuleiro()
+        {
+            jogador.preencherTabuleiro(jogador.id, jogador.senha);
+            //C9C4F5
+
+            /* ======= MODELO ======= */
+            //superior esquerdo 1 do modelo 1 - 1025,100
+            for (int i = 0; i < jogador.tabuleiro.modelo.Length; i++)
+            {
+                if (jogador.tabuleiro.modelo[i] != null)
+                {
+                    for (int j = 0; j < jogador.tabuleiro.modelo[i].quantidade; j++)
+                    {
+                        PictureBox pcbAzul = new PictureBox(); //Azulejo
+                        pcbAzul.Image = jogador.tabuleiro.modelo[i].image;
+                        pcbAzul.Location = new Point(1025 - 50 * j, 100 + (50 * i));
+                        Console.WriteLine(i + " " + jogador.tabuleiro.modelo[i].id + " x= " + (1025 - 50 * j) +" y= "+ (100 + 50 * i));
+                        pcbAzul.Width = 50;
+                        pcbAzul.Height = 50;
+                        pcbAzul.SizeMode = PictureBoxSizeMode.StretchImage;
+                        pcbAzul.Name = "modelo" + "" + i + "" + jogador.tabuleiro.modelo[i].id + "" + j;
+
+                        this.Controls.Add(pcbAzul);            //Adiciona no form
+                        pcbAzul.BringToFront();                //Puxa pra frente
+                    }
+                }
+            }
+
+            /* ======= PAREDE ======= */
+
+            /* ======= CHÃO ======= */
+            int c = 0;
+            foreach (Azulejo azul in jogador.tabuleiro.chao)
+            {
+                PictureBox pcbAzul = new PictureBox(); //Azulejo
+                pcbAzul.Image = azul.image;
+                pcbAzul.Location = new Point(800 + 50 * c , 400);
+                pcbAzul.Width = 50;
+                pcbAzul.Height = 50;
+                pcbAzul.SizeMode = PictureBoxSizeMode.StretchImage;
+                pcbAzul.Name = "chao" + "" + c;
+
+                this.Controls.Add(pcbAzul);            //Adiciona no form
+                pcbAzul.BringToFront();                //Puxa pra frente
+            }
+        }
     }
 }
 

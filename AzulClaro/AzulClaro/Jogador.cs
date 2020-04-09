@@ -16,7 +16,7 @@ namespace AzulClaro
         public bool bot { get; set; }
         public Tabuleiro tabuleiro { get; set; }
 
-        public void PreencherTabuleiro(int id, string senha)
+        public void preencherTabuleiro(int id, string senha)
         {
             this.tabuleiro = new Tabuleiro();
             this.tabuleiro.modelo = new Azulejo[5];
@@ -39,11 +39,11 @@ namespace AzulClaro
                 a.DefinirCor();
                 a.quantidade = Convert.ToInt32(linha[2]);
 
-                this.tabuleiro.modelo[m] = a;
+                this.tabuleiro.modelo[Convert.ToInt32(linha[0]) - 1] = a;
                 l++;
             }
 
-            l++;
+            l++; //Pula o texto parede
 
             while (txtTabuleiro[l].Substring(0,1) != "c")
             {
@@ -53,16 +53,16 @@ namespace AzulClaro
                 l++;
             }
 
-            l++;
-
-            while (txtTabuleiro[l].Substring(0, 1) != " ")
+            l++; //Pula o texto chão
+     
+            while (!txtTabuleiro[l].Equals(""))
             {
                 string[] linha = txtTabuleiro[l].Split(',');
                 Azulejo a = new Azulejo();
                 a.id = Convert.ToInt32(linha[1]);
                 a.DefinirCor();
 
-                this.tabuleiro.chao[m] = a;
+                this.tabuleiro.chao.Add(a);
                 l++;
             }
         }
