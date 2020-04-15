@@ -14,6 +14,7 @@ namespace AzulClaro
     public partial class frmTabuleiro : Form
     {
         public string erro { get; set; }
+        public int vez { get; set; }
         public Partida partida { get; set; }
         public Jogador jogador { get; set; }
         public Compra compra { get; set; }
@@ -33,6 +34,7 @@ namespace AzulClaro
             if (verificaLogin().Equals("ERRO"))//Confere senha do jogador
             {
                 this.Close();
+                tmrRefresh.Enabled = false;
             }
             else
             {
@@ -41,6 +43,8 @@ namespace AzulClaro
                 desenharCentro();                
                 desenharFabricas();
                 desenharTabuleiro();
+
+                Vez();
             }
         }//Load do form: Verifica senha e Desenha Tudo
 
@@ -138,7 +142,6 @@ namespace AzulClaro
             //Desenhar centro controla i e j
             //Vai do canto superior esquerdo e somando +50 (altura e largura)
             //Quando atingir um certo numero no horizontal, incrementar 1 na altura e zerar horizontal e ir até acabar
-            int Xcentro = 0, Ycentro = 0,qtdAzul = 0;
             Point[] points = partida.centro.organizarEmLinhas();
             int w = 0;
 
@@ -174,6 +177,52 @@ namespace AzulClaro
                 }
             }
         }//Configura Texto do centro, chama preencher centro e desenha seus azulejos
+        public void desenharTabuleiro()
+        {
+            jogador.preencherTabuleiro(jogador.id, jogador.senha);
+            //C9C4F5
+
+            /* ======= MODELO ======= */
+            //superior esquerdo 1 do modelo 1 - 1025,100
+            for (int i = 0; i < jogador.tabuleiro.modelo.Length; i++)
+            {
+                if (jogador.tabuleiro.modelo[i] != null)
+                {
+                    for (int j = 0; j < jogador.tabuleiro.modelo[i].quantidade; j++)
+                    {
+                        PictureBox pcbAzul = new PictureBox(); //Azulejo
+                        pcbAzul.Image = jogador.tabuleiro.modelo[i].image;
+                        pcbAzul.Location = new Point(1025 - 50 * j, 100 + (50 * i));
+                        Console.WriteLine(i + " " + jogador.tabuleiro.modelo[i].id + " x= " + (1025 - 50 * j) + " y= " + (100 + 50 * i));
+                        pcbAzul.Width = 50;
+                        pcbAzul.Height = 50;
+                        pcbAzul.SizeMode = PictureBoxSizeMode.StretchImage;
+                        pcbAzul.Name = "modelo" + "" + i + "" + jogador.tabuleiro.modelo[i].id + "" + j;
+
+                        this.Controls.Add(pcbAzul);            //Adiciona no form
+                        pcbAzul.BringToFront();                //Puxa pra frente
+                    }
+                }
+            }
+
+            /* ======= PAREDE ======= */
+
+            /* ======= CHÃO ======= */
+            int c = 0;
+            foreach (Azulejo azul in jogador.tabuleiro.chao)
+            {
+                PictureBox pcbAzul = new PictureBox(); //Azulejo
+                pcbAzul.Image = azul.image;
+                pcbAzul.Location = new Point(800 + 50 * c, 400);
+                pcbAzul.Width = 50;
+                pcbAzul.Height = 50;
+                pcbAzul.SizeMode = PictureBoxSizeMode.StretchImage;
+                pcbAzul.Name = "chao" + "" + c;
+
+                this.Controls.Add(pcbAzul);            //Adiciona no form
+                pcbAzul.BringToFront();                //Puxa pra frente
+            }
+        }
         public void definePos(int qtd)
         {
             int[] posX = { }; //Array dos Xs dos centros das fabricas
@@ -239,8 +288,7 @@ namespace AzulClaro
 
         private void btnVez_Click(object sender, EventArgs e)
         {
-            string txt = Jogo.VerificarVez(jogador.id, jogador.senha);
-            lblVez.Text = "jogador: " + txt;
+            Vez();
         }//Botão Vez: printa a vez
         private void Button1_Click(object sender, EventArgs e)
         {
@@ -251,9 +299,10 @@ namespace AzulClaro
         }//Recarrega azulejos (REMOVER)
         public void Jogar()
         {
-            Jogo.Jogar(jogador.id, jogador.senha, compra.tipo, compra.fabrica, compra.azulejo, compra.modelo);
+            string txt = Jogo.Jogar(jogador.id, jogador.senha, compra.tipo, compra.fabrica, compra.azulejo, compra.modelo);
+            lblErro.Text = txt;
             atualizarAzulejos();
-            compra = null;
+            Vez();
         }//Manda um pedido de compra
         private void azulejo_Click(object sender, EventArgs e)
         {
@@ -304,53 +353,57 @@ namespace AzulClaro
         {
             compra.modelo = 5;
             Jogar();
-        }//Botão modelo 5: Chama jogar mandando 5 como modelo
+        }//Botão modelo 5: Chama jogar mandando 5 como modelo        
 
-        public void desenharTabuleiro()
+        /////////////////////////////////////////////////////////////
+
+        public void Vez()
         {
-            jogador.preencherTabuleiro(jogador.id, jogador.senha);
-            //C9C4F5
+            string txt = Jogo.VerificarVez(jogador.id, jogador.senha);
 
-            /* ======= MODELO ======= */
-            //superior esquerdo 1 do modelo 1 - 1025,100
-            for (int i = 0; i < jogador.tabuleiro.modelo.Length; i++)
+            string v = txt.Substring(2,3);
+            if (v.Substring(v.Length-1,1) == ",")
             {
-                if (jogador.tabuleiro.modelo[i] != null)
+                v = v.Substring(0, 2);
+            }
+            this.vez = Convert.ToInt32(v);
+
+            lblVez.Text = "jogador: " + txt;
+            
+            if (!(vez == jogador.id))
+            {
+                atualizarAzulejos();
+                btnModelo1.Enabled = false;
+                btnModelo2.Enabled = false;
+                btnModelo3.Enabled = false;
+                btnModelo4.Enabled = false;
+                btnModelo5.Enabled = false;
+
+                this.compra = null;
+            }
+            else
+            {
+                if (this.compra == null)
                 {
-                    for (int j = 0; j < jogador.tabuleiro.modelo[i].quantidade; j++)
-                    {
-                        PictureBox pcbAzul = new PictureBox(); //Azulejo
-                        pcbAzul.Image = jogador.tabuleiro.modelo[i].image;
-                        pcbAzul.Location = new Point(1025 - 50 * j, 100 + (50 * i));
-                        Console.WriteLine(i + " " + jogador.tabuleiro.modelo[i].id + " x= " + (1025 - 50 * j) +" y= "+ (100 + 50 * i));
-                        pcbAzul.Width = 50;
-                        pcbAzul.Height = 50;
-                        pcbAzul.SizeMode = PictureBoxSizeMode.StretchImage;
-                        pcbAzul.Name = "modelo" + "" + i + "" + jogador.tabuleiro.modelo[i].id + "" + j;
-
-                        this.Controls.Add(pcbAzul);            //Adiciona no form
-                        pcbAzul.BringToFront();                //Puxa pra frente
-                    }
+                    this.compra = new Compra();
                 }
+
+                btnModelo1.Enabled = true;
+                btnModelo2.Enabled = true;
+                btnModelo3.Enabled = true;
+                btnModelo4.Enabled = true;
+                btnModelo5.Enabled = true;
             }
 
-            /* ======= PAREDE ======= */
+        }
 
-            /* ======= CHÃO ======= */
-            int c = 0;
-            foreach (Azulejo azul in jogador.tabuleiro.chao)
-            {
-                PictureBox pcbAzul = new PictureBox(); //Azulejo
-                pcbAzul.Image = azul.image;
-                pcbAzul.Location = new Point(800 + 50 * c , 400);
-                pcbAzul.Width = 50;
-                pcbAzul.Height = 50;
-                pcbAzul.SizeMode = PictureBoxSizeMode.StretchImage;
-                pcbAzul.Name = "chao" + "" + c;
+        /////////////////////////////////////////////////////////////
 
-                this.Controls.Add(pcbAzul);            //Adiciona no form
-                pcbAzul.BringToFront();                //Puxa pra frente
-            }
+        private void tmrRefresh_Tick(object sender, EventArgs e)
+        {
+            Vez();
+
+            atualizarAzulejos();
         }
     }
 }

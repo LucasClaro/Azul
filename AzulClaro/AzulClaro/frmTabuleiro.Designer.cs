@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.lblCabecalho = new System.Windows.Forms.Label();
             this.pcbFabricas = new System.Windows.Forms.PictureBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -40,6 +41,8 @@
             this.btnModelo4 = new System.Windows.Forms.Button();
             this.btnModelo5 = new System.Windows.Forms.Button();
             this.lblCompra = new System.Windows.Forms.Label();
+            this.lblErro = new System.Windows.Forms.Label();
+            this.tmrRefresh = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pcbFabricas)).BeginInit();
             this.SuspendLayout();
             // 
@@ -158,11 +161,27 @@
             this.lblCompra.TabIndex = 19;
             this.lblCompra.Text = "Compra: ";
             // 
+            // lblErro
+            // 
+            this.lblErro.AutoSize = true;
+            this.lblErro.Location = new System.Drawing.Point(13, 811);
+            this.lblErro.Name = "lblErro";
+            this.lblErro.Size = new System.Drawing.Size(32, 13);
+            this.lblErro.TabIndex = 20;
+            this.lblErro.Text = "Erro: ";
+            // 
+            // tmrRefresh
+            // 
+            this.tmrRefresh.Enabled = true;
+            this.tmrRefresh.Interval = 7000;
+            this.tmrRefresh.Tick += new System.EventHandler(this.tmrRefresh_Tick);
+            // 
             // frmTabuleiro
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1350, 920);
+            this.Controls.Add(this.lblErro);
             this.Controls.Add(this.lblCompra);
             this.Controls.Add(this.btnModelo5);
             this.Controls.Add(this.btnModelo4);
@@ -201,5 +220,7 @@
         private System.Windows.Forms.Button btnModelo4;
         private System.Windows.Forms.Button btnModelo5;
         private System.Windows.Forms.Label lblCompra;
+        private System.Windows.Forms.Label lblErro;
+        private System.Windows.Forms.Timer tmrRefresh;
     }
 }
