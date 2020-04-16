@@ -30,7 +30,6 @@ namespace AzulClaro
             string[] txtTabuleiro = txt.Split('\n');//Separa as linhas do retorno
 
             int l = 1;//Começa em 1 pra pular o texto modelo
-            int m = 0;
             while (txtTabuleiro[l].Substring(0,1) != "p")
             {
                 string[] linha = txtTabuleiro[l].Split(',');
@@ -49,7 +48,7 @@ namespace AzulClaro
             {
                 string[] linha = txtTabuleiro[l].Split(',');
 
-                this.tabuleiro.parede[Convert.ToInt32(linha[0]), Convert.ToInt32(linha[1].Substring(0,1))] = true;
+                this.tabuleiro.parede[Convert.ToInt32(linha[0]) - 1, Convert.ToInt32(linha[1]) - 1] = true;
                 l++;
             }
 

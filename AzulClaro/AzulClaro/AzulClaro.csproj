@@ -147,5 +147,8 @@
   <ItemGroup>
     <None Include="Resources\dotpict_20200307_2237061.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\parede.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

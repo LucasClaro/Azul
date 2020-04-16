@@ -30,7 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             this.lblCabecalho = new System.Windows.Forms.Label();
-            this.pcbFabricas = new System.Windows.Forms.PictureBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.btnVez = new System.Windows.Forms.Button();
@@ -43,7 +42,60 @@
             this.lblCompra = new System.Windows.Forms.Label();
             this.lblErro = new System.Windows.Forms.Label();
             this.tmrRefresh = new System.Windows.Forms.Timer(this.components);
+            this.pcbFabricas = new System.Windows.Forms.PictureBox();
+            this.pcbParede = new System.Windows.Forms.PictureBox();
+            this.pcbParede00 = new System.Windows.Forms.PictureBox();
+            this.pcbParede11 = new System.Windows.Forms.PictureBox();
+            this.pcbParede22 = new System.Windows.Forms.PictureBox();
+            this.pcbParede33 = new System.Windows.Forms.PictureBox();
+            this.pcbParede44 = new System.Windows.Forms.PictureBox();
+            this.pcbParede01 = new System.Windows.Forms.PictureBox();
+            this.pcbParede12 = new System.Windows.Forms.PictureBox();
+            this.pcbParede23 = new System.Windows.Forms.PictureBox();
+            this.pcbParede34 = new System.Windows.Forms.PictureBox();
+            this.pcbParede40 = new System.Windows.Forms.PictureBox();
+            this.pcbParede02 = new System.Windows.Forms.PictureBox();
+            this.pcbParede13 = new System.Windows.Forms.PictureBox();
+            this.pcbParede24 = new System.Windows.Forms.PictureBox();
+            this.pcbParede30 = new System.Windows.Forms.PictureBox();
+            this.pcbParede41 = new System.Windows.Forms.PictureBox();
+            this.pcbParede03 = new System.Windows.Forms.PictureBox();
+            this.pcbParede14 = new System.Windows.Forms.PictureBox();
+            this.pcbParede20 = new System.Windows.Forms.PictureBox();
+            this.pcbParede31 = new System.Windows.Forms.PictureBox();
+            this.pcbParede42 = new System.Windows.Forms.PictureBox();
+            this.pcbParede04 = new System.Windows.Forms.PictureBox();
+            this.pcbParede10 = new System.Windows.Forms.PictureBox();
+            this.pcbParede21 = new System.Windows.Forms.PictureBox();
+            this.pcbParede32 = new System.Windows.Forms.PictureBox();
+            this.pcbParede43 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pcbFabricas)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pcbParede)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pcbParede00)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pcbParede11)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pcbParede22)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pcbParede33)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pcbParede44)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pcbParede01)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pcbParede12)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pcbParede23)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pcbParede34)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pcbParede40)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pcbParede02)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pcbParede13)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pcbParede24)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pcbParede30)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pcbParede41)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pcbParede03)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pcbParede14)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pcbParede20)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pcbParede31)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pcbParede42)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pcbParede04)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pcbParede10)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pcbParede21)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pcbParede32)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pcbParede43)).BeginInit();
             this.SuspendLayout();
             // 
             // lblCabecalho
@@ -54,16 +106,6 @@
             this.lblCabecalho.Size = new System.Drawing.Size(35, 13);
             this.lblCabecalho.TabIndex = 0;
             this.lblCabecalho.Text = "label1";
-            // 
-            // pcbFabricas
-            // 
-            this.pcbFabricas.Image = global::AzulClaro.Properties.Resources.f7;
-            this.pcbFabricas.Location = new System.Drawing.Point(12, 70);
-            this.pcbFabricas.Name = "pcbFabricas";
-            this.pcbFabricas.Size = new System.Drawing.Size(650, 650);
-            this.pcbFabricas.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pcbFabricas.TabIndex = 1;
-            this.pcbFabricas.TabStop = false;
             // 
             // textBox1
             // 
@@ -176,11 +218,332 @@
             this.tmrRefresh.Interval = 7000;
             this.tmrRefresh.Tick += new System.EventHandler(this.tmrRefresh_Tick);
             // 
+            // pcbFabricas
+            // 
+            this.pcbFabricas.Image = global::AzulClaro.Properties.Resources.f7;
+            this.pcbFabricas.Location = new System.Drawing.Point(12, 70);
+            this.pcbFabricas.Name = "pcbFabricas";
+            this.pcbFabricas.Size = new System.Drawing.Size(650, 650);
+            this.pcbFabricas.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pcbFabricas.TabIndex = 1;
+            this.pcbFabricas.TabStop = false;
+            // 
+            // pcbParede
+            // 
+            this.pcbParede.Image = global::AzulClaro.Properties.Resources.parede;
+            this.pcbParede.Location = new System.Drawing.Point(907, 467);
+            this.pcbParede.Name = "pcbParede";
+            this.pcbParede.Size = new System.Drawing.Size(255, 253);
+            this.pcbParede.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pcbParede.TabIndex = 21;
+            this.pcbParede.TabStop = false;
+            // 
+            // pcbParede00
+            // 
+            this.pcbParede00.Image = global::AzulClaro.Properties.Resources.a1;
+            this.pcbParede00.InitialImage = null;
+            this.pcbParede00.Location = new System.Drawing.Point(907, 467);
+            this.pcbParede00.Name = "pcbParede00";
+            this.pcbParede00.Size = new System.Drawing.Size(50, 50);
+            this.pcbParede00.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pcbParede00.TabIndex = 22;
+            this.pcbParede00.TabStop = false;
+            // 
+            // pcbParede11
+            // 
+            this.pcbParede11.Image = global::AzulClaro.Properties.Resources.a1;
+            this.pcbParede11.InitialImage = null;
+            this.pcbParede11.Location = new System.Drawing.Point(958, 518);
+            this.pcbParede11.Name = "pcbParede11";
+            this.pcbParede11.Size = new System.Drawing.Size(50, 50);
+            this.pcbParede11.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pcbParede11.TabIndex = 23;
+            this.pcbParede11.TabStop = false;
+            // 
+            // pcbParede22
+            // 
+            this.pcbParede22.Image = global::AzulClaro.Properties.Resources.a1;
+            this.pcbParede22.InitialImage = null;
+            this.pcbParede22.Location = new System.Drawing.Point(1010, 568);
+            this.pcbParede22.Name = "pcbParede22";
+            this.pcbParede22.Size = new System.Drawing.Size(50, 50);
+            this.pcbParede22.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pcbParede22.TabIndex = 24;
+            this.pcbParede22.TabStop = false;
+            // 
+            // pcbParede33
+            // 
+            this.pcbParede33.Image = global::AzulClaro.Properties.Resources.a1;
+            this.pcbParede33.InitialImage = null;
+            this.pcbParede33.Location = new System.Drawing.Point(1060, 619);
+            this.pcbParede33.Name = "pcbParede33";
+            this.pcbParede33.Size = new System.Drawing.Size(50, 50);
+            this.pcbParede33.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pcbParede33.TabIndex = 25;
+            this.pcbParede33.TabStop = false;
+            // 
+            // pcbParede44
+            // 
+            this.pcbParede44.Image = global::AzulClaro.Properties.Resources.a1;
+            this.pcbParede44.InitialImage = null;
+            this.pcbParede44.Location = new System.Drawing.Point(1112, 670);
+            this.pcbParede44.Name = "pcbParede44";
+            this.pcbParede44.Size = new System.Drawing.Size(50, 50);
+            this.pcbParede44.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pcbParede44.TabIndex = 26;
+            this.pcbParede44.TabStop = false;
+            // 
+            // pcbParede01
+            // 
+            this.pcbParede01.Image = global::AzulClaro.Properties.Resources.a2;
+            this.pcbParede01.InitialImage = null;
+            this.pcbParede01.Location = new System.Drawing.Point(958, 467);
+            this.pcbParede01.Name = "pcbParede01";
+            this.pcbParede01.Size = new System.Drawing.Size(50, 50);
+            this.pcbParede01.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pcbParede01.TabIndex = 22;
+            this.pcbParede01.TabStop = false;
+            // 
+            // pcbParede12
+            // 
+            this.pcbParede12.Image = global::AzulClaro.Properties.Resources.a2;
+            this.pcbParede12.InitialImage = null;
+            this.pcbParede12.Location = new System.Drawing.Point(1010, 518);
+            this.pcbParede12.Name = "pcbParede12";
+            this.pcbParede12.Size = new System.Drawing.Size(50, 50);
+            this.pcbParede12.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pcbParede12.TabIndex = 27;
+            this.pcbParede12.TabStop = false;
+            // 
+            // pcbParede23
+            // 
+            this.pcbParede23.Image = global::AzulClaro.Properties.Resources.a2;
+            this.pcbParede23.InitialImage = null;
+            this.pcbParede23.Location = new System.Drawing.Point(1060, 567);
+            this.pcbParede23.Name = "pcbParede23";
+            this.pcbParede23.Size = new System.Drawing.Size(50, 50);
+            this.pcbParede23.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pcbParede23.TabIndex = 28;
+            this.pcbParede23.TabStop = false;
+            // 
+            // pcbParede34
+            // 
+            this.pcbParede34.Image = global::AzulClaro.Properties.Resources.a2;
+            this.pcbParede34.InitialImage = null;
+            this.pcbParede34.Location = new System.Drawing.Point(1112, 619);
+            this.pcbParede34.Name = "pcbParede34";
+            this.pcbParede34.Size = new System.Drawing.Size(50, 50);
+            this.pcbParede34.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pcbParede34.TabIndex = 29;
+            this.pcbParede34.TabStop = false;
+            // 
+            // pcbParede40
+            // 
+            this.pcbParede40.Image = global::AzulClaro.Properties.Resources.a2;
+            this.pcbParede40.InitialImage = null;
+            this.pcbParede40.Location = new System.Drawing.Point(907, 670);
+            this.pcbParede40.Name = "pcbParede40";
+            this.pcbParede40.Size = new System.Drawing.Size(50, 50);
+            this.pcbParede40.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pcbParede40.TabIndex = 30;
+            this.pcbParede40.TabStop = false;
+            // 
+            // pcbParede02
+            // 
+            this.pcbParede02.Image = global::AzulClaro.Properties.Resources.a3;
+            this.pcbParede02.InitialImage = null;
+            this.pcbParede02.Location = new System.Drawing.Point(1010, 467);
+            this.pcbParede02.Name = "pcbParede02";
+            this.pcbParede02.Size = new System.Drawing.Size(50, 50);
+            this.pcbParede02.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pcbParede02.TabIndex = 31;
+            this.pcbParede02.TabStop = false;
+            // 
+            // pcbParede13
+            // 
+            this.pcbParede13.Image = global::AzulClaro.Properties.Resources.a3;
+            this.pcbParede13.InitialImage = null;
+            this.pcbParede13.Location = new System.Drawing.Point(1060, 518);
+            this.pcbParede13.Name = "pcbParede13";
+            this.pcbParede13.Size = new System.Drawing.Size(50, 50);
+            this.pcbParede13.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pcbParede13.TabIndex = 32;
+            this.pcbParede13.TabStop = false;
+            // 
+            // pcbParede24
+            // 
+            this.pcbParede24.Image = global::AzulClaro.Properties.Resources.a3;
+            this.pcbParede24.InitialImage = null;
+            this.pcbParede24.Location = new System.Drawing.Point(1112, 568);
+            this.pcbParede24.Name = "pcbParede24";
+            this.pcbParede24.Size = new System.Drawing.Size(50, 50);
+            this.pcbParede24.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pcbParede24.TabIndex = 33;
+            this.pcbParede24.TabStop = false;
+            // 
+            // pcbParede30
+            // 
+            this.pcbParede30.Image = global::AzulClaro.Properties.Resources.a3;
+            this.pcbParede30.InitialImage = null;
+            this.pcbParede30.Location = new System.Drawing.Point(907, 619);
+            this.pcbParede30.Name = "pcbParede30";
+            this.pcbParede30.Size = new System.Drawing.Size(50, 50);
+            this.pcbParede30.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pcbParede30.TabIndex = 34;
+            this.pcbParede30.TabStop = false;
+            // 
+            // pcbParede41
+            // 
+            this.pcbParede41.Image = global::AzulClaro.Properties.Resources.a3;
+            this.pcbParede41.InitialImage = null;
+            this.pcbParede41.Location = new System.Drawing.Point(958, 670);
+            this.pcbParede41.Name = "pcbParede41";
+            this.pcbParede41.Size = new System.Drawing.Size(50, 50);
+            this.pcbParede41.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pcbParede41.TabIndex = 35;
+            this.pcbParede41.TabStop = false;
+            // 
+            // pcbParede03
+            // 
+            this.pcbParede03.Image = global::AzulClaro.Properties.Resources.a4;
+            this.pcbParede03.InitialImage = null;
+            this.pcbParede03.Location = new System.Drawing.Point(1060, 467);
+            this.pcbParede03.Name = "pcbParede03";
+            this.pcbParede03.Size = new System.Drawing.Size(50, 50);
+            this.pcbParede03.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pcbParede03.TabIndex = 36;
+            this.pcbParede03.TabStop = false;
+            // 
+            // pcbParede14
+            // 
+            this.pcbParede14.Image = global::AzulClaro.Properties.Resources.a4;
+            this.pcbParede14.InitialImage = null;
+            this.pcbParede14.Location = new System.Drawing.Point(1112, 518);
+            this.pcbParede14.Name = "pcbParede14";
+            this.pcbParede14.Size = new System.Drawing.Size(50, 50);
+            this.pcbParede14.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pcbParede14.TabIndex = 37;
+            this.pcbParede14.TabStop = false;
+            // 
+            // pcbParede20
+            // 
+            this.pcbParede20.Image = global::AzulClaro.Properties.Resources.a4;
+            this.pcbParede20.InitialImage = null;
+            this.pcbParede20.Location = new System.Drawing.Point(907, 568);
+            this.pcbParede20.Name = "pcbParede20";
+            this.pcbParede20.Size = new System.Drawing.Size(50, 50);
+            this.pcbParede20.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pcbParede20.TabIndex = 38;
+            this.pcbParede20.TabStop = false;
+            // 
+            // pcbParede31
+            // 
+            this.pcbParede31.Image = global::AzulClaro.Properties.Resources.a4;
+            this.pcbParede31.InitialImage = null;
+            this.pcbParede31.Location = new System.Drawing.Point(958, 619);
+            this.pcbParede31.Name = "pcbParede31";
+            this.pcbParede31.Size = new System.Drawing.Size(50, 50);
+            this.pcbParede31.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pcbParede31.TabIndex = 39;
+            this.pcbParede31.TabStop = false;
+            // 
+            // pcbParede42
+            // 
+            this.pcbParede42.Image = global::AzulClaro.Properties.Resources.a4;
+            this.pcbParede42.InitialImage = null;
+            this.pcbParede42.Location = new System.Drawing.Point(1010, 670);
+            this.pcbParede42.Name = "pcbParede42";
+            this.pcbParede42.Size = new System.Drawing.Size(50, 50);
+            this.pcbParede42.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pcbParede42.TabIndex = 40;
+            this.pcbParede42.TabStop = false;
+            // 
+            // pcbParede04
+            // 
+            this.pcbParede04.Image = global::AzulClaro.Properties.Resources.a5;
+            this.pcbParede04.InitialImage = null;
+            this.pcbParede04.Location = new System.Drawing.Point(1112, 467);
+            this.pcbParede04.Name = "pcbParede04";
+            this.pcbParede04.Size = new System.Drawing.Size(50, 50);
+            this.pcbParede04.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pcbParede04.TabIndex = 41;
+            this.pcbParede04.TabStop = false;
+            // 
+            // pcbParede10
+            // 
+            this.pcbParede10.Image = global::AzulClaro.Properties.Resources.a5;
+            this.pcbParede10.InitialImage = null;
+            this.pcbParede10.Location = new System.Drawing.Point(907, 518);
+            this.pcbParede10.Name = "pcbParede10";
+            this.pcbParede10.Size = new System.Drawing.Size(50, 50);
+            this.pcbParede10.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pcbParede10.TabIndex = 42;
+            this.pcbParede10.TabStop = false;
+            // 
+            // pcbParede21
+            // 
+            this.pcbParede21.Image = global::AzulClaro.Properties.Resources.a5;
+            this.pcbParede21.InitialImage = null;
+            this.pcbParede21.Location = new System.Drawing.Point(958, 568);
+            this.pcbParede21.Name = "pcbParede21";
+            this.pcbParede21.Size = new System.Drawing.Size(50, 50);
+            this.pcbParede21.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pcbParede21.TabIndex = 43;
+            this.pcbParede21.TabStop = false;
+            // 
+            // pcbParede32
+            // 
+            this.pcbParede32.Image = global::AzulClaro.Properties.Resources.a5;
+            this.pcbParede32.InitialImage = null;
+            this.pcbParede32.Location = new System.Drawing.Point(1010, 619);
+            this.pcbParede32.Name = "pcbParede32";
+            this.pcbParede32.Size = new System.Drawing.Size(50, 50);
+            this.pcbParede32.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pcbParede32.TabIndex = 44;
+            this.pcbParede32.TabStop = false;
+            // 
+            // pcbParede43
+            // 
+            this.pcbParede43.Image = global::AzulClaro.Properties.Resources.a5;
+            this.pcbParede43.InitialImage = null;
+            this.pcbParede43.Location = new System.Drawing.Point(1060, 670);
+            this.pcbParede43.Name = "pcbParede43";
+            this.pcbParede43.Size = new System.Drawing.Size(50, 50);
+            this.pcbParede43.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pcbParede43.TabIndex = 45;
+            this.pcbParede43.TabStop = false;
+            // 
             // frmTabuleiro
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1350, 920);
+            this.Controls.Add(this.pcbParede43);
+            this.Controls.Add(this.pcbParede32);
+            this.Controls.Add(this.pcbParede21);
+            this.Controls.Add(this.pcbParede10);
+            this.Controls.Add(this.pcbParede04);
+            this.Controls.Add(this.pcbParede42);
+            this.Controls.Add(this.pcbParede31);
+            this.Controls.Add(this.pcbParede20);
+            this.Controls.Add(this.pcbParede14);
+            this.Controls.Add(this.pcbParede03);
+            this.Controls.Add(this.pcbParede41);
+            this.Controls.Add(this.pcbParede30);
+            this.Controls.Add(this.pcbParede24);
+            this.Controls.Add(this.pcbParede13);
+            this.Controls.Add(this.pcbParede02);
+            this.Controls.Add(this.pcbParede40);
+            this.Controls.Add(this.pcbParede34);
+            this.Controls.Add(this.pcbParede23);
+            this.Controls.Add(this.pcbParede12);
+            this.Controls.Add(this.pcbParede44);
+            this.Controls.Add(this.pcbParede33);
+            this.Controls.Add(this.pcbParede22);
+            this.Controls.Add(this.pcbParede11);
+            this.Controls.Add(this.pcbParede01);
+            this.Controls.Add(this.pcbParede00);
+            this.Controls.Add(this.pcbParede);
             this.Controls.Add(this.lblErro);
             this.Controls.Add(this.lblCompra);
             this.Controls.Add(this.btnModelo5);
@@ -201,6 +564,32 @@
             this.Text = "frmTabuleiro";
             this.Load += new System.EventHandler(this.frmTabuleiro_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pcbFabricas)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pcbParede)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pcbParede00)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pcbParede11)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pcbParede22)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pcbParede33)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pcbParede44)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pcbParede01)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pcbParede12)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pcbParede23)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pcbParede34)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pcbParede40)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pcbParede02)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pcbParede13)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pcbParede24)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pcbParede30)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pcbParede41)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pcbParede03)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pcbParede14)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pcbParede20)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pcbParede31)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pcbParede42)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pcbParede04)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pcbParede10)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pcbParede21)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pcbParede32)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pcbParede43)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -222,5 +611,31 @@
         private System.Windows.Forms.Label lblCompra;
         private System.Windows.Forms.Label lblErro;
         private System.Windows.Forms.Timer tmrRefresh;
+        private System.Windows.Forms.PictureBox pcbParede;
+        private System.Windows.Forms.PictureBox pcbParede00;
+        private System.Windows.Forms.PictureBox pcbParede11;
+        private System.Windows.Forms.PictureBox pcbParede22;
+        private System.Windows.Forms.PictureBox pcbParede33;
+        private System.Windows.Forms.PictureBox pcbParede44;
+        private System.Windows.Forms.PictureBox pcbParede01;
+        private System.Windows.Forms.PictureBox pcbParede12;
+        private System.Windows.Forms.PictureBox pcbParede23;
+        private System.Windows.Forms.PictureBox pcbParede34;
+        private System.Windows.Forms.PictureBox pcbParede40;
+        private System.Windows.Forms.PictureBox pcbParede02;
+        private System.Windows.Forms.PictureBox pcbParede13;
+        private System.Windows.Forms.PictureBox pcbParede24;
+        private System.Windows.Forms.PictureBox pcbParede30;
+        private System.Windows.Forms.PictureBox pcbParede41;
+        private System.Windows.Forms.PictureBox pcbParede03;
+        private System.Windows.Forms.PictureBox pcbParede14;
+        private System.Windows.Forms.PictureBox pcbParede20;
+        private System.Windows.Forms.PictureBox pcbParede31;
+        private System.Windows.Forms.PictureBox pcbParede42;
+        private System.Windows.Forms.PictureBox pcbParede04;
+        private System.Windows.Forms.PictureBox pcbParede10;
+        private System.Windows.Forms.PictureBox pcbParede21;
+        private System.Windows.Forms.PictureBox pcbParede32;
+        private System.Windows.Forms.PictureBox pcbParede43;
     }
 }

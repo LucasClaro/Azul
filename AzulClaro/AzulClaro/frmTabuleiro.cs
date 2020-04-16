@@ -158,7 +158,7 @@ namespace AzulClaro
                     pcbAzul.Width = 50;
                     pcbAzul.Height = 50;
                     pcbAzul.SizeMode = PictureBoxSizeMode.StretchImage;
-                    pcbAzul.Name = "centro" + "" + i;
+                    pcbAzul.Name = "pcbCentro" + "" + i;
 
                     pcbAzul.AccessibleName = "c0" + azul.id + azul.quantidade;//Informações para o carrinho
                     pcbAzul.Click += azulejo_Click;
@@ -197,7 +197,7 @@ namespace AzulClaro
                         pcbAzul.Width = 50;
                         pcbAzul.Height = 50;
                         pcbAzul.SizeMode = PictureBoxSizeMode.StretchImage;
-                        pcbAzul.Name = "modelo" + "" + i + "" + jogador.tabuleiro.modelo[i].id + "" + j;
+                        pcbAzul.Name = "pcbModelo" + "" + i + "" + jogador.tabuleiro.modelo[i].id + "" + j;
 
                         this.Controls.Add(pcbAzul);            //Adiciona no form
                         pcbAzul.BringToFront();                //Puxa pra frente
@@ -206,6 +206,16 @@ namespace AzulClaro
             }
 
             /* ======= PAREDE ======= */
+            List<PictureBox> paredeAzs = Controls.OfType<PictureBox>().ToList().Where(az => az.Name.StartsWith("pcbParede")).ToList();
+            paredeAzs.Remove(paredeAzs.Find(pcb => pcb.Name.Equals("pcbParede")));
+
+            for(int lp = 0; lp < 5; lp++)
+            {
+                for(int cp = 0; cp < 5; cp++)
+                {
+                    paredeAzs.Find(azul => azul.Name.Equals("pcbParede" + lp + cp)).Visible = jogador.tabuleiro.parede[lp, cp];
+                }
+            }
 
             /* ======= CHÃO ======= */
             int c = 0;
@@ -217,7 +227,7 @@ namespace AzulClaro
                 pcbAzul.Width = 50;
                 pcbAzul.Height = 50;
                 pcbAzul.SizeMode = PictureBoxSizeMode.StretchImage;
-                pcbAzul.Name = "chao" + "" + c;
+                pcbAzul.Name = "pcbChao" + "" + c;
 
                 this.Controls.Add(pcbAzul);            //Adiciona no form
                 pcbAzul.BringToFront();                //Puxa pra frente
@@ -266,22 +276,18 @@ namespace AzulClaro
         }//Função que tira os azulejos da tela a coloca de novo     
         public void tirarAzulejos()
         {
-            List<Control> pcbs = new List<Control>(); //Lista dos PictureBoxs
-            foreach (Control pcb in Controls)
-            {
-                if (pcb.GetType() == typeof(PictureBox)) //Vê na lista de controles quais são PictureBoxs
-                {
-                    pcbs.Add(pcb);
-                }
-            }
+            List<PictureBox> pcbs = Controls.OfType<PictureBox>().Where(pcb => pcb.Name.StartsWith("pcbFabricas") || pcb.Name.StartsWith("pcbModelo") || pcb.Name.StartsWith("pcbChao")).ToList();
 
             pcbs.Remove(pcbs.Find(pcb => pcb.Name.Equals("pcbFabricas"))); //Remove o PictureBox do fundo (Fabricas)
 
             for (int i = 0; i < pcbs.Count; i++)
             {
                 Controls.Remove(pcbs[i]);       //Remove do Form
+                pcbs[i].Image = null;
                 pcbs[i] = null;                 //Deixa null a PictureBox
             }
+            //pcbs = null;
+            GC.Collect();
         }//Tira os PictureBoxes dos azulejos da tela e atribui null a eles (e torce para o GC fazer o resto);
 
         /////////////////////////////////////////////////////////////                    
