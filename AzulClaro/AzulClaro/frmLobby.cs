@@ -11,12 +11,12 @@ using AzulServer;
 
 namespace AzulClaro
 {
-    public partial class Form1 : Form
+    public partial class frmLobby : Form
     {
         Partida partida;//Objeto partida. Será usado para desenhar o jogo
         Jogador jogador;//Objeto jogador. Será usado para jogar
 
-        public Form1()
+        public frmLobby()
         {
             InitializeComponent();
 
@@ -36,12 +36,11 @@ namespace AzulClaro
             dgvPartidas.AllowUserToResizeRows = false;
             dgvPartidas.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvPartidas.MultiSelect = false;
-            dgvPartidas.Font = new Font("Oxanium", 12);                  
+            dgvPartidas.Font = new Font("Oxanium", 12);
 
             //gvwPartidas.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             //gvwPartidas.Columns[4].Width = 100;
             //gvwPartidas.Columns[5].Width = 75;
-
         }//Configura as lbls e a dgv
 
         /////////////////////////////////////////////////////////////
@@ -65,7 +64,7 @@ namespace AzulClaro
                 txtIdPartida.Text = partida.id.ToString();
                 ListarJogadores();
             }
-            
+
         }//Lista partidas, preenche o dgv, preenche o objeto partida e lista os jogadores da partida 1
         public void ListarJogadores()
         {
@@ -77,15 +76,15 @@ namespace AzulClaro
             {
                 existe = true;
                 lstJogadores.Items.Add(jogador.nome);//Adiciona os textos na List Box
-            }          
+            }
             if (!existe)
             {
-                    lstJogadores.Items.Add("[Sem Jogadores]");
+                lstJogadores.Items.Add("[Sem Jogadores]");
             }
         }//Lista os jogadores do objeto partida e Preenche a lst Jogadores
 
         /////////////////////////////////////////////////////////////
-        
+
         private void dgvPartidas_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             partida = (Partida)dgvPartidas.SelectedRows[0].DataBoundItem;
@@ -102,14 +101,11 @@ namespace AzulClaro
             txtSenhaEntrar.Text = "";
             lstJogadores.Items.Clear();
             partida = null;
-        }//Clicar em Listar Partida: Lista as partidas e limpa os campos
-        private void btnListarJogadores_Click(object sender, EventArgs e)
-        {
-            ListarJogadores();//Só chama essa função para ela poder ser acessada por outros lugares
-        }//Clicae em Listar Jogadores: Chama listar partidas
+        }//Clicar em Listar Partida: Lista as partidas e limpa os campos        
+        //TROCAR O BTN LISTAR JOGADORES POR UM TIMER
 
         /////////////////////////////////////////////////////////////
-        
+
         private void btnCriarPartida_Click(object sender, EventArgs e)
         {
             frmCriarPartida frmCriarPartida = new frmCriarPartida();//Chama o formulário de nova partida
@@ -129,7 +125,7 @@ namespace AzulClaro
                 txtIdPartida.Text = partida.id.ToString();
                 ListarJogadores();
             }
-        }//Botão Criar Partida: Chama o formulário de nova partida, Atualiza as partidas e preenche algumas coisas        
+        }//Botão Criar Partida: Chama o formulário de nova partida, Atualiza as partidas e preenche algumas coisas       
         private void btnEntrarPartida_Click(object sender, EventArgs e)
         {
             if (txtIdPartida.Text != "")//Confere se o Id está preenchido
@@ -186,14 +182,15 @@ namespace AzulClaro
             lblErroEntrarPartida.Text = "";
             lblErroIniciar.Text = "";
             tmrMsgErro.Enabled = false;
+            ListarJogadores();
         }//10 segundos com a mesma mensagem de Erro
 
         /////////////////////////////////////////////////////////////
-        
+
         private void btnIniciarPartida_Click(object sender, EventArgs e)
         {
             if (txtIdjogador.Text != "" && txtSenhaJogador.Text != "")
-            {                
+            {
 
                 if (VerificaInicializacao(partida))//Caso o jogador iniciando a partida não esteja na partida selecionada, busca a partida desse jogador
                 {
@@ -243,7 +240,7 @@ namespace AzulClaro
                     lblErroIniciar.Text = "Esse Jogador não está nessa partida";
                     tmrMsgErro.Enabled = true;
                     return;//Sai da função ao falhar em iniciar a partida;
-                }                
+                }
             }
             else
             {
@@ -258,7 +255,7 @@ namespace AzulClaro
         }//Botão Iniciar partida: Faz muitos testes, inicia a partida se ela estiver aberta e abre o tabuleiro
 
         /////////////////////////////////////////////////////////////
-        
+
         public string BuscarJogById(int id)
         {
             foreach (Jogador jogador in partida.jogadores)
@@ -288,18 +285,18 @@ namespace AzulClaro
         }//Verifica se o jogador que está iniciando a partida está na partida selecionada
 
         /////////////////////////////////////////////////////////////
-        
+
+        private void pcbMinimizar_Click(object sender, EventArgs e)
+        {
+           this.WindowState = FormWindowState.Minimized;
+        }//Botão Minimizar
         private void pcbFechar_Click(object sender, EventArgs e)
         {
             this.Close();
         }//Botão Fechar
-        private void pcbMinimizar_Click(object sender, EventArgs e)
-        {
-            this.WindowState = FormWindowState.Minimized;
-        }//Botão Minimizar
 
         /////////////////////////////////////////////////////////////
-        
+
         private Point downPoint = Point.Empty;//Cria um objeto ponto para mover a tela
 
         private void pnlBarraWindows_MouseUp(object sender, MouseEventArgs e)
@@ -307,19 +304,17 @@ namespace AzulClaro
             if (e.Button == MouseButtons.Left)
                 downPoint = Point.Empty;
         }//Sair do clique no painel de mover a tela
-
         private void pnlBarraWindows_MouseMove(object sender, MouseEventArgs e)
         {
             if (downPoint != Point.Empty)
                 Location = new Point(Left + e.X - downPoint.X, Top + e.Y - downPoint.Y);
         }//Mover do mouse no painel de mover a tela
-
         private void pnlBarraWindows_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
             {
                 downPoint = new Point(e.X, e.Y);
             }
-        }//Entrar do clique no painel de mover a tela
+        }//Entrar do clique no painel de mover a tela                                                                
     }
 }
