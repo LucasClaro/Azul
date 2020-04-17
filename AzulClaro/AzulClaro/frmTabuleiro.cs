@@ -115,7 +115,7 @@ namespace AzulClaro
                         pcbAzul.Width = 50;
                         pcbAzul.Height = 50;
                         pcbAzul.SizeMode = PictureBoxSizeMode.StretchImage;
-                        pcbAzul.Name = "azul" + fab.id + "" + i;
+                        pcbAzul.Name = "pcbFabricas" + fab.id + "" + i;
 
                         pcbAzul.AccessibleName = "f" + fab.id + azul.id + azul.quantidade;//Informações para o carrinho
                         pcbAzul.Click += azulejo_Click;
