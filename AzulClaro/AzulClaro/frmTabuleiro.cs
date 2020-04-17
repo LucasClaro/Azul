@@ -228,7 +228,7 @@ namespace AzulClaro
                 pcbAzul.Height = 50;
                 pcbAzul.SizeMode = PictureBoxSizeMode.StretchImage;
                 pcbAzul.Name = "pcbChao" + "" + c;
-
+                c++;
                 this.Controls.Add(pcbAzul);            //Adiciona no form
                 pcbAzul.BringToFront();                //Puxa pra frente
             }
