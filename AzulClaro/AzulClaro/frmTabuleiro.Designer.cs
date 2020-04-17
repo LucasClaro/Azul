@@ -69,6 +69,8 @@
             this.pcbParede21 = new System.Windows.Forms.PictureBox();
             this.pcbParede32 = new System.Windows.Forms.PictureBox();
             this.pcbParede43 = new System.Windows.Forms.PictureBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.pcbFabricas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcbParede)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcbParede00)).BeginInit();
@@ -117,7 +119,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(1026, 99);
+            this.button1.Location = new System.Drawing.Point(1254, 70);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 3;
@@ -231,7 +233,7 @@
             // pcbParede
             // 
             this.pcbParede.Image = global::AzulClaro.Properties.Resources.parede;
-            this.pcbParede.Location = new System.Drawing.Point(907, 467);
+            this.pcbParede.Location = new System.Drawing.Point(909, 567);
             this.pcbParede.Name = "pcbParede";
             this.pcbParede.Size = new System.Drawing.Size(255, 253);
             this.pcbParede.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -242,7 +244,7 @@
             // 
             this.pcbParede00.Image = global::AzulClaro.Properties.Resources.a1;
             this.pcbParede00.InitialImage = null;
-            this.pcbParede00.Location = new System.Drawing.Point(907, 467);
+            this.pcbParede00.Location = new System.Drawing.Point(909, 567);
             this.pcbParede00.Name = "pcbParede00";
             this.pcbParede00.Size = new System.Drawing.Size(50, 50);
             this.pcbParede00.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -253,7 +255,7 @@
             // 
             this.pcbParede11.Image = global::AzulClaro.Properties.Resources.a1;
             this.pcbParede11.InitialImage = null;
-            this.pcbParede11.Location = new System.Drawing.Point(958, 518);
+            this.pcbParede11.Location = new System.Drawing.Point(960, 618);
             this.pcbParede11.Name = "pcbParede11";
             this.pcbParede11.Size = new System.Drawing.Size(50, 50);
             this.pcbParede11.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -264,7 +266,7 @@
             // 
             this.pcbParede22.Image = global::AzulClaro.Properties.Resources.a1;
             this.pcbParede22.InitialImage = null;
-            this.pcbParede22.Location = new System.Drawing.Point(1010, 568);
+            this.pcbParede22.Location = new System.Drawing.Point(1012, 668);
             this.pcbParede22.Name = "pcbParede22";
             this.pcbParede22.Size = new System.Drawing.Size(50, 50);
             this.pcbParede22.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -275,7 +277,7 @@
             // 
             this.pcbParede33.Image = global::AzulClaro.Properties.Resources.a1;
             this.pcbParede33.InitialImage = null;
-            this.pcbParede33.Location = new System.Drawing.Point(1060, 619);
+            this.pcbParede33.Location = new System.Drawing.Point(1062, 719);
             this.pcbParede33.Name = "pcbParede33";
             this.pcbParede33.Size = new System.Drawing.Size(50, 50);
             this.pcbParede33.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -286,7 +288,7 @@
             // 
             this.pcbParede44.Image = global::AzulClaro.Properties.Resources.a1;
             this.pcbParede44.InitialImage = null;
-            this.pcbParede44.Location = new System.Drawing.Point(1112, 670);
+            this.pcbParede44.Location = new System.Drawing.Point(1114, 770);
             this.pcbParede44.Name = "pcbParede44";
             this.pcbParede44.Size = new System.Drawing.Size(50, 50);
             this.pcbParede44.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -297,7 +299,7 @@
             // 
             this.pcbParede01.Image = global::AzulClaro.Properties.Resources.a2;
             this.pcbParede01.InitialImage = null;
-            this.pcbParede01.Location = new System.Drawing.Point(958, 467);
+            this.pcbParede01.Location = new System.Drawing.Point(960, 567);
             this.pcbParede01.Name = "pcbParede01";
             this.pcbParede01.Size = new System.Drawing.Size(50, 50);
             this.pcbParede01.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -308,7 +310,7 @@
             // 
             this.pcbParede12.Image = global::AzulClaro.Properties.Resources.a2;
             this.pcbParede12.InitialImage = null;
-            this.pcbParede12.Location = new System.Drawing.Point(1010, 518);
+            this.pcbParede12.Location = new System.Drawing.Point(1012, 618);
             this.pcbParede12.Name = "pcbParede12";
             this.pcbParede12.Size = new System.Drawing.Size(50, 50);
             this.pcbParede12.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -319,7 +321,7 @@
             // 
             this.pcbParede23.Image = global::AzulClaro.Properties.Resources.a2;
             this.pcbParede23.InitialImage = null;
-            this.pcbParede23.Location = new System.Drawing.Point(1060, 567);
+            this.pcbParede23.Location = new System.Drawing.Point(1062, 667);
             this.pcbParede23.Name = "pcbParede23";
             this.pcbParede23.Size = new System.Drawing.Size(50, 50);
             this.pcbParede23.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -330,7 +332,7 @@
             // 
             this.pcbParede34.Image = global::AzulClaro.Properties.Resources.a2;
             this.pcbParede34.InitialImage = null;
-            this.pcbParede34.Location = new System.Drawing.Point(1112, 619);
+            this.pcbParede34.Location = new System.Drawing.Point(1114, 719);
             this.pcbParede34.Name = "pcbParede34";
             this.pcbParede34.Size = new System.Drawing.Size(50, 50);
             this.pcbParede34.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -341,7 +343,7 @@
             // 
             this.pcbParede40.Image = global::AzulClaro.Properties.Resources.a2;
             this.pcbParede40.InitialImage = null;
-            this.pcbParede40.Location = new System.Drawing.Point(907, 670);
+            this.pcbParede40.Location = new System.Drawing.Point(909, 770);
             this.pcbParede40.Name = "pcbParede40";
             this.pcbParede40.Size = new System.Drawing.Size(50, 50);
             this.pcbParede40.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -352,7 +354,7 @@
             // 
             this.pcbParede02.Image = global::AzulClaro.Properties.Resources.a3;
             this.pcbParede02.InitialImage = null;
-            this.pcbParede02.Location = new System.Drawing.Point(1010, 467);
+            this.pcbParede02.Location = new System.Drawing.Point(1012, 567);
             this.pcbParede02.Name = "pcbParede02";
             this.pcbParede02.Size = new System.Drawing.Size(50, 50);
             this.pcbParede02.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -363,7 +365,7 @@
             // 
             this.pcbParede13.Image = global::AzulClaro.Properties.Resources.a3;
             this.pcbParede13.InitialImage = null;
-            this.pcbParede13.Location = new System.Drawing.Point(1060, 518);
+            this.pcbParede13.Location = new System.Drawing.Point(1062, 618);
             this.pcbParede13.Name = "pcbParede13";
             this.pcbParede13.Size = new System.Drawing.Size(50, 50);
             this.pcbParede13.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -374,7 +376,7 @@
             // 
             this.pcbParede24.Image = global::AzulClaro.Properties.Resources.a3;
             this.pcbParede24.InitialImage = null;
-            this.pcbParede24.Location = new System.Drawing.Point(1112, 568);
+            this.pcbParede24.Location = new System.Drawing.Point(1114, 668);
             this.pcbParede24.Name = "pcbParede24";
             this.pcbParede24.Size = new System.Drawing.Size(50, 50);
             this.pcbParede24.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -385,7 +387,7 @@
             // 
             this.pcbParede30.Image = global::AzulClaro.Properties.Resources.a3;
             this.pcbParede30.InitialImage = null;
-            this.pcbParede30.Location = new System.Drawing.Point(907, 619);
+            this.pcbParede30.Location = new System.Drawing.Point(909, 719);
             this.pcbParede30.Name = "pcbParede30";
             this.pcbParede30.Size = new System.Drawing.Size(50, 50);
             this.pcbParede30.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -396,7 +398,7 @@
             // 
             this.pcbParede41.Image = global::AzulClaro.Properties.Resources.a3;
             this.pcbParede41.InitialImage = null;
-            this.pcbParede41.Location = new System.Drawing.Point(958, 670);
+            this.pcbParede41.Location = new System.Drawing.Point(960, 770);
             this.pcbParede41.Name = "pcbParede41";
             this.pcbParede41.Size = new System.Drawing.Size(50, 50);
             this.pcbParede41.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -407,7 +409,7 @@
             // 
             this.pcbParede03.Image = global::AzulClaro.Properties.Resources.a4;
             this.pcbParede03.InitialImage = null;
-            this.pcbParede03.Location = new System.Drawing.Point(1060, 467);
+            this.pcbParede03.Location = new System.Drawing.Point(1062, 567);
             this.pcbParede03.Name = "pcbParede03";
             this.pcbParede03.Size = new System.Drawing.Size(50, 50);
             this.pcbParede03.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -418,7 +420,7 @@
             // 
             this.pcbParede14.Image = global::AzulClaro.Properties.Resources.a4;
             this.pcbParede14.InitialImage = null;
-            this.pcbParede14.Location = new System.Drawing.Point(1112, 518);
+            this.pcbParede14.Location = new System.Drawing.Point(1114, 618);
             this.pcbParede14.Name = "pcbParede14";
             this.pcbParede14.Size = new System.Drawing.Size(50, 50);
             this.pcbParede14.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -429,7 +431,7 @@
             // 
             this.pcbParede20.Image = global::AzulClaro.Properties.Resources.a4;
             this.pcbParede20.InitialImage = null;
-            this.pcbParede20.Location = new System.Drawing.Point(907, 568);
+            this.pcbParede20.Location = new System.Drawing.Point(909, 668);
             this.pcbParede20.Name = "pcbParede20";
             this.pcbParede20.Size = new System.Drawing.Size(50, 50);
             this.pcbParede20.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -440,7 +442,7 @@
             // 
             this.pcbParede31.Image = global::AzulClaro.Properties.Resources.a4;
             this.pcbParede31.InitialImage = null;
-            this.pcbParede31.Location = new System.Drawing.Point(958, 619);
+            this.pcbParede31.Location = new System.Drawing.Point(960, 719);
             this.pcbParede31.Name = "pcbParede31";
             this.pcbParede31.Size = new System.Drawing.Size(50, 50);
             this.pcbParede31.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -451,7 +453,7 @@
             // 
             this.pcbParede42.Image = global::AzulClaro.Properties.Resources.a4;
             this.pcbParede42.InitialImage = null;
-            this.pcbParede42.Location = new System.Drawing.Point(1010, 670);
+            this.pcbParede42.Location = new System.Drawing.Point(1012, 770);
             this.pcbParede42.Name = "pcbParede42";
             this.pcbParede42.Size = new System.Drawing.Size(50, 50);
             this.pcbParede42.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -462,7 +464,7 @@
             // 
             this.pcbParede04.Image = global::AzulClaro.Properties.Resources.a5;
             this.pcbParede04.InitialImage = null;
-            this.pcbParede04.Location = new System.Drawing.Point(1112, 467);
+            this.pcbParede04.Location = new System.Drawing.Point(1114, 567);
             this.pcbParede04.Name = "pcbParede04";
             this.pcbParede04.Size = new System.Drawing.Size(50, 50);
             this.pcbParede04.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -473,7 +475,7 @@
             // 
             this.pcbParede10.Image = global::AzulClaro.Properties.Resources.a5;
             this.pcbParede10.InitialImage = null;
-            this.pcbParede10.Location = new System.Drawing.Point(907, 518);
+            this.pcbParede10.Location = new System.Drawing.Point(909, 618);
             this.pcbParede10.Name = "pcbParede10";
             this.pcbParede10.Size = new System.Drawing.Size(50, 50);
             this.pcbParede10.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -484,7 +486,7 @@
             // 
             this.pcbParede21.Image = global::AzulClaro.Properties.Resources.a5;
             this.pcbParede21.InitialImage = null;
-            this.pcbParede21.Location = new System.Drawing.Point(958, 568);
+            this.pcbParede21.Location = new System.Drawing.Point(960, 668);
             this.pcbParede21.Name = "pcbParede21";
             this.pcbParede21.Size = new System.Drawing.Size(50, 50);
             this.pcbParede21.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -495,7 +497,7 @@
             // 
             this.pcbParede32.Image = global::AzulClaro.Properties.Resources.a5;
             this.pcbParede32.InitialImage = null;
-            this.pcbParede32.Location = new System.Drawing.Point(1010, 619);
+            this.pcbParede32.Location = new System.Drawing.Point(1012, 719);
             this.pcbParede32.Name = "pcbParede32";
             this.pcbParede32.Size = new System.Drawing.Size(50, 50);
             this.pcbParede32.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -506,18 +508,38 @@
             // 
             this.pcbParede43.Image = global::AzulClaro.Properties.Resources.a5;
             this.pcbParede43.InitialImage = null;
-            this.pcbParede43.Location = new System.Drawing.Point(1060, 670);
+            this.pcbParede43.Location = new System.Drawing.Point(1062, 770);
             this.pcbParede43.Name = "pcbParede43";
             this.pcbParede43.Size = new System.Drawing.Size(50, 50);
             this.pcbParede43.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pcbParede43.TabIndex = 45;
             this.pcbParede43.TabStop = false;
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Location = new System.Drawing.Point(825, 100);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(420, 300);
+            this.groupBox1.TabIndex = 46;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Parede";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Location = new System.Drawing.Point(715, 400);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(623, 71);
+            this.groupBox2.TabIndex = 47;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Chão";
+            // 
             // frmTabuleiro
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1350, 920);
+            this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.pcbParede43);
             this.Controls.Add(this.pcbParede32);
             this.Controls.Add(this.pcbParede21);
@@ -637,5 +659,7 @@
         private System.Windows.Forms.PictureBox pcbParede21;
         private System.Windows.Forms.PictureBox pcbParede32;
         private System.Windows.Forms.PictureBox pcbParede43;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox groupBox2;
     }
 }

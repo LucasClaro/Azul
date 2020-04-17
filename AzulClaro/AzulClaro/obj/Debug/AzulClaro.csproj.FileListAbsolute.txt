@@ -56,3 +56,4 @@ C:\Users\lucas\Documents\GitHub\Azul\AzulClaro\AzulClaro\obj\Debug\AzulClaro.csp
 C:\Users\lucas\Documents\GitHub\Azul\AzulClaro\AzulClaro\obj\Debug\AzulClaro.exe
 C:\Users\lucas\Documents\GitHub\Azul\AzulClaro\AzulClaro\obj\Debug\AzulClaro.pdb
 G:\Github\Azul\AzulClaro\AzulClaro\obj\Debug\AzulClaro.frmLobby.resources
+D:\Senac\3Sem\PI\Azul\AzulClaro\AzulClaro\obj\Debug\AzulClaro.frmLobby.resources

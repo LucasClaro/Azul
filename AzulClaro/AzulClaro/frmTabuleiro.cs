@@ -223,7 +223,7 @@ namespace AzulClaro
             {
                 PictureBox pcbAzul = new PictureBox(); //Azulejo
                 pcbAzul.Image = azul.image;
-                pcbAzul.Location = new Point(800 + 50 * c, 400);
+                pcbAzul.Location = new Point(715 + 50 * c, 410);
                 pcbAzul.Width = 50;
                 pcbAzul.Height = 50;
                 pcbAzul.SizeMode = PictureBoxSizeMode.StretchImage;
