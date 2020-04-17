@@ -133,6 +133,16 @@ namespace AzulClaro.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap btn1Alt {
+            get {
+                object obj = ResourceManager.GetObject("btn1Alt", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap btn2 {
             get {
                 object obj = ResourceManager.GetObject("btn2", resourceCulture);
@@ -143,9 +153,29 @@ namespace AzulClaro.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap btn2Alt {
+            get {
+                object obj = ResourceManager.GetObject("btn2Alt", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap btn3 {
             get {
                 object obj = ResourceManager.GetObject("btn3", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap btn3Alt {
+            get {
+                object obj = ResourceManager.GetObject("btn3Alt", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -227,16 +257,6 @@ namespace AzulClaro.Properties {
             get {
                 object obj = ResourceManager.GetObject("mini", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Consulta um recurso localizado do tipo System.Byte[].
-        /// </summary>
-        internal static byte[] Oxanium_Regular {
-            get {
-                object obj = ResourceManager.GetObject("Oxanium_Regular", resourceCulture);
-                return ((byte[])(obj));
             }
         }
         

@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmLobby));
             this.pnlBarraWindows = new System.Windows.Forms.Panel();
             this.pcbMinimizar = new System.Windows.Forms.PictureBox();
@@ -111,11 +113,11 @@
             this.lblVersao.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lblVersao.AutoSize = true;
             this.lblVersao.BackColor = System.Drawing.Color.Transparent;
-            this.lblVersao.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblVersao.Font = new System.Drawing.Font("Bahnschrift Light", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblVersao.ForeColor = System.Drawing.Color.Black;
             this.lblVersao.Location = new System.Drawing.Point(12, 602);
             this.lblVersao.Name = "lblVersao";
-            this.lblVersao.Size = new System.Drawing.Size(105, 24);
+            this.lblVersao.Size = new System.Drawing.Size(99, 23);
             this.lblVersao.TabIndex = 15;
             this.lblVersao.Text = "Versão: 0.0";
             // 
@@ -123,11 +125,11 @@
             // 
             this.lblErroIniciar.AutoSize = true;
             this.lblErroIniciar.BackColor = System.Drawing.Color.Transparent;
-            this.lblErroIniciar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblErroIniciar.Font = new System.Drawing.Font("Bahnschrift Light SemiCondensed", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblErroIniciar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(224)))), ((int)(((byte)(242)))));
-            this.lblErroIniciar.Location = new System.Drawing.Point(236, 556);
+            this.lblErroIniciar.Location = new System.Drawing.Point(243, 559);
             this.lblErroIniciar.Name = "lblErroIniciar";
-            this.lblErroIniciar.Size = new System.Drawing.Size(38, 13);
+            this.lblErroIniciar.Size = new System.Drawing.Size(30, 13);
             this.lblErroIniciar.TabIndex = 31;
             this.lblErroIniciar.Text = "ERRO";
             // 
@@ -135,19 +137,39 @@
             // 
             this.lblErroEntrarPartida.AutoSize = true;
             this.lblErroEntrarPartida.BackColor = System.Drawing.Color.Transparent;
-            this.lblErroEntrarPartida.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblErroEntrarPartida.Location = new System.Drawing.Point(286, 465);
+            this.lblErroEntrarPartida.Font = new System.Drawing.Font("Bahnschrift Light SemiCondensed", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblErroEntrarPartida.Location = new System.Drawing.Point(290, 458);
             this.lblErroEntrarPartida.Name = "lblErroEntrarPartida";
-            this.lblErroEntrarPartida.Size = new System.Drawing.Size(38, 13);
+            this.lblErroEntrarPartida.Size = new System.Drawing.Size(30, 13);
             this.lblErroEntrarPartida.TabIndex = 32;
             this.lblErroEntrarPartida.Text = "ERRO";
             // 
             // dgvPartidas
             // 
+            this.dgvPartidas.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(175)))), ((int)(((byte)(186)))));
+            this.dgvPartidas.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(224)))), ((int)(((byte)(242)))));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(224)))), ((int)(((byte)(242)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvPartidas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvPartidas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(163)))), ((int)(((byte)(216)))));
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvPartidas.DefaultCellStyle = dataGridViewCellStyle4;
+            this.dgvPartidas.EnableHeadersVisualStyles = false;
+            this.dgvPartidas.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.dgvPartidas.Location = new System.Drawing.Point(12, 77);
             this.dgvPartidas.Name = "dgvPartidas";
-            this.dgvPartidas.Size = new System.Drawing.Size(213, 427);
+            this.dgvPartidas.Size = new System.Drawing.Size(212, 427);
             this.dgvPartidas.TabIndex = 33;
             this.dgvPartidas.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPartidas_CellClick);
             // 
@@ -155,11 +177,11 @@
             // 
             this.rdbEncerradas.AutoSize = true;
             this.rdbEncerradas.BackColor = System.Drawing.Color.Transparent;
-            this.rdbEncerradas.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rdbEncerradas.Font = new System.Drawing.Font("Bahnschrift Light", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rdbEncerradas.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(224)))), ((int)(((byte)(242)))));
             this.rdbEncerradas.Location = new System.Drawing.Point(144, 561);
             this.rdbEncerradas.Name = "rdbEncerradas";
-            this.rdbEncerradas.Size = new System.Drawing.Size(79, 17);
+            this.rdbEncerradas.Size = new System.Drawing.Size(83, 17);
             this.rdbEncerradas.TabIndex = 38;
             this.rdbEncerradas.Text = "Encerradas";
             this.rdbEncerradas.UseVisualStyleBackColor = false;
@@ -168,11 +190,11 @@
             // 
             this.rdbAbertas.AutoSize = true;
             this.rdbAbertas.BackColor = System.Drawing.Color.Transparent;
-            this.rdbAbertas.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rdbAbertas.Font = new System.Drawing.Font("Bahnschrift Light", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rdbAbertas.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(224)))), ((int)(((byte)(242)))));
             this.rdbAbertas.Location = new System.Drawing.Point(74, 561);
             this.rdbAbertas.Name = "rdbAbertas";
-            this.rdbAbertas.Size = new System.Drawing.Size(61, 17);
+            this.rdbAbertas.Size = new System.Drawing.Size(65, 17);
             this.rdbAbertas.TabIndex = 37;
             this.rdbAbertas.Text = "Abertas";
             this.rdbAbertas.UseVisualStyleBackColor = false;
@@ -182,11 +204,11 @@
             this.rdbTodos.AutoSize = true;
             this.rdbTodos.BackColor = System.Drawing.Color.Transparent;
             this.rdbTodos.Checked = true;
-            this.rdbTodos.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rdbTodos.Font = new System.Drawing.Font("Bahnschrift Light", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rdbTodos.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(224)))), ((int)(((byte)(242)))));
             this.rdbTodos.Location = new System.Drawing.Point(12, 561);
             this.rdbTodos.Name = "rdbTodos";
-            this.rdbTodos.Size = new System.Drawing.Size(55, 17);
+            this.rdbTodos.Size = new System.Drawing.Size(53, 17);
             this.rdbTodos.TabIndex = 36;
             this.rdbTodos.TabStop = true;
             this.rdbTodos.Text = "Todos";
@@ -196,7 +218,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Bahnschrift Light", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(290, 101);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(19, 16);
@@ -208,40 +230,40 @@
             this.txtIdPartida.BackColor = System.Drawing.Color.White;
             this.txtIdPartida.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtIdPartida.Enabled = false;
-            this.txtIdPartida.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
+            this.txtIdPartida.Font = new System.Drawing.Font("Bahnschrift Light", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtIdPartida.Location = new System.Drawing.Point(310, 99);
             this.txtIdPartida.Name = "txtIdPartida";
-            this.txtIdPartida.Size = new System.Drawing.Size(36, 22);
+            this.txtIdPartida.Size = new System.Drawing.Size(36, 23);
             this.txtIdPartida.TabIndex = 39;
             // 
             // lstJogadores
             // 
-            this.lstJogadores.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lstJogadores.Font = new System.Drawing.Font("Bahnschrift Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lstJogadores.FormattingEnabled = true;
-            this.lstJogadores.ItemHeight = 20;
+            this.lstJogadores.ItemHeight = 19;
             this.lstJogadores.Location = new System.Drawing.Point(289, 138);
             this.lstJogadores.Name = "lstJogadores";
-            this.lstJogadores.Size = new System.Drawing.Size(180, 104);
+            this.lstJogadores.Size = new System.Drawing.Size(180, 99);
             this.lstJogadores.TabIndex = 41;
             // 
             // txtSenhaEntrar
             // 
             this.txtSenhaEntrar.BackColor = System.Drawing.Color.White;
             this.txtSenhaEntrar.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtSenhaEntrar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
+            this.txtSenhaEntrar.Font = new System.Drawing.Font("Bahnschrift Light", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtSenhaEntrar.Location = new System.Drawing.Point(394, 99);
             this.txtSenhaEntrar.Name = "txtSenhaEntrar";
-            this.txtSenhaEntrar.Size = new System.Drawing.Size(75, 22);
+            this.txtSenhaEntrar.Size = new System.Drawing.Size(75, 23);
             this.txtSenhaEntrar.TabIndex = 44;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.BackColor = System.Drawing.Color.Transparent;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Font = new System.Drawing.Font("Bahnschrift Light", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(351, 101);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(47, 16);
+            this.label4.Size = new System.Drawing.Size(44, 16);
             this.label4.TabIndex = 43;
             this.label4.Text = "Senha";
             // 
@@ -252,18 +274,18 @@
             // 
             // txtIdjogador
             // 
-            this.txtIdjogador.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
-            this.txtIdjogador.Location = new System.Drawing.Point(370, 484);
+            this.txtIdjogador.Font = new System.Drawing.Font("Bahnschrift Light", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtIdjogador.Location = new System.Drawing.Point(344, 478);
             this.txtIdjogador.Name = "txtIdjogador";
-            this.txtIdjogador.Size = new System.Drawing.Size(95, 22);
+            this.txtIdjogador.Size = new System.Drawing.Size(125, 23);
             this.txtIdjogador.TabIndex = 50;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
-            this.label2.Location = new System.Drawing.Point(343, 487);
+            this.label2.Font = new System.Drawing.Font("Bahnschrift Light", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(317, 481);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(19, 16);
             this.label2.TabIndex = 49;
@@ -271,39 +293,39 @@
             // 
             // txtSenhaJogador
             // 
-            this.txtSenhaJogador.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
-            this.txtSenhaJogador.Location = new System.Drawing.Point(370, 513);
+            this.txtSenhaJogador.Font = new System.Drawing.Font("Bahnschrift Light", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSenhaJogador.Location = new System.Drawing.Point(344, 507);
             this.txtSenhaJogador.Name = "txtSenhaJogador";
-            this.txtSenhaJogador.Size = new System.Drawing.Size(95, 22);
+            this.txtSenhaJogador.Size = new System.Drawing.Size(125, 23);
             this.txtSenhaJogador.TabIndex = 52;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.BackColor = System.Drawing.Color.Transparent;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
-            this.label5.Location = new System.Drawing.Point(316, 516);
+            this.label5.Font = new System.Drawing.Font("Bahnschrift Light", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(290, 510);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(47, 16);
+            this.label5.Size = new System.Drawing.Size(44, 16);
             this.label5.TabIndex = 51;
             this.label5.Text = "Senha";
             // 
             // txtNomeJogador
             // 
-            this.txtNomeJogador.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
-            this.txtNomeJogador.Location = new System.Drawing.Point(370, 359);
+            this.txtNomeJogador.Font = new System.Drawing.Font("Bahnschrift Light", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNomeJogador.Location = new System.Drawing.Point(344, 353);
             this.txtNomeJogador.Name = "txtNomeJogador";
-            this.txtNomeJogador.Size = new System.Drawing.Size(95, 22);
+            this.txtNomeJogador.Size = new System.Drawing.Size(125, 23);
             this.txtNomeJogador.TabIndex = 54;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.Color.Transparent;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
-            this.label3.Location = new System.Drawing.Point(318, 362);
+            this.label3.Font = new System.Drawing.Font("Bahnschrift Light", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(292, 356);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(45, 16);
+            this.label3.Size = new System.Drawing.Size(42, 16);
             this.label3.TabIndex = 53;
             this.label3.Text = "Nome";
             // 
@@ -311,10 +333,10 @@
             // 
             this.chkBot.AutoSize = true;
             this.chkBot.BackColor = System.Drawing.Color.Transparent;
-            this.chkBot.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
+            this.chkBot.Font = new System.Drawing.Font("Bahnschrift Light", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkBot.Location = new System.Drawing.Point(293, 389);
             this.chkBot.Name = "chkBot";
-            this.chkBot.Size = new System.Drawing.Size(170, 20);
+            this.chkBot.Size = new System.Drawing.Size(162, 20);
             this.chkBot.TabIndex = 55;
             this.chkBot.Text = "Esse jogador é um Bot?";
             this.chkBot.UseVisualStyleBackColor = false;
@@ -323,13 +345,15 @@
             // 
             this.pcbCriarPartida.BackColor = System.Drawing.Color.Transparent;
             this.pcbCriarPartida.Image = ((System.Drawing.Image)(resources.GetObject("pcbCriarPartida.Image")));
-            this.pcbCriarPartida.Location = new System.Drawing.Point(289, 248);
+            this.pcbCriarPartida.Location = new System.Drawing.Point(289, 240);
             this.pcbCriarPartida.Name = "pcbCriarPartida";
             this.pcbCriarPartida.Size = new System.Drawing.Size(190, 40);
             this.pcbCriarPartida.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.pcbCriarPartida.TabIndex = 56;
             this.pcbCriarPartida.TabStop = false;
             this.pcbCriarPartida.Click += new System.EventHandler(this.btnCriarPartida_Click);
+            this.pcbCriarPartida.MouseEnter += new System.EventHandler(this.pcbCriarPartida_MouseEnter);
+            this.pcbCriarPartida.MouseLeave += new System.EventHandler(this.pcbCriarPartida_MouseLeave);
             // 
             // pictureBox2
             // 
@@ -342,6 +366,8 @@
             this.pictureBox2.TabIndex = 57;
             this.pictureBox2.TabStop = false;
             this.pictureBox2.Click += new System.EventHandler(this.btnEntrarPartida_Click);
+            this.pictureBox2.MouseEnter += new System.EventHandler(this.pictureBox2_MouseEnter);
+            this.pictureBox2.MouseLeave += new System.EventHandler(this.pictureBox2_MouseLeave);
             // 
             // pictureBox3
             // 
@@ -354,66 +380,74 @@
             this.pictureBox3.TabIndex = 58;
             this.pictureBox3.TabStop = false;
             this.pictureBox3.Click += new System.EventHandler(this.btnListPartidas_Click);
+            this.pictureBox3.MouseEnter += new System.EventHandler(this.pictureBox3_MouseEnter);
+            this.pictureBox3.MouseLeave += new System.EventHandler(this.pictureBox3_MouseLeave);
             // 
             // pictureBox4
             // 
             this.pictureBox4.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox4.Image")));
-            this.pictureBox4.Location = new System.Drawing.Point(239, 572);
+            this.pictureBox4.Location = new System.Drawing.Point(246, 575);
             this.pictureBox4.Name = "pictureBox4";
             this.pictureBox4.Size = new System.Drawing.Size(239, 58);
             this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.pictureBox4.TabIndex = 59;
             this.pictureBox4.TabStop = false;
             this.pictureBox4.Click += new System.EventHandler(this.btnIniciarPartida_Click);
+            this.pictureBox4.MouseEnter += new System.EventHandler(this.pictureBox4_MouseEnter);
+            this.pictureBox4.MouseLeave += new System.EventHandler(this.pictureBox4_MouseLeave);
             // 
             // lblCriarPartida
             // 
             this.lblCriarPartida.AutoSize = true;
             this.lblCriarPartida.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(224)))), ((int)(((byte)(242)))));
-            this.lblCriarPartida.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F);
-            this.lblCriarPartida.Location = new System.Drawing.Point(312, 257);
+            this.lblCriarPartida.Font = new System.Drawing.Font("Bahnschrift Light", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCriarPartida.Location = new System.Drawing.Point(311, 248);
             this.lblCriarPartida.Name = "lblCriarPartida";
-            this.lblCriarPartida.Size = new System.Drawing.Size(150, 25);
+            this.lblCriarPartida.Size = new System.Drawing.Size(146, 25);
             this.lblCriarPartida.TabIndex = 60;
             this.lblCriarPartida.Text = "Criar Partida...";
             this.lblCriarPartida.Click += new System.EventHandler(this.btnCriarPartida_Click);
+            this.lblCriarPartida.MouseEnter += new System.EventHandler(this.lblCriarPartida_MouseEnter);
             // 
             // lblEntrarPartida
             // 
             this.lblEntrarPartida.AutoSize = true;
             this.lblEntrarPartida.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(224)))), ((int)(((byte)(242)))));
-            this.lblEntrarPartida.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEntrarPartida.Location = new System.Drawing.Point(298, 422);
+            this.lblEntrarPartida.Font = new System.Drawing.Font("Bahnschrift Light", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblEntrarPartida.Location = new System.Drawing.Point(299, 421);
             this.lblEntrarPartida.Name = "lblEntrarPartida";
             this.lblEntrarPartida.Size = new System.Drawing.Size(174, 25);
             this.lblEntrarPartida.TabIndex = 61;
             this.lblEntrarPartida.Text = "Entrar na Partida";
             this.lblEntrarPartida.Click += new System.EventHandler(this.btnEntrarPartida_Click);
+            this.lblEntrarPartida.MouseEnter += new System.EventHandler(this.lblEntrarPartida_MouseEnter);
             // 
             // lblListarPartidas
             // 
             this.lblListarPartidas.AutoSize = true;
             this.lblListarPartidas.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(224)))), ((int)(((byte)(242)))));
-            this.lblListarPartidas.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblListarPartidas.Font = new System.Drawing.Font("Bahnschrift Light", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblListarPartidas.Location = new System.Drawing.Point(44, 516);
             this.lblListarPartidas.Name = "lblListarPartidas";
             this.lblListarPartidas.Size = new System.Drawing.Size(150, 25);
             this.lblListarPartidas.TabIndex = 62;
             this.lblListarPartidas.Text = "Listar Partidas";
             this.lblListarPartidas.Click += new System.EventHandler(this.btnListPartidas_Click);
+            this.lblListarPartidas.MouseEnter += new System.EventHandler(this.lblListarPartidas_MouseEnter);
             // 
             // lblIniciarPartida
             // 
             this.lblIniciarPartida.AutoSize = true;
             this.lblIniciarPartida.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(224)))), ((int)(((byte)(242)))));
-            this.lblIniciarPartida.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblIniciarPartida.Location = new System.Drawing.Point(282, 586);
+            this.lblIniciarPartida.Font = new System.Drawing.Font("Bahnschrift Light", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblIniciarPartida.Location = new System.Drawing.Point(273, 588);
             this.lblIniciarPartida.Name = "lblIniciarPartida";
-            this.lblIniciarPartida.Size = new System.Drawing.Size(180, 31);
+            this.lblIniciarPartida.Size = new System.Drawing.Size(184, 33);
             this.lblIniciarPartida.TabIndex = 63;
             this.lblIniciarPartida.Text = "Iniciar Partida";
             this.lblIniciarPartida.Click += new System.EventHandler(this.btnIniciarPartida_Click);
+            this.lblIniciarPartida.MouseEnter += new System.EventHandler(this.lblIniciarPartida_MouseEnter);
             // 
             // frmLobby
             // 
@@ -453,6 +487,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmLobby";
             this.Text = "frmLobby";
+            this.MouseEnter += new System.EventHandler(this.frmLobby_MouseEnter);
             this.pnlBarraWindows.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pcbMinimizar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcbFechar)).EndInit();

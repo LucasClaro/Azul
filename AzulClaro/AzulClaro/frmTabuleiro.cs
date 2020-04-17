@@ -273,6 +273,7 @@ namespace AzulClaro
             configurarFabricas();
             desenharCentro();
             desenharFabricas();
+            desenharTabuleiro();
         }//Função que tira os azulejos da tela a coloca de novo     
         public void tirarAzulejos()
         {
@@ -368,10 +369,7 @@ namespace AzulClaro
             string txt = Jogo.VerificarVez(jogador.id, jogador.senha);
 
             string v = txt.Substring(2,3);
-            if (v.Substring(v.Length-1,1) == ",")
-            {
-                v = v.Substring(0, 2);
-            }
+            v = v.Remove(v.Length - 2);
             this.vez = Convert.ToInt32(v);
 
             lblVez.Text = "jogador: " + txt;

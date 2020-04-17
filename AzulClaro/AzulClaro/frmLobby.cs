@@ -22,8 +22,6 @@ namespace AzulClaro
         {
             InitializeComponent();
 
-            //CarregarFontes();
-
             lblVersao.Text = "Versão: " + Jogo.Versao;//Exibe a versão da dll            
 
             ListarPartidas();//Já inicia o cliente com as partidas preenchidas
@@ -35,12 +33,17 @@ namespace AzulClaro
             dgvPartidas.RowHeadersVisible = false;
             dgvPartidas.ReadOnly = true;
             dgvPartidas.Columns[0].Visible = false;
+            dgvPartidas.Columns[1].Width = 135;
+            dgvPartidas.Columns[2].Width = 57;
             dgvPartidas.Columns[3].Visible = false;
             dgvPartidas.Columns[4].Visible = false;
             dgvPartidas.AllowUserToResizeRows = false;
+            dgvPartidas.AllowUserToResizeColumns = false;
             dgvPartidas.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvPartidas.MultiSelect = false;
-            dgvPartidas.Font = new Font("Oxanium", 12);
+            dgvPartidas.Font = new Font("Bahnschrift Light", 12);
+            dgvPartidas.RowsDefaultCellStyle.BackColor = ColorTranslator.FromHtml("#A9AFBA"); 
+            dgvPartidas.AlternatingRowsDefaultCellStyle.BackColor = ColorTranslator.FromHtml("#949AA3"); 
 
             //gvwPartidas.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             //gvwPartidas.Columns[4].Width = 100;
@@ -99,7 +102,7 @@ namespace AzulClaro
             ListarJogadores();
         }//Clicar na DataGridView: troca o objeto partida
 
-        /////////////////////////////////////////////////////////////
+        /////////////////////////////////////////////////////////////             
 
         private void btnListPartidas_Click(object sender, EventArgs e)
         {
@@ -108,11 +111,7 @@ namespace AzulClaro
             txtSenhaEntrar.Text = "";
             lstJogadores.Items.Clear();
             partida = null;
-        }//Clicar em Listar Partida: Lista as partidas e limpa os campos        
-        //TROCAR O BTN LISTAR JOGADORES POR UM TIMER
-
-        /////////////////////////////////////////////////////////////
-
+        }//Clicar em Listar Partida: Lista as partidas e limpa os campos   
         private void btnCriarPartida_Click(object sender, EventArgs e)
         {
             frmCriarPartida frmCriarPartida = new frmCriarPartida();//Chama o formulário de nova partida
@@ -181,19 +180,6 @@ namespace AzulClaro
             }
             ListarJogadores();//Atualiza os jogadores
         }//Botão Entrar na Partida
-
-        /////////////////////////////////////////////////////////////
-
-        private void tmrMsgErro_Tick(object sender, EventArgs e)
-        {
-            lblErroEntrarPartida.Text = "";
-            lblErroIniciar.Text = "";
-            tmrMsgErro.Enabled = false;
-            ListarJogadores();
-        }//10 segundos com a mesma mensagem de Erro
-
-        /////////////////////////////////////////////////////////////
-
         private void btnIniciarPartida_Click(object sender, EventArgs e)
         {
             if (txtIdjogador.Text != "" && txtSenhaJogador.Text != "")
@@ -263,6 +249,16 @@ namespace AzulClaro
 
         /////////////////////////////////////////////////////////////
 
+        private void tmrMsgErro_Tick(object sender, EventArgs e)
+        {
+            lblErroEntrarPartida.Text = "";
+            lblErroIniciar.Text = "";
+            tmrMsgErro.Enabled = false;
+            ListarJogadores();
+        }//10 segundos com a mesma mensagem de Erro      
+
+        /////////////////////////////////////////////////////////////
+
         public string BuscarJogById(int id)
         {
             foreach (Jogador jogador in partida.jogadores)
@@ -290,38 +286,6 @@ namespace AzulClaro
 
             return false;
         }//Verifica se o jogador que está iniciando a partida está na partida selecionada
-        public void CarregarFontes()
-        {
-            PrivateFontCollection pfc = new PrivateFontCollection();
-            int fontLength = Properties.Resources.Oxanium_Regular.Length;
-            byte[] fontdata = Properties.Resources.Oxanium_Regular;
-            System.IntPtr data = Marshal.AllocCoTaskMem(fontLength);
-            Marshal.Copy(fontdata, 0, data, fontLength);
-            pfc.AddMemoryFont(data, fontLength);
-
-            List<Label> lbls = Controls.OfType<Label>().ToList();
-            foreach (Label label in lbls)
-            {
-                label.Font = new Font(pfc.Families[0], label.Font.Size);
-                label.UseCompatibleTextRendering = true;
-            }
-
-            //List<TextBox> txts = Controls.OfType<TextBox>().ToList();
-            //foreach (TextBox text in txts)
-            //{
-            //    text.Font = new Font(pfc.Families[0], text.Font.Size);
-            //}
-
-            List<RadioButton> radioButtons = Controls.OfType<RadioButton>().ToList();
-            foreach (RadioButton radio in radioButtons)
-            {
-                radio.Font = new Font(pfc.Families[0], radio.Font.Size);
-                radio.UseCompatibleTextRendering = true;
-            }
-
-            chkBot.Font = new Font(pfc.Families[0], chkBot.Font.Size);
-            chkBot.UseCompatibleTextRendering = true;
-        }
 
         /////////////////////////////////////////////////////////////
 
@@ -355,5 +319,87 @@ namespace AzulClaro
                 downPoint = new Point(e.X, e.Y);
             }
         }//Entrar do clique no painel de mover a tela                                                                
+
+        /////////////////////////////////////////////////////////////
+
+        //Configura o Hover do "Botão" criar partida
+        private void pcbCriarPartida_MouseEnter(object sender, EventArgs e)
+        {
+            pcbCriarPartida.Image = Properties.Resources.btn1Alt;
+            lblCriarPartida.BackColor = ColorTranslator.FromHtml("#A7F9FE");
+        }
+        private void pcbCriarPartida_MouseLeave(object sender, EventArgs e)
+        {
+            pcbCriarPartida.Image = Properties.Resources.btn1;
+            lblCriarPartida.BackColor = ColorTranslator.FromHtml("#21e0f2");            
+        }
+        private void lblCriarPartida_MouseEnter(object sender, EventArgs e)
+        {
+            pcbCriarPartida.Image = Properties.Resources.btn1Alt;
+            lblCriarPartida.BackColor = ColorTranslator.FromHtml("#A7F9FE");
+        }
+
+        //Configura o Hover do "Botão" entrar na partida
+        private void pictureBox2_MouseEnter(object sender, EventArgs e)
+        {
+            pictureBox2.Image = Properties.Resources.btn1Alt;
+            lblEntrarPartida.BackColor = ColorTranslator.FromHtml("#A7F9FE");
+        }
+        private void pictureBox2_MouseLeave(object sender, EventArgs e)
+        {
+            pictureBox2.Image = Properties.Resources.btn1;
+            lblEntrarPartida.BackColor = ColorTranslator.FromHtml("#21e0f2");
+        }
+        private void lblEntrarPartida_MouseEnter(object sender, EventArgs e)
+        {
+            pictureBox2.Image = Properties.Resources.btn1Alt;
+            lblEntrarPartida.BackColor = ColorTranslator.FromHtml("#A7F9FE");
+        }
+
+        //Configura o Hover do "Botão" listar partidas
+        private void pictureBox3_MouseEnter(object sender, EventArgs e)
+        {
+            pictureBox3.Image = Properties.Resources.btn2Alt;
+            lblListarPartidas.BackColor = ColorTranslator.FromHtml("#A7F9FE");
+        }
+        private void pictureBox3_MouseLeave(object sender, EventArgs e)
+        {
+            pictureBox3.Image = Properties.Resources.btn2;
+            lblListarPartidas.BackColor = ColorTranslator.FromHtml("#21e0f2");
+        }
+        private void lblListarPartidas_MouseEnter(object sender, EventArgs e)
+        {
+            pictureBox3.Image = Properties.Resources.btn2Alt;
+            lblListarPartidas.BackColor = ColorTranslator.FromHtml("#A7F9FE");
+        }
+
+        //Configura o Hover do "Botão" iniciar partida
+        private void pictureBox4_MouseEnter(object sender, EventArgs e)
+        {
+            pictureBox4.Image = Properties.Resources.btn3Alt;
+            lblIniciarPartida.BackColor = ColorTranslator.FromHtml("#A7F9FE");
+        }
+        private void pictureBox4_MouseLeave(object sender, EventArgs e)
+        {
+            pictureBox4.Image = Properties.Resources.btn3;
+            lblIniciarPartida.BackColor = ColorTranslator.FromHtml("#21e0f2");
+        }
+        private void lblIniciarPartida_MouseEnter(object sender, EventArgs e)
+        {
+            pictureBox4.Image = Properties.Resources.btn3Alt;
+            lblIniciarPartida.BackColor = ColorTranslator.FromHtml("#A7F9FE");
+        }
+
+        private void frmLobby_MouseEnter(object sender, EventArgs e)
+        {
+            pcbCriarPartida.Image = Properties.Resources.btn1;
+            lblCriarPartida.BackColor = ColorTranslator.FromHtml("#21e0f2");
+            pictureBox2.Image = Properties.Resources.btn1;
+            lblEntrarPartida.BackColor = ColorTranslator.FromHtml("#21e0f2");
+            pictureBox3.Image = Properties.Resources.btn2;
+            lblListarPartidas.BackColor = ColorTranslator.FromHtml("#21e0f2");
+            pictureBox4.Image = Properties.Resources.btn3;
+            lblIniciarPartida.BackColor = ColorTranslator.FromHtml("#21e0f2");
+        }
     }
 }
