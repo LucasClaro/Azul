@@ -296,6 +296,7 @@ namespace AzulClaro
         private void btnVez_Click(object sender, EventArgs e)
         {
             Vez();
+            lblVez.Text = Jogo.VerificarVez(jogador.id, jogador.senha);
         }//Botão Vez: printa a vez
         private void Button1_Click(object sender, EventArgs e)
         {
@@ -366,38 +367,38 @@ namespace AzulClaro
 
         public void Vez()
         {
-            string txt = Jogo.VerificarVez(jogador.id, jogador.senha);
+            //string txt = Jogo.VerificarVez(jogador.id, jogador.senha);
 
-            string v = txt.Substring(2,3);
-            v = v.Remove(v.Length - 2);
-            this.vez = Convert.ToInt32(v);
+            //string v = txt.Substring(2,3);
+            //v = v.Remove(v.Length - 2);
+            //this.vez = Convert.ToInt32(v);
 
-            lblVez.Text = "jogador: " + txt;
+            //lblVez.Text = "jogador: " + txt;
             
-            if (!(vez == jogador.id))
-            {
-                atualizarAzulejos();
-                btnModelo1.Enabled = false;
-                btnModelo2.Enabled = false;
-                btnModelo3.Enabled = false;
-                btnModelo4.Enabled = false;
-                btnModelo5.Enabled = false;
+            //if (!(vez == jogador.id))
+            //{
+            //    atualizarAzulejos();
+            //    btnModelo1.Enabled = false;
+            //    btnModelo2.Enabled = false;
+            //    btnModelo3.Enabled = false;
+            //    btnModelo4.Enabled = false;
+            //    btnModelo5.Enabled = false;
 
-                this.compra = null;
-            }
-            else
-            {
-                if (this.compra == null)
-                {
-                    this.compra = new Compra();
-                }
+            //    this.compra = null;
+            //}
+            //else
+            //{
+            //    if (this.compra == null)
+            //    {
+            //        this.compra = new Compra();
+            //    }
 
-                btnModelo1.Enabled = true;
-                btnModelo2.Enabled = true;
-                btnModelo3.Enabled = true;
-                btnModelo4.Enabled = true;
-                btnModelo5.Enabled = true;
-            }
+            //    btnModelo1.Enabled = true;
+            //    btnModelo2.Enabled = true;
+            //    btnModelo3.Enabled = true;
+            //    btnModelo4.Enabled = true;
+            //    btnModelo5.Enabled = true;
+            //}
 
         }
 
