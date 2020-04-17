@@ -20,7 +20,7 @@ namespace AzulClaro
 
         public frmLobby()
         {
-            InitializeComponent();
+            InitializeComponent();            
 
             lblVersao.Text = "Versão: " + Jogo.Versao;//Exibe a versão da dll            
 
@@ -114,10 +114,12 @@ namespace AzulClaro
         }//Clicar em Listar Partida: Lista as partidas e limpa os campos   
         private void btnCriarPartida_Click(object sender, EventArgs e)
         {
+            this.Opacity = 25.0;
             frmCriarPartida frmCriarPartida = new frmCriarPartida();//Chama o formulário de nova partida
             frmCriarPartida.ShowDialog();
             int IdPartidaCriada = frmCriarPartida.idPartidaCriada;//Lê o id e a senha criada nesse form    
             string senha = frmCriarPartida.senha;
+            this.Opacity = 100.0;
 
             ListarPartidas();//Atualiza as partidas
 

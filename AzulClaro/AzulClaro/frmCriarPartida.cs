@@ -19,6 +19,11 @@ namespace AzulClaro
         public frmCriarPartida()
         {
             InitializeComponent();
+
+            lblErro.Text = "";
+
+            BackColor = Color.Lime;
+            TransparencyKey = Color.Lime;
         }//Construtor
         private void btnCriarPartida_Click(object sender, EventArgs e)
         {
