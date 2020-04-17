@@ -157,6 +157,7 @@
     <None Include="Resources\dotpict_20200307_2237061.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\Oxanium-Regular.ttf" />
     <None Include="Resources\parede.png" />
   </ItemGroup>
   <ItemGroup>
@@ -164,6 +165,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Fundo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btn1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btn3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btn2.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

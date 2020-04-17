@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Text;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -19,6 +21,8 @@ namespace AzulClaro
         public frmLobby()
         {
             InitializeComponent();
+
+            //CarregarFontes();
 
             lblVersao.Text = "Versão: " + Jogo.Versao;//Exibe a versão da dll            
 
@@ -69,7 +73,10 @@ namespace AzulClaro
         public void ListarJogadores()
         {
             lstJogadores.Items.Clear();//Limpa a combo box para preencher novamente
-            partida.ListarJogadores();
+            if (partida != null)
+            {
+                partida.ListarJogadores();
+            }            
 
             bool existe = false;
             foreach (Jogador jogador in partida.jogadores)
@@ -283,6 +290,38 @@ namespace AzulClaro
 
             return false;
         }//Verifica se o jogador que está iniciando a partida está na partida selecionada
+        public void CarregarFontes()
+        {
+            PrivateFontCollection pfc = new PrivateFontCollection();
+            int fontLength = Properties.Resources.Oxanium_Regular.Length;
+            byte[] fontdata = Properties.Resources.Oxanium_Regular;
+            System.IntPtr data = Marshal.AllocCoTaskMem(fontLength);
+            Marshal.Copy(fontdata, 0, data, fontLength);
+            pfc.AddMemoryFont(data, fontLength);
+
+            List<Label> lbls = Controls.OfType<Label>().ToList();
+            foreach (Label label in lbls)
+            {
+                label.Font = new Font(pfc.Families[0], label.Font.Size);
+                label.UseCompatibleTextRendering = true;
+            }
+
+            //List<TextBox> txts = Controls.OfType<TextBox>().ToList();
+            //foreach (TextBox text in txts)
+            //{
+            //    text.Font = new Font(pfc.Families[0], text.Font.Size);
+            //}
+
+            List<RadioButton> radioButtons = Controls.OfType<RadioButton>().ToList();
+            foreach (RadioButton radio in radioButtons)
+            {
+                radio.Font = new Font(pfc.Families[0], radio.Font.Size);
+                radio.UseCompatibleTextRendering = true;
+            }
+
+            chkBot.Font = new Font(pfc.Families[0], chkBot.Font.Size);
+            chkBot.UseCompatibleTextRendering = true;
+        }
 
         /////////////////////////////////////////////////////////////
 
