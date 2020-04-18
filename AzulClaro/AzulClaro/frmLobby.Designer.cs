@@ -167,9 +167,9 @@
             this.dgvPartidas.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgvPartidas.EnableHeadersVisualStyles = false;
             this.dgvPartidas.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.dgvPartidas.Location = new System.Drawing.Point(12, 77);
+            this.dgvPartidas.Location = new System.Drawing.Point(12, 99);
             this.dgvPartidas.Name = "dgvPartidas";
-            this.dgvPartidas.Size = new System.Drawing.Size(212, 427);
+            this.dgvPartidas.Size = new System.Drawing.Size(212, 405);
             this.dgvPartidas.TabIndex = 33;
             this.dgvPartidas.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPartidas_CellClick);
             // 
