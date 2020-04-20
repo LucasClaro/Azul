@@ -117,7 +117,7 @@ namespace AzulClaro
                         pcbAzul.SizeMode = PictureBoxSizeMode.StretchImage;
                         pcbAzul.Name = "pcbFabricas" + fab.id + "" + i;
 
-                        pcbAzul.AccessibleName = "f" + fab.id + azul.id + azul.quantidade;//Informações para o carrinho
+                        pcbAzul.AccessibleName = "F" + fab.id + azul.id + azul.quantidade;//Informações para o carrinho
                         pcbAzul.Click += azulejo_Click;
 
                         this.Controls.Add(pcbAzul);            //Adiciona no form
@@ -302,8 +302,6 @@ namespace AzulClaro
         {
             atualizarAzulejos();
 
-            textBox1.Text = Jogo.LerTabuleiro(jogador.id, jogador.senha, jogador.id);
-            desenharTabuleiro();
         }//Recarrega azulejos (REMOVER)
         public void Jogar()
         {
@@ -406,9 +404,9 @@ namespace AzulClaro
 
         private void tmrRefresh_Tick(object sender, EventArgs e)
         {
-            Vez();
+            //Vez();
 
-            atualizarAzulejos();
+            //atualizarAzulejos();
         }
     }
 }
