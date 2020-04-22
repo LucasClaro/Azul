@@ -522,7 +522,7 @@
             this.groupBox1.Size = new System.Drawing.Size(420, 300);
             this.groupBox1.TabIndex = 46;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Parede";
+            this.groupBox1.Text = "Modelo";
             // 
             // groupBox2
             // 

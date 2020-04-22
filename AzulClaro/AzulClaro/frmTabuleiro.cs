@@ -300,8 +300,8 @@ namespace AzulClaro
         }//Botão Vez: printa a vez
         private void Button1_Click(object sender, EventArgs e)
         {
+            jogarAutomatico();
             atualizarAzulejos();
-
         }//Recarrega azulejos (REMOVER)
         public void Jogar()
         {
@@ -327,7 +327,7 @@ namespace AzulClaro
             if (compra.qtd > 1)
                 azu += "s";
             string dx;//Vê se a compra é da fábrica ou do centro
-            if (compra.tipo == "f")
+            if (compra.tipo == "F")
                 dx = "da fábrica " + compra.fabrica;
             else
                 dx = "do centro";
@@ -407,6 +407,50 @@ namespace AzulClaro
             //Vez();
 
             //atualizarAzulejos();
+        }
+        private bool verVez()
+        {
+            string txt = Jogo.VerificarVez(jogador.id, jogador.senha);
+
+            string[] v = txt.Split(',');
+            this.vez = Convert.ToInt32(v[1]);
+            return this.vez == jogador.id;
+        }
+        private void jogarAutomatico()
+        {
+            if(verVez())
+            {
+                //Analisar os azulejos das fabricas
+                //ver em qual modelo não tem nada, cabe ou completa
+                //ou 
+                //Ver as linhas do modelo e ver qual dos azulejos das fabricas
+                //cabe(m) ou completa(m)
+                bool jogou = false;
+                for(int i = 0; i < jogador.tabuleiro.modelo.Length; i++)
+                {
+                    if(jogador.tabuleiro.modelo[i] == null)
+                    {
+                        foreach (Fabrica fab in partida.fabricas)
+                        {
+                            foreach (Azulejo a in fab.azulejos)
+                            {
+                                if (a.quantidade <= i+1)
+                                {
+                                    string txt = Jogo.Jogar(jogador.id, jogador.senha, "f", fab.id, a.id, i+1);
+                                    lblErro.Text = txt;
+                                    jogou = true;
+                                    break;
+                                }
+                            }
+                            if (jogou)
+                                break;
+                        }
+                    }
+                    if (jogou)
+                        break;
+                }
+                //jogador.tabuleiro.modelo
+            }
         }
     }
 }
