@@ -30,12 +30,16 @@
         {
             this.txtSenhaPartida = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.btnCriarPartida = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.txtNomePartida = new System.Windows.Forms.TextBox();
             this.lblErro = new System.Windows.Forms.Label();
-            this.btnCancelar = new System.Windows.Forms.Button();
+            this.pcbCriar = new System.Windows.Forms.PictureBox();
+            this.pcbCancelar = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.lblCriarPartida = new System.Windows.Forms.Label();
+            this.lblCancelar = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.pcbCriar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pcbCancelar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -58,16 +62,6 @@
             this.label3.Size = new System.Drawing.Size(44, 16);
             this.label3.TabIndex = 13;
             this.label3.Text = "Senha";
-            // 
-            // btnCriarPartida
-            // 
-            this.btnCriarPartida.Location = new System.Drawing.Point(65, 196);
-            this.btnCriarPartida.Name = "btnCriarPartida";
-            this.btnCriarPartida.Size = new System.Drawing.Size(226, 34);
-            this.btnCriarPartida.TabIndex = 2;
-            this.btnCriarPartida.Text = "Criar Partida";
-            this.btnCriarPartida.UseVisualStyleBackColor = true;
-            this.btnCriarPartida.Click += new System.EventHandler(this.btnCriarPartida_Click);
             // 
             // label2
             // 
@@ -100,26 +94,69 @@
             this.lblErro.TabIndex = 15;
             this.lblErro.Text = "A";
             // 
-            // btnCancelar
+            // pcbCriar
             // 
-            this.btnCancelar.Location = new System.Drawing.Point(65, 152);
-            this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(226, 23);
-            this.btnCancelar.TabIndex = 16;
-            this.btnCancelar.Text = "Cancelar";
-            this.btnCancelar.UseVisualStyleBackColor = true;
-            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
+            this.pcbCriar.Image = global::AzulClaro.Properties.Resources.btnCriar;
+            this.pcbCriar.Location = new System.Drawing.Point(64, 206);
+            this.pcbCriar.Name = "pcbCriar";
+            this.pcbCriar.Size = new System.Drawing.Size(222, 48);
+            this.pcbCriar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pcbCriar.TabIndex = 19;
+            this.pcbCriar.TabStop = false;
+            this.pcbCriar.Click += new System.EventHandler(this.btnCriarPartida_Click);
+            this.pcbCriar.MouseEnter += new System.EventHandler(this.pcbCriar_MouseEnter);
+            this.pcbCriar.MouseLeave += new System.EventHandler(this.pcbCriar_MouseLeave);
+            // 
+            // pcbCancelar
+            // 
+            this.pcbCancelar.Image = global::AzulClaro.Properties.Resources.btnCancelar;
+            this.pcbCancelar.Location = new System.Drawing.Point(45, 168);
+            this.pcbCancelar.Name = "pcbCancelar";
+            this.pcbCancelar.Size = new System.Drawing.Size(260, 32);
+            this.pcbCancelar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pcbCancelar.TabIndex = 18;
+            this.pcbCancelar.TabStop = false;
+            this.pcbCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
+            this.pcbCancelar.MouseEnter += new System.EventHandler(this.pcbCancelar_MouseEnter);
+            this.pcbCancelar.MouseLeave += new System.EventHandler(this.pcbCancelar_MouseLeave);
             // 
             // pictureBox1
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox1.Image = global::AzulClaro.Properties.Resources.criar;
-            this.pictureBox1.Location = new System.Drawing.Point(15, 32);
+            this.pictureBox1.Location = new System.Drawing.Point(12, 33);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(327, 233);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.pictureBox1.TabIndex = 17;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.MouseEnter += new System.EventHandler(this.pictureBox1_MouseEnter);
+            // 
+            // lblCriarPartida
+            // 
+            this.lblCriarPartida.AutoSize = true;
+            this.lblCriarPartida.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(224)))), ((int)(((byte)(242)))));
+            this.lblCriarPartida.Font = new System.Drawing.Font("Bahnschrift Light", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCriarPartida.Location = new System.Drawing.Point(116, 219);
+            this.lblCriarPartida.Name = "lblCriarPartida";
+            this.lblCriarPartida.Size = new System.Drawing.Size(119, 23);
+            this.lblCriarPartida.TabIndex = 61;
+            this.lblCriarPartida.Text = "Criar Partida";
+            this.lblCriarPartida.Click += new System.EventHandler(this.btnCriarPartida_Click);
+            this.lblCriarPartida.MouseEnter += new System.EventHandler(this.lblCriarPartida_MouseEnter);
+            // 
+            // lblCancelar
+            // 
+            this.lblCancelar.AutoSize = true;
+            this.lblCancelar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(224)))), ((int)(((byte)(242)))));
+            this.lblCancelar.Font = new System.Drawing.Font("Bahnschrift Light", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCancelar.Location = new System.Drawing.Point(132, 174);
+            this.lblCancelar.Name = "lblCancelar";
+            this.lblCancelar.Size = new System.Drawing.Size(86, 23);
+            this.lblCancelar.TabIndex = 62;
+            this.lblCancelar.Text = "Cancelar";
+            this.lblCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
+            this.lblCancelar.MouseEnter += new System.EventHandler(this.lblCancelar_MouseEnter);
             // 
             // frmCriarPartida
             // 
@@ -127,11 +164,13 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.ClientSize = new System.Drawing.Size(350, 305);
-            this.Controls.Add(this.btnCancelar);
+            this.Controls.Add(this.lblCancelar);
+            this.Controls.Add(this.lblCriarPartida);
+            this.Controls.Add(this.pcbCriar);
+            this.Controls.Add(this.pcbCancelar);
             this.Controls.Add(this.lblErro);
             this.Controls.Add(this.txtSenhaPartida);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.btnCriarPartida);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtNomePartida);
             this.Controls.Add(this.pictureBox1);
@@ -139,6 +178,8 @@
             this.Name = "frmCriarPartida";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Criar Partida";
+            ((System.ComponentModel.ISupportInitialize)(this.pcbCriar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pcbCancelar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -149,11 +190,13 @@
 
         private System.Windows.Forms.TextBox txtSenhaPartida;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button btnCriarPartida;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtNomePartida;
         private System.Windows.Forms.Label lblErro;
-        private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox pcbCancelar;
+        private System.Windows.Forms.PictureBox pcbCriar;
+        private System.Windows.Forms.Label lblCriarPartida;
+        private System.Windows.Forms.Label lblCancelar;
     }
 }

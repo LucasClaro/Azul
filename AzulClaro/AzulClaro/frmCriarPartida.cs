@@ -54,5 +54,48 @@ namespace AzulClaro
             senha = "";
             Close();
         }//Botão Cancelar: cancela a criação e não retorna nada pra tela anterior
+
+        /////////////////////////////////////////////////////////////
+        
+        private void pcbCancelar_MouseEnter(object sender, EventArgs e)
+        {
+            pcbCancelar.Image = Properties.Resources.btnCancelarAlt;
+            lblCancelar.BackColor = ColorTranslator.FromHtml("#A7F9FE");
+        }
+        private void pcbCancelar_MouseLeave(object sender, EventArgs e)
+        {
+            pcbCancelar.Image = Properties.Resources.btnCancelar;
+            lblCancelar.BackColor = ColorTranslator.FromHtml("#21e0f2");
+        }
+        private void lblCancelar_MouseEnter(object sender, EventArgs e)
+        {
+            pcbCancelar.Image = Properties.Resources.btnCancelarAlt;
+            lblCancelar.BackColor = ColorTranslator.FromHtml("#A7F9FE");
+        }
+
+        private void pcbCriar_MouseEnter(object sender, EventArgs e)
+        {
+            pcbCriar.Image = Properties.Resources.btnCriarAlt;
+            lblCriarPartida.BackColor = ColorTranslator.FromHtml("#A7F9FE");
+        }
+        private void pcbCriar_MouseLeave(object sender, EventArgs e)
+        {
+            pcbCriar.Image = Properties.Resources.btnCriar;
+            lblCriarPartida.BackColor = ColorTranslator.FromHtml("#21e0f2");
+        }
+        private void lblCriarPartida_MouseEnter(object sender, EventArgs e)
+        {
+            pcbCriar.Image = Properties.Resources.btnCriarAlt;
+            lblCriarPartida.BackColor = ColorTranslator.FromHtml("#A7F9FE");
+        }
+
+        private void pictureBox1_MouseEnter(object sender, EventArgs e)
+        {
+            pcbCancelar.Image = Properties.Resources.btnCancelar;
+            lblCancelar.BackColor = ColorTranslator.FromHtml("#21e0f2");
+
+            pcbCriar.Image = Properties.Resources.btnCriar;
+            lblCriarPartida.BackColor = ColorTranslator.FromHtml("#21e0f2");
+        }
     }
 }          
