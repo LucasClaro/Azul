@@ -405,8 +405,9 @@ namespace AzulClaro
         private void tmrRefresh_Tick(object sender, EventArgs e)
         {
             //Vez();
+            jogarAutomatico();
+            atualizarAzulejos();
 
-            //atualizarAzulejos();
         }
         private bool verVez()
         {
