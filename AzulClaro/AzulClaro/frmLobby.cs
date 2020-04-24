@@ -64,13 +64,13 @@ namespace AzulClaro
 
             dgvPartidas.DataSource = Partida.ListarPartidas(status);
 
-            if (dgvPartidas.Rows.Count > 0)
+            /*if (dgvPartidas.Rows.Count > 0)
             {
                 dgvPartidas.Rows[0].Selected = true;//Seleciona a linha mais nova
                 partida = (Partida)dgvPartidas.SelectedRows[0].DataBoundItem;
                 txtIdPartida.Text = partida.id.ToString();
                 ListarJogadores();
-            }
+            }*/
 
         }//Lista partidas, preenche o dgv, preenche o objeto partida e lista os jogadores da partida 1
         public void ListarJogadores()
@@ -100,6 +100,14 @@ namespace AzulClaro
             partida = (Partida)dgvPartidas.SelectedRows[0].DataBoundItem;
             txtIdPartida.Text = partida.id.ToString();
             ListarJogadores();
+            if (partida.status == "A")
+            {
+                lblIniciarPartida.Text = "Iniciar Partida";
+            }
+            else
+            {
+                lblIniciarPartida.Text = "Abrir Tabuleiro";
+            }
         }//Clicar na DataGridView: troca o objeto partida
 
         /////////////////////////////////////////////////////////////             
