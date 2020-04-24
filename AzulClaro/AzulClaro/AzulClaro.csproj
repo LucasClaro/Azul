@@ -164,9 +164,6 @@
     <None Include="Resources\refrescar.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Fundo.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\btn1.png" />
   </ItemGroup>
   <ItemGroup>
@@ -186,6 +183,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\criar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Fundo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btnCancelar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btnCancelarAlt.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btnCriar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btnCriarAlt.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
