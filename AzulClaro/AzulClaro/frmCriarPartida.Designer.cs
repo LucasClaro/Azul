@@ -139,7 +139,7 @@
             this.lblCriarPartida.Font = new System.Drawing.Font("Bahnschrift Light", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCriarPartida.Location = new System.Drawing.Point(116, 219);
             this.lblCriarPartida.Name = "lblCriarPartida";
-            this.lblCriarPartida.Size = new System.Drawing.Size(119, 23);
+            this.lblCriarPartida.Size = new System.Drawing.Size(117, 23);
             this.lblCriarPartida.TabIndex = 61;
             this.lblCriarPartida.Text = "Criar Partida";
             this.lblCriarPartida.Click += new System.EventHandler(this.btnCriarPartida_Click);
