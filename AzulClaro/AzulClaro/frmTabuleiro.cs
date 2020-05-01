@@ -19,6 +19,12 @@ namespace AzulClaro
         public Jogador jogador { get; set; }
         public Compra compra { get; set; }
 
+        struct valores
+        {
+            int fabId;
+            int azulId;
+            int qtd;
+        }
         public frmTabuleiro(Partida partida, Jogador jogador)
         {
             this.partida = partida;
@@ -405,7 +411,8 @@ namespace AzulClaro
         private void tmrRefresh_Tick(object sender, EventArgs e)
         {
             //Vez();
-            jogarAutomatico();
+            // jogarAutomatico();
+            TESTE();
             atualizarAzulejos();
 
         }
@@ -452,6 +459,17 @@ namespace AzulClaro
                 }
                 //jogador.tabuleiro.modelo
             }
+        }
+
+
+        void TESTE()
+        {
+            var a = (from fabs in partida.fabricas
+             from azs in fabs.azulejos
+             where azs.quantidade == 1
+             select new { fabId = fabs.id, azulId = azs.id, qtd = azs.quantidade }).ToList();
+
+            Console.WriteLine("a");
         }
     }
 }

@@ -14,4 +14,9 @@ namespace AzulClaro
         public int qtd { get; set; }
         public int modelo { get; set; }
     }
+    /*
+    public List<Compra> separaQuantidade(List<Fabrica> fabricas)
+    {
+        return;
+    }*/
 }
