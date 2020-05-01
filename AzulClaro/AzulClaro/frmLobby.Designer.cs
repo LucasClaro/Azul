@@ -63,6 +63,7 @@
             this.lblEntrarPartida = new System.Windows.Forms.Label();
             this.lblListarPartidas = new System.Windows.Forms.Label();
             this.lblIniciarPartida = new System.Windows.Forms.Label();
+            this.btnListarJogadores = new System.Windows.Forms.Button();
             this.pnlBarraWindows.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pcbMinimizar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcbFechar)).BeginInit();
@@ -449,6 +450,16 @@
             this.lblIniciarPartida.Click += new System.EventHandler(this.btnIniciarPartida_Click);
             this.lblIniciarPartida.MouseEnter += new System.EventHandler(this.lblIniciarPartida_MouseEnter);
             // 
+            // btnListarJogadores
+            // 
+            this.btnListarJogadores.Location = new System.Drawing.Point(310, 286);
+            this.btnListarJogadores.Name = "btnListarJogadores";
+            this.btnListarJogadores.Size = new System.Drawing.Size(163, 23);
+            this.btnListarJogadores.TabIndex = 64;
+            this.btnListarJogadores.Text = "ListarJogadores";
+            this.btnListarJogadores.UseVisualStyleBackColor = true;
+            this.btnListarJogadores.Click += new System.EventHandler(this.btnListarJogadores_Click);
+            // 
             // frmLobby
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -456,6 +467,7 @@
             this.BackColor = System.Drawing.SystemColors.Control;
             this.BackgroundImage = global::AzulClaro.Properties.Resources.Fundo;
             this.ClientSize = new System.Drawing.Size(477, 630);
+            this.Controls.Add(this.btnListarJogadores);
             this.Controls.Add(this.lblIniciarPartida);
             this.Controls.Add(this.lblListarPartidas);
             this.Controls.Add(this.lblEntrarPartida);
@@ -534,5 +546,6 @@
         private System.Windows.Forms.Label lblEntrarPartida;
         private System.Windows.Forms.Label lblListarPartidas;
         private System.Windows.Forms.Label lblIniciarPartida;
+        private System.Windows.Forms.Button btnListarJogadores;
     }
 }

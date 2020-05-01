@@ -18,6 +18,8 @@ namespace AzulClaro
         public Partida partida { get; set; }
         public Jogador jogador { get; set; }
         public Compra compra { get; set; }
+        public List<Compra  > listaCompras { get; set; }
+        public List<Compra> BoasCompras { get; set; }
 
         struct valores
         {
@@ -35,7 +37,7 @@ namespace AzulClaro
 
         private void frmTabuleiro_Load(object sender, EventArgs e)
         {
-            lblCabecalho.Text = "Partida: " + partida.nome;
+            lblCabecalho.Text = "Partida: " + partida.nome + "Jogador: " + jogador.id + " " + jogador.nome;
 
             if (verificaLogin().Equals("ERRO"))//Confere senha do jogador
             {
@@ -44,13 +46,13 @@ namespace AzulClaro
             }
             else
             {
+                tmrRefresh.Enabled = jogador.bot;
+
                 //Preenche Tudo
                 configurarFabricas();
                 desenharCentro();                
                 desenharFabricas();
                 desenharTabuleiro();
-
-                Vez();
             }
         }//Load do form: Verifica senha e Desenha Tudo
 
@@ -301,11 +303,11 @@ namespace AzulClaro
 
         private void btnVez_Click(object sender, EventArgs e)
         {
-            Vez();
             lblVez.Text = Jogo.VerificarVez(jogador.id, jogador.senha);
         }//Botão Vez: printa a vez
         private void Button1_Click(object sender, EventArgs e)
         {
+            textBox1.Text = "";
             jogarAutomatico();
             atualizarAzulejos();
         }//Recarrega azulejos (REMOVER)
@@ -314,7 +316,6 @@ namespace AzulClaro
             string txt = Jogo.Jogar(jogador.id, jogador.senha, compra.tipo, compra.fabrica, compra.azulejo, compra.modelo);
             lblErro.Text = txt;
             atualizarAzulejos();
-            Vez();
         }//Manda um pedido de compra
         private void azulejo_Click(object sender, EventArgs e)
         {
@@ -410,11 +411,10 @@ namespace AzulClaro
 
         private void tmrRefresh_Tick(object sender, EventArgs e)
         {
-            //Vez();
-            // jogarAutomatico();
-            TESTE();
-            atualizarAzulejos();
-
+            //jogarAutomatico();
+            //TESTE();
+            
+            //atualizarAzulejos();
         }
         private bool verVez()
         {
@@ -428,6 +428,11 @@ namespace AzulClaro
         {
             if(verVez())
             {
+                //Analisa os modelos e diz se falta algo para completa-los
+                listaCompras = new List<Compra>();
+                listaComprasModelos();
+                
+
                 //Analisar os azulejos das fabricas
                 //ver em qual modelo não tem nada, cabe ou completa
                 //ou 
@@ -444,8 +449,9 @@ namespace AzulClaro
                             {
                                 if (a.quantidade <= i+1)
                                 {
-                                    string txt = Jogo.Jogar(jogador.id, jogador.senha, "f", fab.id, a.id, i+1);
-                                    lblErro.Text = txt;
+                                    //string txt = Jogo.Jogar(jogador.id, jogador.senha, "f", fab.id, a.id, i+1);
+                                    textBox1.Text = "\n\ntipo f" + ", Fab id " + fab.id.ToString() + ", azul Id " + a.id.ToString() + ", modelo " + (i + 1).ToString();
+                                    //lblErro.Text = txt;
                                     jogou = true;
                                     break;
                                 }
@@ -458,6 +464,22 @@ namespace AzulClaro
                         break;
                 }
                 //jogador.tabuleiro.modelo
+            }
+        }
+        private void listaComprasModelos()
+        {
+            for (int i = 0; i < 5; i++)
+            {
+                if (jogador.tabuleiro.modelo[i] != null && jogador.tabuleiro.modelo[i].quantidade != i+1)//confere se a linha tá prenchida mas não completa
+                {
+                    Compra compra = new Compra();
+                    compra.azulejo = jogador.tabuleiro.modelo[i].id;
+                    compra.qtd = (i + 1) - jogador.tabuleiro.modelo[i].quantidade;
+                    compra.modelo = i;
+
+                    listaCompras.Add(compra);
+                    textBox1.Text += compra.qtd.ToString() + Azulejo.LembraCor(compra.azulejo, false) + " modelo " + (i+1).ToString() + "\n";
+                }
             }
         }
 
