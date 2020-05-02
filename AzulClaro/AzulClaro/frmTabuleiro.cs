@@ -412,7 +412,7 @@ namespace AzulClaro
         {
             //Vez();
             // jogarAutomatico();
-            TESTE();
+            separaPorQuantidade();
             atualizarAzulejos();
 
         }
@@ -461,15 +461,70 @@ namespace AzulClaro
             }
         }
 
+        //Dicionário (principal) que guarda <Quantidade de azulejos que quer, DicionarioCor>  ----> DicionarioCor<Id do azulejo (Cor) , Lista de compras possíveis >
+        Dictionary<int, Dictionary<int, List<Compra>>> azulPorQtd = new Dictionary<int, Dictionary<int, List<Compra>>>();
 
-        void TESTE()
+        //Pega os valores de partida.centro e partida.fabricas e separa em listas por quantidade
+        void separaPorQuantidade()
         {
-            var a = (from fabs in partida.fabricas
-             from azs in fabs.azulejos
-             where azs.quantidade == 1
-             select new { fabId = fabs.id, azulId = azs.id, qtd = azs.quantidade }).ToList();
+            //Para a quantidade padrão de azulejos que cabem no modelo ( de 1 a 5 )
+            for(int quatidadeDeAzulejosPorFabrica = 1; quatidadeDeAzulejosPorFabrica <= 5; quatidadeDeAzulejosPorFabrica++)
+            {
+                //Pega os azulejosId e fabricasId com determinda quantidade
+                var centro1 = (from cen in partida.centro.azulejos where cen.quantidade == quatidadeDeAzulejosPorFabrica select new { fabId = 0, azulId = cen.id, qtd = cen.quantidade }).ToList();
+                var fabs1 = (from fabs in partida.fabricas
+                             from azs in fabs.azulejos
+                             where azs.quantidade == quatidadeDeAzulejosPorFabrica
+                             select new { fabId = fabs.id, azulId = azs.id, qtd = azs.quantidade }).ToList();
 
-            Console.WriteLine("a");
+                //Lista de compras possiveis
+                List<Compra> listCompra = new List<Compra>();
+
+                //Trata os valores recebidos e adiciona na lista de compras possiveis
+                foreach (var a in centro1)
+                {
+                    Compra compra = new Compra();
+                    compra.fabrica = a.fabId;
+                    compra.azulejo = a.azulId;
+                    compra.qtd = a.qtd;
+                    compra.tipo = "c";
+
+                    // compra.modelo
+                    listCompra.Add(compra);
+                }
+
+                //Trata os valores recebidos e adiciona na lista de compras possiveis
+                foreach (var a in fabs1)
+                {
+                    Compra compra = new Compra();
+                    compra.fabrica = a.fabId;
+                    compra.azulejo = a.azulId;
+                    compra.qtd = a.qtd;
+                    compra.tipo = "f";
+                    // compra.modelo
+                    listCompra.Add(compra);
+                }
+
+                //pega a lista de compras possiveis e separa elas por cor para colocar no dicionario principal
+                separaPorCor(quatidadeDeAzulejosPorFabrica, listCompra);
+            }
+        }
+
+        //Recebe a quantidade e a lista de compras separadas por quantidade e 
+        //Adiciona no DicionarioCor<Id do azulejo (Cor) , Lista de compras possíveis > no id do azulejo a lista de compras com aquela quantidade e cor
+        void separaPorCor(int quatidadeDeAzulejosPorFabrica, List<Compra> listCompra)
+        {
+            //DicionarioCor<Id do azulejo (Cor) , Lista de compras possíveis >
+            Dictionary<int, List<Compra>> azulPorCor = new Dictionary<int, List<Compra>>();
+
+            //Para cada cor dos azulejos
+            for(int i = 1; i <= 5; i++)
+            {
+                azulPorCor.Add(i,listCompra.Where(c => c.azulejo == i).ToList());
+            }
+
+            //Adiciona no dicionario principal
+            azulPorQtd.Add(quatidadeDeAzulejosPorFabrica, azulPorCor);
         }
     }
 }
