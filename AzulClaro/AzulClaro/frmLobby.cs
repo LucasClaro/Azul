@@ -141,6 +141,8 @@ namespace AzulClaro
                 txtIdPartida.Text = partida.id.ToString();
                 ListarJogadores();
             }
+
+
         }//Botão Criar Partida: Chama o formulário de nova partida, Atualiza as partidas e preenche algumas coisas       
         private void btnEntrarPartida_Click(object sender, EventArgs e)
         {
@@ -224,6 +226,7 @@ namespace AzulClaro
                             jogador.id = Convert.ToInt32(txtIdjogador.Text);
                             jogador.senha = txtSenhaJogador.Text;
                             jogador.nome = BuscarJogById(jogador.id);
+                            jogador.bot = chkBot.Checked;
                         }
 
                         frmTabuleiro tabuleiro = new frmTabuleiro(partida, jogador);
@@ -256,6 +259,10 @@ namespace AzulClaro
 
             ListarPartidas();
         }//Botão Iniciar partida: Faz muitos testes, inicia a partida se ela estiver aberta e abre o tabuleiro
+        private void btnListarJogadores_Click(object sender, EventArgs e)
+        {
+            ListarJogadores();
+        }
 
         /////////////////////////////////////////////////////////////
 
@@ -263,8 +270,7 @@ namespace AzulClaro
         {
             lblErroEntrarPartida.Text = "";
             lblErroIniciar.Text = "";
-            tmrMsgErro.Enabled = false;
-            ListarJogadores();
+            tmrMsgErro.Enabled = false;            
         }//10 segundos com a mesma mensagem de Erro      
 
         /////////////////////////////////////////////////////////////
@@ -283,7 +289,12 @@ namespace AzulClaro
         }//Usado no iniciar partida
         public bool VerificaInicializacao(Partida p)
         {
-            if (p.jogadores != null)
+            if (partida == null)
+            {
+                lblErroIniciar.Text = "Selecione uma partida";
+                tmrMsgErro.Enabled = true;
+            }
+            else if (p.jogadores != null)
             {
                 foreach (Jogador j in p.jogadores)
                 {
