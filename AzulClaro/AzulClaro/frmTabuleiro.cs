@@ -431,13 +431,19 @@ namespace AzulClaro
                 //Analisa os modelos e diz se falta algo para completa-los
                 listaCompras = new List<Compra>();
                 listaComprasModelos();
-                
+                listaComprasModelosVazios();
+
 
                 //Analisar os azulejos das fabricas
                 //ver em qual modelo não tem nada, cabe ou completa
                 //ou 
                 //Ver as linhas do modelo e ver qual dos azulejos das fabricas
                 //cabe(m) ou completa(m)
+                if (semOpcaoCores())
+                {
+                    //Aqui vc é obrigado a comprar pro chão, buscas a compra menos pior
+                }
+
                 bool jogou = false;
                 for(int i = 0; i < jogador.tabuleiro.modelo.Length; i++)
                 {
@@ -470,7 +476,7 @@ namespace AzulClaro
         {
             for (int i = 0; i < 5; i++)
             {
-                if (jogador.tabuleiro.modelo[i] != null && jogador.tabuleiro.modelo[i].quantidade != i+1)//confere se a linha tá prenchida mas não completa
+                if (jogador.tabuleiro.modelo[i] != null && jogador.tabuleiro.modelo[i].quantidade > 0 && jogador.tabuleiro.modelo[i].quantidade != i+1)//confere se a linha tá prenchida mas não completa
                 {
                     Compra compra = new Compra();
                     compra.azulejo = jogador.tabuleiro.modelo[i].id;
@@ -478,11 +484,189 @@ namespace AzulClaro
                     compra.modelo = i;
 
                     listaCompras.Add(compra);
-                    textBox1.Text += compra.qtd.ToString() + Azulejo.LembraCor(compra.azulejo, false) + " modelo " + (i+1).ToString() + "\n";
+                    textBox1.Text += compra.qtd.ToString() + Azulejo.LembraCor(compra.azulejo, false) + " modelo " + (i+1).ToString() + "\r\n";
                 }
             }
-        }
+        }//Busca Linhas de Modelo incompletas
+        private void listaComprasModelosVazios()
+        {
+            for (int l = 0; l < 5; l++)
+            {
+                Compra MelhorCorLinha = new Compra();
 
+                if (jogador.tabuleiro.modelo[l] == null || jogador.tabuleiro.modelo[l].quantidade == 0)
+                {
+                    for (int c = 0; c < 5; c++)
+                    {
+                        
+                        int maisPontos = 0;
+                        if (!jogador.tabuleiro.parede[l,c])
+                        {
+                            int p = checarPontosAzul(l, c);
+                            if (p >= maisPontos)
+                            {
+                                maisPontos = p;
+
+
+                                MelhorCorLinha.azulejo = c + 1 - l;
+                                                             
+                                if (MelhorCorLinha.azulejo <= 0)
+                                {
+                                    MelhorCorLinha.azulejo = 5 - c - l + 1;
+                                }
+
+
+                                MelhorCorLinha.modelo = l;                                
+                            }
+                        }
+                    }
+
+                    listaCompras.Add(MelhorCorLinha);
+                    textBox1.Text += Azulejo.LembraCor(MelhorCorLinha.azulejo, false) + " modelo " + (l + 1).ToString() + "\r\n";
+                }
+            }
+        }//Busca a melhor cor pra cada linha de modelo vazia
+        private int checarPontosAzul(int linha, int coluna)
+        {
+            int pontos = 1;
+            int vizinhos = 0;
+
+            for (int i = 0; i < 5; i++)//Checa os pontos na linha
+            {
+                if (i < coluna)
+                {
+                    if (jogador.tabuleiro.parede[linha, i])
+                    {
+                        vizinhos++;
+                    }
+                    else
+                    {
+                        vizinhos = 0;
+                    }
+                }
+                else if (i == coluna)
+                {
+                    pontos += vizinhos;
+                    vizinhos = 0;
+                }
+                else if (i > coluna)
+                {
+                    if (jogador.tabuleiro.parede[linha, i])
+                    {
+                        vizinhos++;
+                    }
+                    else
+                    {
+                        pontos += vizinhos;
+                        vizinhos = 0;
+                    }
+                }
+            }
+
+            for (int i = 0; i < 5; i++)//Checa os pontos na linha
+            {
+                if (i < linha)
+                {
+                    if (jogador.tabuleiro.parede[i, coluna])
+                    {
+                        vizinhos++;
+                    }
+                    else
+                    {
+                        vizinhos = 0;
+                    }
+                }
+                else if (i == linha)
+                {
+                    pontos += vizinhos;
+                    vizinhos = 0;
+                }
+                else if (i > linha)
+                {
+                    if (jogador.tabuleiro.parede[i, coluna])
+                    {
+                        vizinhos++;
+                    }
+                    else
+                    {
+                        pontos += vizinhos;
+                    }
+                }
+            }
+
+            return pontos;
+        }//Diz quantos pontos a linha vai fazer
+
+        /*private bool tabuleiroCheio()
+        {
+            for (int i = 0; i < 5; i++)
+            {
+                if (jogador.tabuleiro.modelo[i] == null || jogador.tabuleiro.modelo[i].quantidade == 0)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }*/
+
+        private bool semOpcaoCores()
+        {
+            List<int> Ids = new List<int>();
+
+            for (int i = 0; i < 5; i++)
+            {
+                if(jogador.tabuleiro.modelo[i] == null)
+                {
+                    return false;
+                }
+                if (jogador.tabuleiro.modelo[i].quantidade != i + 1)
+                {
+                    Ids.Add(jogador.tabuleiro.modelo[i].id);
+                }
+            }
+
+            if (Ids.Count == 0)
+            {
+                return false;
+            }
+
+            foreach (int id in Ids)
+            {
+                if (CorDisponível(id))
+                {
+                    return false;
+                }
+            }
+
+            return true;
+
+        }//Diz se você tem ainda como comprar algo
+
+        private bool CorDisponível(int id)
+        {
+
+            foreach (Fabrica fabrica in partida.fabricas)
+            {
+                foreach (Azulejo azulejo in fabrica.azulejos)
+                {
+                    if(azulejo.id == id)
+                    {
+                        return true;
+                    }
+                }
+            }
+
+            foreach (Azulejo azulejo in partida.centro.azulejos)
+            {
+                if (azulejo.id == id && azulejo.quantidade > 0)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+
+        }//Vê se tal cor está disponível
 
         void TESTE()
         {
