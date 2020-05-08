@@ -485,39 +485,12 @@ namespace AzulClaro
                 if (jogaComOqTem())
                 {
                     return;
-                }
-
-                List<Compra> baldadas = new List<Compra>();
-
-                for (int i = 1; i < 6; i++)
-                {
-
-                    if (azulPorQtd[6][i].Count > 0) 
-                    {
-                        baldadas.Add(azulPorQtd[6][i].First());
-                    }                    
-                    
-                }
-
-                baldadas = baldadas.OrderBy(l => l.qtd).ToList();
-
-                foreach (Compra baldada in baldadas)
-                {
-                    for (int i = 5; i > 0; i--)
-                    {
-                        if (jogador.tabuleiro.modelo[i-1].id == baldada.azulejo)
-                        {
-                            compra.azulejo = baldada.azulejo;
-                            compra.fabrica = baldada.fabrica;
-                            compra.modelo = i;
-                            compra.qtd = baldada.qtd;
-                            compra.tipo = baldada.tipo;
-                            Jogar();
-                            return;
-                        }
-
-                    }
                 }                
+
+
+
+                lidaComABaldada();
+                         
 
                 /*
                 bool jogou = false;
@@ -802,6 +775,26 @@ namespace AzulClaro
 
             for (int l = 4; l >= 0; l--)
             {
+                if (jogador.tabuleiro.modelo[l] != null && jogador.tabuleiro.modelo[l].quantidade > 0 && jogador.tabuleiro.modelo[l].quantidade != l + 1)
+                {
+                    foreach (Compra c in lc)
+                    {
+                        if (jogador.tabuleiro.modelo[l].id == c.azulejo)
+                        {
+                            compra.fabrica = c.fabrica;
+                            compra.tipo = c.tipo;
+                            compra.azulejo = c.azulejo;
+                            compra.qtd = c.qtd;
+                            compra.modelo = l + 1;
+                            Jogar();
+                            return true;
+                        }
+                    }
+                }
+            }
+
+            for (int l = 4; l >= 0; l--)
+            {
                 if (jogador.tabuleiro.modelo[l] == null || jogador.tabuleiro.modelo[l].quantidade == 0)
                 {
                     foreach (Compra c in lc)
@@ -821,6 +814,41 @@ namespace AzulClaro
             }
 
             return false;
+        }
+
+        void lidaComABaldada()
+        {
+            List<Compra> baldadas = new List<Compra>();
+
+            for (int i = 1; i < 6; i++)
+            {
+
+                if (azulPorQtd[6][i].Count > 0)
+                {
+                    baldadas.Add(azulPorQtd[6][i].First());
+                }
+
+            }
+
+            baldadas = baldadas.OrderBy(l => l.qtd).ToList();
+
+            foreach (Compra baldada in baldadas)
+            {
+                for (int i = 5; i > 0; i--)
+                {
+                    if (jogador.tabuleiro.modelo[i - 1].id == baldada.azulejo)
+                    {
+                        compra.azulejo = baldada.azulejo;
+                        compra.fabrica = baldada.fabrica;
+                        compra.modelo = i;
+                        compra.qtd = baldada.qtd;
+                        compra.tipo = baldada.tipo;
+                        Jogar();
+                        return;
+                    }
+
+                }
+            }
         }
 
 
