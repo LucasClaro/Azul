@@ -752,7 +752,7 @@ namespace AzulClaro
                 }
             }
 
-            for (int l = 4; l >= 0; l++)
+            for (int l = 4; l >= 0; l--)
             {
                 if (jogador.tabuleiro.modelo[l] == null || jogador.tabuleiro.modelo[l].quantidade == 0)
                 {
@@ -764,7 +764,7 @@ namespace AzulClaro
                             compra.tipo = c.tipo;
                             compra.azulejo = c.azulejo;
                             compra.qtd = c.qtd;
-                            compra.modelo = c.modelo;
+                            compra.modelo = l+1;
                             Jogar();
                             return;
                         }
