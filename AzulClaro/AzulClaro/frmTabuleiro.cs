@@ -605,6 +605,10 @@ namespace AzulClaro
                     if (jogador.tabuleiro.parede[linha, i])
                     {
                         vizinhos++;
+                        if (i == 4 && vizinhos == 4 - coluna)//Verifica se os vizinhos do final estão conectados ao azulejo
+                        {
+                            pontos += vizinhos;
+                        }
                     }
                     else
                     {
@@ -614,7 +618,9 @@ namespace AzulClaro
                 }
             }
 
-            for (int i = 0; i < 5; i++)//Checa os pontos na linha
+            vizinhos = 0;
+
+            for (int i = 0; i < 5; i++)//Checa os pontos na coluna
             {
                 if (i < linha)
                 {
@@ -637,10 +643,15 @@ namespace AzulClaro
                     if (jogador.tabuleiro.parede[i, coluna])
                     {
                         vizinhos++;
+                        if (i == 4 && vizinhos == 4 - linha)
+                        {
+                            pontos += vizinhos;
+                        }
                     }
                     else
                     {
                         pontos += vizinhos;
+                        vizinhos = 0;
                     }
                 }
             }
