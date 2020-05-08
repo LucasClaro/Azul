@@ -672,15 +672,15 @@ namespace AzulClaro
                     {
                         if (CorDisponível(cor))
                         {
-                            if(podeColocar(cor, i))
+                            if(podeColocar(cor, i+1))
                             {
                                 return false;
                             }
                         }
                     }                    
                 }
-
-                if (jogador.tabuleiro.modelo[i].quantidade != i + 1)//Verifica as cores usadas nas linhas preenchidas não completas
+                
+                if (jogador.tabuleiro.modelo[i] != null && jogador.tabuleiro.modelo[i].quantidade != i + 1)//Verifica as cores usadas nas linhas preenchidas não completas
                 {
                     if (CorDisponível(jogador.tabuleiro.modelo[i].id))
                     {
