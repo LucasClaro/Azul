@@ -482,7 +482,7 @@ namespace AzulClaro
                     }
                 }
 
-
+                jogaComOqTem();
                 /*
                 bool jogou = false;
                 for(int i = 0; i < jogador.tabuleiro.modelo.Length; i++)
@@ -719,6 +719,59 @@ namespace AzulClaro
 
 
         }//Vê se tal cor está disponível
+
+        bool podeColocar(int azulejo, int modelo)
+        {
+
+            for(int i = 0; i < 5; i++)
+            {
+                if(jogador.tabuleiro.parede[modelo - 1, i])
+                {
+                    if (azulejo == Azulejo.VerCorNaParede(modelo - 1, i))
+                        return false;
+                }
+            }
+            return true;
+        }
+
+
+        void jogaComOqTem()
+        {
+            // partida.fabricas;
+            // partida.centro;
+            List<Compra> lc = new List<Compra>();
+
+            for (int i = 1; i < 6; i++)
+            {
+                for (int j = 1; j <= 5; j++)
+                {
+                    if(azulPorQtd[i][j].Count > 0)
+                    {
+                        lc.Add(azulPorQtd[i][j].First());
+                    }
+                }
+            }
+
+            for (int l = 4; l >= 0; l++)
+            {
+                if (jogador.tabuleiro.modelo[l] == null || jogador.tabuleiro.modelo[l].quantidade == 0)
+                {
+                    foreach (Compra c in lc)
+                    {
+                        if (podeColocar(c.azulejo, l+1))
+                        {
+                            compra.fabrica = c.fabrica;
+                            compra.tipo = c.tipo;
+                            compra.azulejo = c.azulejo;
+                            compra.qtd = c.qtd;
+                            compra.modelo = c.modelo;
+                            Jogar();
+                            return;
+                        }
+                    }
+                }
+            }
+        }
 
 
         //Pega os valores de partida.centro e partida.fabricas e separa em listas por quantidade
