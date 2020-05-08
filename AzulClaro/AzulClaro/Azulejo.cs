@@ -113,8 +113,8 @@ namespace AzulClaro
             parede[3, 3] = 1;
             parede[4, 3] = 5;
             parede[0, 4] = 5;
-            parede[1, 4] = 1;
-            parede[2, 4] = 4;
+            parede[1, 4] = 4;
+            parede[2, 4] = 3;
             parede[3, 4] = 2;
             parede[4, 4] = 1;
 

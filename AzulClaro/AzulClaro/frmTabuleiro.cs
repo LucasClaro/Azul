@@ -542,10 +542,10 @@ namespace AzulClaro
 
                 if (jogador.tabuleiro.modelo[l] == null || jogador.tabuleiro.modelo[l].quantidade == 0)
                 {
+                    int maisPontos = 0;
                     for (int c = 0; c < 5; c++)
                     {
                         
-                        int maisPontos = 0;
                         if (!jogador.tabuleiro.parede[l,c])
                         {
                             int p = checarPontosAzul(l, c);
