@@ -412,9 +412,9 @@ namespace AzulClaro
         private void tmrRefresh_Tick(object sender, EventArgs e)
         {
             //Vez();
+            atualizarAzulejos();
             separaPorQuantidade();
             jogarAutomatico();
-            //atualizarAzulejos();
         }
         private bool verVez()
         {
@@ -482,7 +482,43 @@ namespace AzulClaro
                     }
                 }
 
-                jogaComOqTem();
+                if (jogaComOqTem())
+                {
+                    return;
+                }
+
+                List<Compra> baldadas = new List<Compra>();
+
+                for (int i = 1; i < 6; i++)
+                {
+
+                    if (azulPorQtd[6][i].Count > 0) 
+                    {
+                        baldadas.Add(azulPorQtd[6][i].First());
+                    }                    
+                    
+                }
+
+                baldadas = baldadas.OrderBy(l => l.qtd).ToList();
+
+                foreach (Compra baldada in baldadas)
+                {
+                    for (int i = 5; i > 0; i--)
+                    {
+                        if (jogador.tabuleiro.modelo[i-1].id == baldada.azulejo)
+                        {
+                            compra.azulejo = baldada.azulejo;
+                            compra.fabrica = baldada.fabrica;
+                            compra.modelo = i;
+                            compra.qtd = baldada.qtd;
+                            compra.tipo = baldada.tipo;
+                            Jogar();
+                            return;
+                        }
+
+                    }
+                }                
+
                 /*
                 bool jogou = false;
                 for(int i = 0; i < jogador.tabuleiro.modelo.Length; i++)
@@ -747,7 +783,7 @@ namespace AzulClaro
         }
 
 
-        void jogaComOqTem()
+        bool jogaComOqTem()
         {
             // partida.fabricas;
             // partida.centro;
@@ -778,11 +814,13 @@ namespace AzulClaro
                             compra.qtd = c.qtd;
                             compra.modelo = l+1;
                             Jogar();
-                            return;
+                            return true;
                         }
                     }
                 }
             }
+
+            return false;
         }
 
 

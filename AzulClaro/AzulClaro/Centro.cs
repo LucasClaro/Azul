@@ -65,5 +65,20 @@ namespace AzulClaro
 
             return points;
         }
+
+        public int qtdCentro()
+        {
+            int x = 0;
+
+            foreach (Azulejo azulejo in this.azulejos)
+            {
+                if (azulejo.quantidade > 0)
+                {
+                    x++;
+                }
+            }
+
+            return x;
+        }
     }
 }
