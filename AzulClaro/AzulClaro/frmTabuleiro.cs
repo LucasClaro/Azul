@@ -518,13 +518,12 @@ namespace AzulClaro
             {
                 if (jogador.tabuleiro.modelo[i] != null && jogador.tabuleiro.modelo[i].quantidade > 0 && jogador.tabuleiro.modelo[i].quantidade != i+1)//confere se a linha tá prenchida mas não completa
                 {
-                    Compra compra = new Compra();
-                    compra.azulejo = jogador.tabuleiro.modelo[i].id;
                     int qtd = (i + 1) - jogador.tabuleiro.modelo[i].quantidade;
-                    compra.modelo = i;
-
                     while (qtd >= 1)
                     {
+                        Compra compra = new Compra();
+                        compra.azulejo = jogador.tabuleiro.modelo[i].id;
+                        compra.modelo = i+1;
                         compra.qtd = qtd;
                         listaCompras.Add(compra);
 
@@ -559,20 +558,21 @@ namespace AzulClaro
 
 
                                 MelhorCorLinha.modelo = l +1;
-                                int qtd = l + 1;
-
-                                while (qtd >= 1)
-                                {
-                                    MelhorCorLinha.qtd = qtd;
-                                    listaCompras.Add(MelhorCorLinha);
-                                    qtd--;
-                                }
+                                MelhorCorLinha.qtd = l + 1;
 
                             }
                         }
                     }
-
-                    listaCompras.Add(MelhorCorLinha);
+                    int qtd = MelhorCorLinha.qtd;
+                    while (qtd >= 1)
+                    {
+                        Compra c = new Compra();
+                        c.azulejo = MelhorCorLinha.azulejo;
+                        c.modelo = MelhorCorLinha.modelo;
+                        c.qtd = qtd;
+                        listaCompras.Add(c);
+                        qtd--;
+                    }
                     textBox1.Text += Azulejo.LembraCor(MelhorCorLinha.azulejo, false) + " modelo " + (l + 1).ToString() + "\r\n";
                 }
             }
