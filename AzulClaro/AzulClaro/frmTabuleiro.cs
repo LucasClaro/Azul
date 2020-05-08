@@ -846,6 +846,16 @@ namespace AzulClaro
             {
                 for (int i = 5; i > 0; i--)
                 {
+                    if (jogador.tabuleiro.modelo[i - 1] == null) 
+                    {
+                        compra.azulejo = baldada.azulejo;
+                        compra.fabrica = baldada.fabrica;
+                        compra.modelo = i;
+                        compra.qtd = baldada.qtd;
+                        compra.tipo = baldada.tipo;
+                        Jogar();
+                        return;
+                    }
                     if (jogador.tabuleiro.modelo[i - 1].id == baldada.azulejo)
                     {
                         compra.azulejo = baldada.azulejo;
