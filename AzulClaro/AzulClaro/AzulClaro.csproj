@@ -200,5 +200,8 @@
   <ItemGroup>
     <None Include="Resources\btnCriarAlt.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Cherno.PNG" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

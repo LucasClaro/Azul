@@ -298,6 +298,11 @@ namespace AzulClaro
             //pcbs = null;
             GC.Collect();
         }//Tira os PictureBoxes dos azulejos da tela e atribui null a eles (e torce para o GC fazer o resto);
+        public void listarPontos()
+        {
+            string txt = Jogo.ListarJogadores(partida.id);
+            lblPontos.Text = txt;
+        }
 
         /////////////////////////////////////////////////////////////                    
 
@@ -415,6 +420,7 @@ namespace AzulClaro
             atualizarAzulejos();
             separaPorQuantidade();
             jogarAutomatico();
+            listarPontos();
         }
         private bool verVez()
         {
@@ -871,6 +877,7 @@ namespace AzulClaro
             }
         }
 
+        /////////////////////////////////////////////////////////////
 
         //Pega os valores de partida.centro e partida.fabricas e separa em listas por quantidade
         void separaPorQuantidade()
