@@ -439,6 +439,8 @@ namespace AzulClaro
                 listaComprasModelos();
                 listaComprasModelosVazios();
 
+                listaCompras = listaCompras.OrderByDescending(l => l.qtd).ToList();
+
                 //Analisar os azulejos das fabricas
                 //ver em qual modelo não tem nada, cabe ou completa
                 //ou 
@@ -507,7 +509,7 @@ namespace AzulClaro
                     if (jogou)
                         break;
                 }*/
-                //jogador.tabuleiro.modelo
+                //jogador.tabuleiro.modelo 000000000000000000000000 listaCompras.OrderBy(l => l.qtd);
             }
         }
         private void listaComprasModelos()
@@ -518,10 +520,17 @@ namespace AzulClaro
                 {
                     Compra compra = new Compra();
                     compra.azulejo = jogador.tabuleiro.modelo[i].id;
-                    compra.qtd = (i + 1) - jogador.tabuleiro.modelo[i].quantidade;
+                    int qtd = (i + 1) - jogador.tabuleiro.modelo[i].quantidade;
                     compra.modelo = i;
 
-                    listaCompras.Add(compra);
+                    while (qtd >= 1)
+                    {
+                        compra.qtd = qtd;
+                        listaCompras.Add(compra);
+
+                        qtd--;
+                    }                    
+
                     textBox1.Text += compra.qtd.ToString() + Azulejo.LembraCor(compra.azulejo, false) + " modelo " + (i+1).ToString() + "\r\n";
                 }
             }
@@ -550,7 +559,15 @@ namespace AzulClaro
 
 
                                 MelhorCorLinha.modelo = l +1;
-                                MelhorCorLinha.qtd = l + 1;
+                                int qtd = l + 1;
+
+                                while (qtd >= 1)
+                                {
+                                    MelhorCorLinha.qtd = qtd;
+                                    listaCompras.Add(MelhorCorLinha);
+                                    qtd--;
+                                }
+
                             }
                         }
                     }
