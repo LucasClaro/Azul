@@ -93,8 +93,8 @@ namespace AzulClaro
             int[,] parede = new int[5, 5];
 
             parede[0, 0] = 1;
-            parede[1, 0] = 4;
-            parede[2, 0] = 5;
+            parede[1, 0] = 5;
+            parede[2, 0] = 4;
             parede[3, 0] = 3;
             parede[4, 0] = 2;
             parede[0, 1] = 2;

@@ -590,6 +590,7 @@ namespace AzulClaro
         {
             int pontos = 1;
             int vizinhos = 0;
+            bool conectado = false;
 
             for (int i = 0; i < 5; i++)//Checa os pontos na linha
             {
@@ -608,25 +609,30 @@ namespace AzulClaro
                 {
                     pontos += vizinhos;
                     vizinhos = 0;
+                    conectado = true;
                 }
                 else if (i > coluna)
                 {
                     if (jogador.tabuleiro.parede[linha, i])
                     {
                         vizinhos++;
-                        if (i == 4 && vizinhos == 4 - coluna)//Verifica se os vizinhos do final estão conectados ao azulejo
+                        if (conectado && i == 4)//Verifica se os vizinhos do final estão conectados ao azulejo  //i == 4 && vizinhos == 4 - coluna
                         {
                             pontos += vizinhos;
                         }
                     }
                     else
                     {
-                        pontos += vizinhos;
+                        if (conectado)
+                            pontos += vizinhos;
+                        
                         vizinhos = 0;
+                        conectado = false;
                     }
                 }
             }
 
+            conectado = false;
             vizinhos = 0;
 
             for (int i = 0; i < 5; i++)//Checa os pontos na coluna
@@ -645,6 +651,7 @@ namespace AzulClaro
                 else if (i == linha)
                 {
                     pontos += vizinhos;
+                    conectado = true;
                     vizinhos = 0;
                 }
                 else if (i > linha)
@@ -652,15 +659,18 @@ namespace AzulClaro
                     if (jogador.tabuleiro.parede[i, coluna])
                     {
                         vizinhos++;
-                        if (i == 4 && vizinhos == 4 - linha)
+                        if (conectado && i == 4) //i == 4 && vizinhos == 4 - linha
                         {
                             pontos += vizinhos;
                         }
                     }
                     else
                     {
-                        pontos += vizinhos;
+                        if(conectado)
+                            pontos += vizinhos;
+
                         vizinhos = 0;
+                        conectado = false;
                     }
                 }
             }
