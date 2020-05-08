@@ -87,5 +87,38 @@ namespace AzulClaro
 
             return retorno;
         }
+
+        public static int VerCorNaParede(int linha, int coluna)
+        {
+            int[,] parede = new int[5, 5];
+
+            parede[0, 0] = 1;
+            parede[1, 0] = 4;
+            parede[2, 0] = 5;
+            parede[3, 0] = 3;
+            parede[4, 0] = 2;
+            parede[0, 1] = 2;
+            parede[1, 1] = 1;
+            parede[2, 1] = 5;
+            parede[3, 1] = 4;
+            parede[4, 1] = 3;
+            parede[0, 2] = 3;
+            parede[1, 2] = 2;
+            parede[2, 2] = 1;
+            parede[3, 2] = 5;
+            parede[4, 2] = 4;
+            parede[0, 3] = 4;
+            parede[1, 3] = 3;
+            parede[2, 3] = 2;
+            parede[3, 3] = 1;
+            parede[4, 3] = 5;
+            parede[0, 4] = 5;
+            parede[1, 4] = 1;
+            parede[2, 4] = 4;
+            parede[3, 4] = 2;
+            parede[4, 4] = 1;
+
+            return parede[linha, coluna];
+        }
     }
 }

@@ -412,8 +412,8 @@ namespace AzulClaro
         private void tmrRefresh_Tick(object sender, EventArgs e)
         {
             //Vez();
-            // jogarAutomatico();
             separaPorQuantidade();
+            jogarAutomatico();
             //atualizarAzulejos();
         }
         private bool verVez()
@@ -426,10 +426,12 @@ namespace AzulClaro
         }
 
         //Dicionário (principal) que guarda <Quantidade de azulejos que quer, DicionarioCor>  ----> DicionarioCor<Id do azulejo (Cor) , Lista de compras possíveis >
-        Dictionary<int, Dictionary<int, List<Compra>>> azulPorQtd = new Dictionary<int, Dictionary<int, List<Compra>>>();
+        Dictionary<int, Dictionary<int, List<Compra>>> azulPorQtd;
         //Para recuperar um valor (Lista de compras) desse monstrinho usar tipo matriz azulPorQtd[Int de quantidade][Int de cor]
         private void jogarAutomatico()
         {
+            compra = new Compra();
+
             if(verVez())
             {
                 //Analisa os modelos e diz se falta algo para completa-los
@@ -544,15 +546,11 @@ namespace AzulClaro
                                 maisPontos = p;
 
 
-                                MelhorCorLinha.azulejo = c + 1 - l;
-                                                             
-                                if (MelhorCorLinha.azulejo <= 0)
-                                {
-                                    MelhorCorLinha.azulejo = 5 - c - l + 1;
-                                }
+                                MelhorCorLinha.azulejo = Azulejo.VerCorNaParede(l, c);
 
 
-                                MelhorCorLinha.modelo = l;                                
+                                MelhorCorLinha.modelo = l +1;
+                                MelhorCorLinha.qtd = l + 1;
                             }
                         }
                     }
@@ -709,6 +707,8 @@ namespace AzulClaro
         //Pega os valores de partida.centro e partida.fabricas e separa em listas por quantidade
         void separaPorQuantidade()
         {
+            azulPorQtd = new Dictionary<int, Dictionary<int, List<Compra>>>();
+
             //Para a quantidade padrão de azulejos que cabem no modelo ( de 1 a 5 )
             for (int quatidadeDeAzulejosPorFabrica = 1; quatidadeDeAzulejosPorFabrica <= 5; quatidadeDeAzulejosPorFabrica++)
             {
