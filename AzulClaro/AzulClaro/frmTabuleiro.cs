@@ -666,26 +666,27 @@ namespace AzulClaro
 
             for (int i = 0; i < 5; i++)
             {
-                if(jogador.tabuleiro.modelo[i] == null)
+                if(jogador.tabuleiro.modelo[i] == null)//Verifica as linhas vazias se ela pode colocar alguma das cores a venda
                 {
-                    return false;
+                    for (int cor = 1; cor < 6; cor++)
+                    {
+                        if (CorDisponível(cor))
+                        {
+                            if(podeColocar(cor, i))
+                            {
+                                return false;
+                            }
+                        }
+                    }                    
                 }
-                if (jogador.tabuleiro.modelo[i].quantidade != i + 1)
-                {
-                    Ids.Add(jogador.tabuleiro.modelo[i].id);
-                }
-            }
 
-            if (Ids.Count == 0)
-            {
-                return false;
-            }
-
-            foreach (int id in Ids)
-            {
-                if (CorDisponível(id))
+                if (jogador.tabuleiro.modelo[i].quantidade != i + 1)//Verifica as cores usadas nas linhas preenchidas não completas
                 {
-                    return false;
+                    if (CorDisponível(jogador.tabuleiro.modelo[i].id))
+                    {
+                        return false;
+                    }
+
                 }
             }
 
