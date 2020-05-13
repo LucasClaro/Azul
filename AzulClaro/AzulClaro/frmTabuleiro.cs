@@ -852,7 +852,7 @@ namespace AzulClaro
             {
                 for (int i = 5; i > 0; i--)
                 {
-                    if (jogador.tabuleiro.modelo[i - 1] == null) 
+                    if (jogador.tabuleiro.modelo[i - 1] == null && podeColocar(baldada.azulejo,i)) 
                     {
                         compra.azulejo = baldada.azulejo;
                         compra.fabrica = baldada.fabrica;
@@ -862,7 +862,7 @@ namespace AzulClaro
                         Jogar();
                         return;
                     }
-                    if (jogador.tabuleiro.modelo[i - 1].id == baldada.azulejo)
+                    if (jogador.tabuleiro.modelo[i - 1] != null && jogador.tabuleiro.modelo[i - 1].id == baldada.azulejo)
                     {
                         compra.azulejo = baldada.azulejo;
                         compra.fabrica = baldada.fabrica;
