@@ -11,6 +11,10 @@ using AzulServer;
 
 namespace AzulClaro
 {
+    enum CondPartida : int
+    {
+        acabou, naoMinhaVez, minhaVez
+    }
     public partial class frmTabuleiro : Form
     {
         public string erro { get; set; }
@@ -18,20 +22,16 @@ namespace AzulClaro
         public Partida partida { get; set; }
         public Jogador jogador { get; set; }
         public Compra compra { get; set; }
-        public List<Compra  > listaCompras { get; set; }
+        public List<Compra> listaCompras { get; set; }
         public List<Compra> BoasCompras { get; set; }
-
-        struct valores
-        {
-            int fabId;
-            int azulId;
-            int qtd;
-        }
+        //private CondPartida condPartida { get; set; }
+        
         public frmTabuleiro(Partida partida, Jogador jogador)
         {
             this.partida = partida;
             this.jogador = jogador;
             this.Location = new Point(0, 0);
+            //this.condPartida = CondPartida.acabou | CondPartida.naoMinhaVez | CondPartida.minhaVez;
             InitializeComponent();
         }//Construtor: preenche os objetos partida e jogador
 
@@ -374,60 +374,34 @@ namespace AzulClaro
         }//Botão modelo 5: Chama jogar mandando 5 como modelo        
 
         /////////////////////////////////////////////////////////////
-
-        public void Vez()
-        {
-            //string txt = Jogo.VerificarVez(jogador.id, jogador.senha);
-
-            //string v = txt.Substring(2,3);
-            //v = v.Remove(v.Length - 2);
-            //this.vez = Convert.ToInt32(v);
-
-            //lblVez.Text = "jogador: " + txt;
-            
-            //if (!(vez == jogador.id))
-            //{
-            //    atualizarAzulejos();
-            //    btnModelo1.Enabled = false;
-            //    btnModelo2.Enabled = false;
-            //    btnModelo3.Enabled = false;
-            //    btnModelo4.Enabled = false;
-            //    btnModelo5.Enabled = false;
-
-            //    this.compra = null;
-            //}
-            //else
-            //{
-            //    if (this.compra == null)
-            //    {
-            //        this.compra = new Compra();
-            //    }
-
-            //    btnModelo1.Enabled = true;
-            //    btnModelo2.Enabled = true;
-            //    btnModelo3.Enabled = true;
-            //    btnModelo4.Enabled = true;
-            //    btnModelo5.Enabled = true;
-            //}
-
-        }
-
         /////////////////////////////////////////////////////////////
 
         private void tmrRefresh_Tick(object sender, EventArgs e)
         {
-            //Vez();            
-            separaPorQuantidade();
-            jogarAutomatico();
-            listarPontos();
+            CondPartida est = verVez();
+            if( est == CondPartida.acabou)
+            {
+                tmrRefresh.Enabled = false;
+                textBox1.Text = " ACABOU É TETRA";
+            }
+            else if(est == CondPartida.minhaVez)
+            {
+                jogarAutomatico();
+                listarPontos();
+            }
         }
-        private bool verVez()
+        private CondPartida verVez()
         {
             string txt = Jogo.VerificarVez(jogador.id, jogador.senha);
 
             string[] v = txt.Split(',');
             this.vez = Convert.ToInt32(v[1]);
-            return this.vez == jogador.id;
+            if (v[0].Equals("E"))
+                return CondPartida.acabou;
+            else if (this.vez == jogador.id)
+                return CondPartida.minhaVez;
+            else
+                return CondPartida.naoMinhaVez;
         }
 
         //Dicionário (principal) que guarda <Quantidade de azulejos que quer, DicionarioCor>  ----> DicionarioCor<Id do azulejo (Cor) , Lista de compras possíveis >
@@ -437,102 +411,71 @@ namespace AzulClaro
         {
             compra = new Compra();
 
-            if(verVez())
+            atualizarAzulejos();
+            separaPorQuantidade();
+
+            //Analisa os modelos e diz se falta algo para completa-los
+            listaCompras = new List<Compra>();
+            listaComprasModelos();
+            listaComprasModelosVazios();
+
+            listaCompras = listaCompras.OrderByDescending(l => l.qtd).ToList();
+
+            //Analisar os azulejos das fabricas
+            //ver em qual modelo não tem nada, cabe ou completa
+            //ou 
+            //Ver as linhas do modelo e ver qual dos azulejos das fabricas
+            //cabe(m) ou completa(m)
+            if (semOpcaoCores())
             {
-                atualizarAzulejos();
-
-                //Analisa os modelos e diz se falta algo para completa-los
-                listaCompras = new List<Compra>();
-                listaComprasModelos();
-                listaComprasModelosVazios();
-
-                listaCompras = listaCompras.OrderByDescending(l => l.qtd).ToList();
-
-                //Analisar os azulejos das fabricas
-                //ver em qual modelo não tem nada, cabe ou completa
-                //ou 
-                //Ver as linhas do modelo e ver qual dos azulejos das fabricas
-                //cabe(m) ou completa(m)
-                if (semOpcaoCores())
+                //azulPorQtd[3][1].
+                //Aqui vc é obrigado a comprar pro chão, buscas a compra menos pior
+                for(int qtd = 1; qtd <= 6; qtd++)
                 {
-                    //azulPorQtd[3][1].
-                    //Aqui vc é obrigado a comprar pro chão, buscas a compra menos pior
-                    for(int qtd = 1; qtd <= 6; qtd++)
+                    for(int cor = 1; cor <= 5; cor++)
                     {
-                        for(int cor = 1; cor <= 5; cor++)
+                        if (azulPorQtd[qtd][cor].Count > 0)
                         {
-                            if (azulPorQtd[qtd][cor].Count > 0)
-                            {
-                                compra.azulejo = azulPorQtd[qtd][cor].First().azulejo;
-                                compra.fabrica = azulPorQtd[qtd][cor].First().fabrica;
-                                compra.tipo = azulPorQtd[qtd][cor].First().tipo;
-                                compra.qtd = azulPorQtd[qtd][cor].First().qtd;
-                                compra.modelo = 0;
-                                Jogar();
-                                return;
-                            }
+                            compra.azulejo = azulPorQtd[qtd][cor].First().azulejo;
+                            compra.fabrica = azulPorQtd[qtd][cor].First().fabrica;
+                            compra.tipo = azulPorQtd[qtd][cor].First().tipo;
+                            compra.qtd = azulPorQtd[qtd][cor].First().qtd;
+                            compra.modelo = 0;
+                            Jogar();
+                            return;
                         }
                     }
                 }
-
-                foreach (Compra c in listaCompras)
-                {
-                    if(azulPorQtd[c.qtd][c.azulejo].Count > 0)
-                    {
-                        compra.fabrica = azulPorQtd[c.qtd][c.azulejo].First().fabrica;
-                        compra.tipo = azulPorQtd[c.qtd][c.azulejo].First().tipo;
-                        compra.azulejo = c.azulejo;
-                        compra.qtd = c.qtd;
-                        compra.modelo = c.modelo;
-                        Jogar();
-                        return;
-                    }
-                }
-
-                if (jogaComOqTem())
-                {
-                    return;
-                }                
-
-
-
-                lidaComABaldada();
-                         
-
-                /*
-                bool jogou = false;
-                for(int i = 0; i < jogador.tabuleiro.modelo.Length; i++)
-                {
-                    if(jogador.tabuleiro.modelo[i] == null)
-                    {
-                        foreach (Fabrica fab in partida.fabricas)
-                        {
-                            foreach (Azulejo a in fab.azulejos)
-                            {
-                                if (a.quantidade <= i+1)
-                                {
-                                    //string txt = Jogo.Jogar(jogador.id, jogador.senha, "f", fab.id, a.id, i+1);
-                                    textBox1.Text = "\n\ntipo f" + ", Fab id " + fab.id.ToString() + ", azul Id " + a.id.ToString() + ", modelo " + (i + 1).ToString();
-                                    //lblErro.Text = txt;
-                                    jogou = true;
-                                    break;
-                                }
-                            }
-                            if (jogou)
-                                break;
-                        }
-                    }
-                    if (jogou)
-                        break;
-                }*/
-                //jogador.tabuleiro.modelo 000000000000000000000000 listaCompras.OrderBy(l => l.qtd);
             }
+
+            foreach (Compra c in listaCompras)
+            {
+                if(azulPorQtd[c.qtd][c.azulejo].Count > 0)
+                {
+                    compra.fabrica = azulPorQtd[c.qtd][c.azulejo].First().fabrica;
+                    compra.tipo = azulPorQtd[c.qtd][c.azulejo].First().tipo;
+                    compra.azulejo = c.azulejo;
+                    compra.qtd = c.qtd;
+                    compra.modelo = c.modelo;
+                    Jogar();
+                    return;
+                }
+            }
+
+            if (jogaComOqTem())
+            {
+                return;
+            }                
+
+            lidaComABaldada();
+
+            //jogador.tabuleiro.modelo 000000000000000000000000 listaCompras.OrderBy(l => l.qtd);
         }
         private void listaComprasModelos()
         {
             for (int i = 0; i < 5; i++)
             {
-                if (jogador.tabuleiro.modelo[i] != null && jogador.tabuleiro.modelo[i].quantidade > 0 && jogador.tabuleiro.modelo[i].quantidade != i+1)//confere se a linha tá prenchida mas não completa
+                if (jogador.tabuleiro.verificaSeLinhaPreenchidaNaoCompleta(i))//confere se a linha tá prenchida mas não completa
                 {
                     int qtd = (i + 1) - jogador.tabuleiro.modelo[i].quantidade;
                     while (qtd >= 1)
@@ -556,7 +499,7 @@ namespace AzulClaro
             {
                 Compra MelhorCorLinha = new Compra();
 
-                if (jogador.tabuleiro.modelo[l] == null || jogador.tabuleiro.modelo[l].quantidade == 0)
+                if (jogador.tabuleiro.verificaSeLinhaVazia(l))
                 {
                     int maisPontos = 0;
                     for (int c = 0; c < 5; c++)
@@ -685,31 +628,19 @@ namespace AzulClaro
             return pontos;
         }//Diz quantos pontos a linha vai fazer
 
-        /*private bool tabuleiroCheio()
-        {
-            for (int i = 0; i < 5; i++)
-            {
-                if (jogador.tabuleiro.modelo[i] == null || jogador.tabuleiro.modelo[i].quantidade == 0)
-                {
-                    return false;
-                }
-            }
-            return true;
-        }*/
-
         private bool semOpcaoCores()
         {
             List<int> Ids = new List<int>();
 
             for (int i = 0; i < 5; i++)
             {
-                if(jogador.tabuleiro.modelo[i] == null)//Verifica as linhas vazias se ela pode colocar alguma das cores a venda
+                if(jogador.tabuleiro.verificaSeLinhaVazia(i))//Verifica as linhas vazias se ela pode colocar alguma das cores a venda
                 {
                     for (int cor = 1; cor < 6; cor++)
                     {
-                        if (CorDisponível(cor))
+                        if (partida.CorDisponível(cor))
                         {
-                            if(podeColocar(cor, i+1))
+                            if(jogador.tabuleiro.podeColocar(cor, i))
                             {
                                 return false;
                             }
@@ -717,9 +648,9 @@ namespace AzulClaro
                     }                    
                 }
                 
-                if (jogador.tabuleiro.modelo[i] != null && jogador.tabuleiro.modelo[i].quantidade != i + 1)//Verifica as cores usadas nas linhas preenchidas não completas
+                if (jogador.tabuleiro.verificaSeLinhaPreenchidaNaoCompleta(i))//Verifica as cores usadas nas linhas preenchidas não completas
                 {
-                    if (CorDisponível(jogador.tabuleiro.modelo[i].id))
+                    if (partida.CorDisponível(jogador.tabuleiro.modelo[i].id))
                     {
                         return false;
                     }
@@ -730,48 +661,6 @@ namespace AzulClaro
             return true;
 
         }//Diz se você tem ainda como comprar algo
-
-        private bool CorDisponível(int id)
-        {
-
-            foreach (Fabrica fabrica in partida.fabricas)
-            {
-                foreach (Azulejo azulejo in fabrica.azulejos)
-                {
-                    if(azulejo.id == id)
-                    {
-                        return true;
-                    }
-                }
-            }
-
-            foreach (Azulejo azulejo in partida.centro.azulejos)
-            {
-                if (azulejo.id == id && azulejo.quantidade > 0)
-                {
-                    return true;
-                }
-            }
-
-            return false;
-
-
-        }//Vê se tal cor está disponível
-
-        bool podeColocar(int azulejo, int modelo)
-        {
-
-            for(int i = 0; i < 5; i++)
-            {
-                if(jogador.tabuleiro.parede[modelo - 1, i])
-                {
-                    if (azulejo == Azulejo.VerCorNaParede(modelo - 1, i))
-                        return false;
-                }
-            }
-            return true;
-        }
-
 
         bool jogaComOqTem()
         {
@@ -792,7 +681,7 @@ namespace AzulClaro
 
             for (int l = 4; l >= 0; l--)
             {
-                if (jogador.tabuleiro.modelo[l] != null && jogador.tabuleiro.modelo[l].quantidade > 0 && jogador.tabuleiro.modelo[l].quantidade != l + 1)
+                if (jogador.tabuleiro.verificaSeLinhaPreenchidaNaoCompleta(l))
                 {
                     foreach (Compra c in lc)
                     {
@@ -812,11 +701,11 @@ namespace AzulClaro
 
             for (int l = 4; l >= 0; l--)
             {
-                if (jogador.tabuleiro.modelo[l] == null || jogador.tabuleiro.modelo[l].quantidade == 0)
+                if (jogador.tabuleiro.verificaSeLinhaVazia(l))
                 {
                     foreach (Compra c in lc)
                     {
-                        if (podeColocar(c.azulejo, l+1))
+                        if (jogador.tabuleiro.podeColocar(c.azulejo, l))
                         {
                             compra.fabrica = c.fabrica;
                             compra.tipo = c.tipo;
@@ -851,23 +740,23 @@ namespace AzulClaro
 
             foreach (Compra baldada in baldadas)
             {
-                for (int i = 5; i > 0; i--)
+                for (int i = 4; i >= 0; i--)
                 {
-                    if (jogador.tabuleiro.modelo[i - 1] == null && podeColocar(baldada.azulejo, i)) 
+                    if (jogador.tabuleiro.verificaSeLinhaVazia(i) && jogador.tabuleiro.podeColocar(baldada.azulejo, i)) 
                     {
                         compra.azulejo = baldada.azulejo;
                         compra.fabrica = baldada.fabrica;
-                        compra.modelo = i;
+                        compra.modelo = i + 1;
                         compra.qtd = baldada.qtd;
                         compra.tipo = baldada.tipo;
                         Jogar();
                         return;
                     }
-                    if (jogador.tabuleiro.modelo[i - 1] != null && jogador.tabuleiro.modelo[i - 1].id == baldada.azulejo)
+                    if (jogador.tabuleiro.modelo[i] != null && jogador.tabuleiro.modelo[i].id == baldada.azulejo)
                     {
                         compra.azulejo = baldada.azulejo;
                         compra.fabrica = baldada.fabrica;
-                        compra.modelo = i;
+                        compra.modelo = i + 1;
                         compra.qtd = baldada.qtd;
                         compra.tipo = baldada.tipo;
                         Jogar();

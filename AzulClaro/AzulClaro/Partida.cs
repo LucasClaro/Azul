@@ -141,5 +141,32 @@ namespace AzulClaro
             }
 
         }
+
+        public bool CorDisponível(int id)
+        {
+
+            foreach (Fabrica fabrica in this.fabricas)
+            {
+                foreach (Azulejo azulejo in fabrica.azulejos)
+                {
+                    if (azulejo.id == id)
+                    {
+                        return true;
+                    }
+                }
+            }
+
+            foreach (Azulejo azulejo in this.centro.azulejos)
+            {
+                if (azulejo.id == id && azulejo.quantidade > 0)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+
+
+        }//Vê se tal cor está disponível
     }
 }
