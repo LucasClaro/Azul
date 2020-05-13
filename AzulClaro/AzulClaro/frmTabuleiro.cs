@@ -416,8 +416,7 @@ namespace AzulClaro
 
         private void tmrRefresh_Tick(object sender, EventArgs e)
         {
-            //Vez();
-            atualizarAzulejos();
+            //Vez();            
             separaPorQuantidade();
             jogarAutomatico();
             listarPontos();
@@ -440,6 +439,8 @@ namespace AzulClaro
 
             if(verVez())
             {
+                atualizarAzulejos();
+
                 //Analisa os modelos e diz se falta algo para completa-los
                 listaCompras = new List<Compra>();
                 listaComprasModelos();
@@ -852,7 +853,7 @@ namespace AzulClaro
             {
                 for (int i = 5; i > 0; i--)
                 {
-                    if (jogador.tabuleiro.modelo[i - 1] == null && podeColocar(baldada.azulejo,i)) 
+                    if (jogador.tabuleiro.modelo[i - 1] == null && podeColocar(baldada.azulejo, i)) 
                     {
                         compra.azulejo = baldada.azulejo;
                         compra.fabrica = baldada.fabrica;
