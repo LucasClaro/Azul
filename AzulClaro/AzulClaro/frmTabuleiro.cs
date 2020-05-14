@@ -627,7 +627,6 @@ namespace AzulClaro
 
             return pontos;
         }//Diz quantos pontos a linha vai fazer
-
         private bool semOpcaoCores()
         {
             List<int> Ids = new List<int>();
@@ -661,8 +660,7 @@ namespace AzulClaro
             return true;
 
         }//Diz se você tem ainda como comprar algo
-
-        bool jogaComOqTem()
+        private bool jogaComOqTem()
         {
             // partida.fabricas;
             // partida.centro;
@@ -721,8 +719,7 @@ namespace AzulClaro
 
             return false;
         }
-
-        void lidaComABaldada()
+        private void lidaComABaldada()
         {
             List<Compra> baldadas = new List<Compra>();
 

@@ -198,15 +198,7 @@ namespace AzulClaro
             {
 
                 if (VerificaInicializacao(partida))//Caso o jogador iniciando a partida não esteja na partida selecionada, busca a partida desse jogador
-                {
-
-                    /*foreach (Partida p in Partida.ListarPartidas("T"))
-                    {
-                        if (VerificaInicializacao(p))
-                        {
-                            partida = p;
-                        }
-                    }*/
+                {                    
 
                     //Vê se a partida tá aberta
                     if (partida.status == "A")
@@ -217,6 +209,10 @@ namespace AzulClaro
                             partida.status = "J";
                         }
                     }
+
+                    string vez = Jogo.VerificarVez(Convert.ToInt32(txtIdjogador.Text), jogador.senha);
+                    vez = vez.Substring(0, 1);
+                    partida.status = vez;
 
                     if (partida.status == "J")//Abre o Tabuleiro
                     {
