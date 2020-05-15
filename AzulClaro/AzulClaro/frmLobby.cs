@@ -210,7 +210,7 @@ namespace AzulClaro
                         }
                     }
 
-                    string vez = Jogo.VerificarVez(Convert.ToInt32(txtIdjogador.Text), jogador.senha);
+                    string vez = Jogo.VerificarVez(Convert.ToInt32(txtIdjogador.Text), txtSenhaJogador.Text);
                     vez = vez.Substring(0, 1);
                     partida.status = vez;
 

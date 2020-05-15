@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using AzulServer;
@@ -23,18 +24,24 @@ namespace AzulClaro
         public Jogador jogador { get; set; }
         public Compra compra { get; set; }
         public List<Compra> listaCompras { get; set; }
-        public List<Compra> BoasCompras { get; set; }
-        //private CondPartida condPartida { get; set; }
+        public bool pausado { get; set; }
+
+        BackgroundWorker workerThread = null;
         
+
+        delegate void Bot();//////////////////
+
+
         public frmTabuleiro(Partida partida, Jogador jogador)
         {
             this.partida = partida;
             this.jogador = jogador;
             this.Location = new Point(0, 0);
-            //this.condPartida = CondPartida.acabou | CondPartida.naoMinhaVez | CondPartida.minhaVez;
-            InitializeComponent();
-        }//Construtor: preenche os objetos partida e jogador
 
+            InitializeComponent();
+
+            InstantiateWorkerThread();
+        }//Construtor: preenche os objetos partida e jogador
         private void frmTabuleiro_Load(object sender, EventArgs e)
         {
             lblCabecalho.Text = "Partida: " + partida.nome + "Jogador: " + jogador.id + " " + jogador.nome;
@@ -50,11 +57,17 @@ namespace AzulClaro
 
                 //Preenche Tudo
                 configurarFabricas();
-                desenharCentro();                
+                desenharCentro();
                 desenharFabricas();
                 desenharTabuleiro();
+
+                workerThread.RunWorkerAsync();
             }
         }//Load do form: Verifica senha e Desenha Tudo
+        private void frmTabuleiro_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            workerThread.CancelAsync();
+        }
 
         /////////////////////////////////////////////////////////////
 
@@ -128,8 +141,12 @@ namespace AzulClaro
                         pcbAzul.AccessibleName = "F" + fab.id + azul.id + azul.quantidade;//Informações para o carrinho
                         pcbAzul.Click += azulejo_Click;
 
-                        this.Controls.Add(pcbAzul);            //Adiciona no form
-                        pcbAzul.BringToFront();                //Puxa pra frente
+                        Invoke((MethodInvoker)delegate
+                        {
+                            this.Controls.Add(pcbAzul);            //Adiciona no form
+                            pcbAzul.BringToFront();                //Puxa pra frente
+                        });
+                        
                     }
                 }
             }
@@ -171,8 +188,11 @@ namespace AzulClaro
                     pcbAzul.AccessibleName = "c0" + azul.id + azul.quantidade;//Informações para o carrinho
                     pcbAzul.Click += azulejo_Click;
 
-                    this.Controls.Add(pcbAzul);            //Adiciona no form
-                    pcbAzul.BringToFront();                //Puxa pra frente
+                    Invoke((MethodInvoker)delegate
+                    {
+                        this.Controls.Add(pcbAzul);//Adiciona no form
+                        pcbAzul.BringToFront();//Puxa pra frente
+                    });                                                  
 
                     //if (qtdAzul++ > 4)
                     //{
@@ -207,8 +227,11 @@ namespace AzulClaro
                         pcbAzul.SizeMode = PictureBoxSizeMode.StretchImage;
                         pcbAzul.Name = "pcbModelo" + "" + i + "" + jogador.tabuleiro.modelo[i].id + "" + j;
 
-                        this.Controls.Add(pcbAzul);            //Adiciona no form
-                        pcbAzul.BringToFront();                //Puxa pra frente
+                        Invoke((MethodInvoker)delegate
+                        {
+                            this.Controls.Add(pcbAzul);            //Adiciona no form
+                            pcbAzul.BringToFront();                //Puxa pra frente
+                        });                        
                     }
                 }
             }
@@ -221,7 +244,10 @@ namespace AzulClaro
             {
                 for(int cp = 0; cp < 5; cp++)
                 {
-                    paredeAzs.Find(azul => azul.Name.Equals("pcbParede" + lp + cp)).Visible = jogador.tabuleiro.parede[lp, cp];
+                    Invoke((MethodInvoker)delegate
+                    {
+                        paredeAzs.Find(azul => azul.Name.Equals("pcbParede" + lp + cp)).Visible = jogador.tabuleiro.parede[lp, cp];
+                    });
                 }
             }
 
@@ -237,8 +263,13 @@ namespace AzulClaro
                 pcbAzul.SizeMode = PictureBoxSizeMode.StretchImage;
                 pcbAzul.Name = "pcbChao" + "" + c;
                 c++;
-                this.Controls.Add(pcbAzul);            //Adiciona no form
-                pcbAzul.BringToFront();                //Puxa pra frente
+
+                Invoke((MethodInvoker)delegate
+                {
+                    this.Controls.Add(pcbAzul);            //Adiciona no form
+                    pcbAzul.BringToFront();                //Puxa pra frente
+                });
+                
             }
         }
         public void definePos(int qtd)
@@ -284,16 +315,20 @@ namespace AzulClaro
             desenharTabuleiro();
         }//Função que tira os azulejos da tela a coloca de novo     
         public void tirarAzulejos()
-        {
+        {            
             List<PictureBox> pcbs = Controls.OfType<PictureBox>().Where(pcb => pcb.Name.StartsWith("pcbFabricas") || pcb.Name.StartsWith("pcbModelo") || pcb.Name.StartsWith("pcbChao") || pcb.Name.StartsWith("pcbCentro")).ToList();
 
             pcbs.Remove(pcbs.Find(pcb => pcb.Name.Equals("pcbFabricas"))); //Remove o PictureBox do fundo (Fabricas)
 
             for (int i = 0; i < pcbs.Count; i++)
             {
-                Controls.Remove(pcbs[i]);       //Remove do Form
-                pcbs[i].Image = null;
-                pcbs[i] = null;                 //Deixa null a PictureBox
+                Invoke((MethodInvoker)delegate
+                {
+                    Controls.Remove(pcbs[i]);//Remove do Form
+                    pcbs[i].Image = null;//Deixa null a PictureBox
+                    pcbs[i] = null;
+                });
+                                
             }
             //pcbs = null;
             GC.Collect();
@@ -301,10 +336,25 @@ namespace AzulClaro
         public void listarPontos()
         {
             string txt = Jogo.ListarJogadores(partida.id);
-            lblPontos.Text = txt;
+            Invoke((MethodInvoker)delegate
+            {
+                lblPontos.Text = txt;
+            });
         }
 
         /////////////////////////////////////////////////////////////                    
+
+        public void Jogar()
+        {
+            string txt = Jogo.Jogar(jogador.id, jogador.senha, compra.tipo, compra.fabrica, compra.azulejo, compra.modelo);
+            Invoke((MethodInvoker)delegate
+            {
+                lblErro.Text = txt;
+            });
+            atualizarAzulejos();
+        }//Manda um pedido de compra
+
+        /////////////////////////////////////////////////////////////
 
         private void btnVez_Click(object sender, EventArgs e)
         {
@@ -315,13 +365,7 @@ namespace AzulClaro
             textBox1.Text = "";
             jogarAutomatico();
             atualizarAzulejos();
-        }//Recarrega azulejos (REMOVER)
-        public void Jogar()
-        {
-            string txt = Jogo.Jogar(jogador.id, jogador.senha, compra.tipo, compra.fabrica, compra.azulejo, compra.modelo);
-            lblErro.Text = txt;
-            atualizarAzulejos();
-        }//Manda um pedido de compra
+        }//Recarrega azulejos (REMOVER)        
         private void azulejo_Click(object sender, EventArgs e)
         {
             compra = new Compra();//Instacia o objeto compra
@@ -372,24 +416,26 @@ namespace AzulClaro
             compra.modelo = 5;
             Jogar();
         }//Botão modelo 5: Chama jogar mandando 5 como modelo        
-
+        
         /////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////
 
-        private void tmrRefresh_Tick(object sender, EventArgs e)
-        {
-            CondPartida est = verVez();
-            if( est == CondPartida.acabou)
-            {
-                tmrRefresh.Enabled = false;
-                textBox1.Text = " ACABOU É TETRA";
-            }
-            else if(est == CondPartida.minhaVez)
-            {
-                jogarAutomatico();
-                listarPontos();
-            }
-        }
+        //private void tmrRefresh_Tick(object sender, EventArgs e)
+        //{
+        //    CondPartida est = verVez();
+        //    if( est == CondPartida.acabou)
+        //    {
+        //        tmrRefresh.Enabled = false;
+        //        textBox1.Text = " ACABOU É TETRA";
+        //    }
+        //    else if(est == CondPartida.minhaVez)
+        //    {
+        //        //Thread th = new Thread(new ThreadStart(this.Thread_Segura));
+        //        //th.Start();
+
+        //        //jogarAutomatico();////////////////////////////
+        //        //listarPontos();///////////////////////////////
+        //    }
+        //}
         private CondPartida verVez()
         {
             string txt = Jogo.VerificarVez(jogador.id, jogador.senha);
@@ -487,9 +533,13 @@ namespace AzulClaro
                         listaCompras.Add(compra);
 
                         qtd--;
-                    }                    
+                    }
 
-                    textBox1.Text += compra.qtd.ToString() + Azulejo.LembraCor(compra.azulejo, false) + " modelo " + (i+1).ToString() + "\r\n";
+                    Invoke((MethodInvoker)delegate
+                    {
+                        textBox1.Text += compra.qtd.ToString() + Azulejo.LembraCor(compra.azulejo, false) + " modelo " + (i + 1).ToString() + "\r\n";
+                    });
+                    
                 }
             }
         }//Busca Linhas de Modelo incompletas
@@ -532,7 +582,12 @@ namespace AzulClaro
                         listaCompras.Add(c);
                         qtd--;
                     }
-                    textBox1.Text += Azulejo.LembraCor(MelhorCorLinha.azulejo, false) + " modelo " + (l + 1).ToString() + "\r\n";
+
+                    Invoke((MethodInvoker)delegate
+                    {
+                        textBox1.Text += Azulejo.LembraCor(MelhorCorLinha.azulejo, false) + " modelo " + (l + 1).ToString() + "\r\n";
+                    });
+                    
                 }
             }
         }//Busca a melhor cor pra cada linha de modelo vazia
@@ -766,6 +821,44 @@ namespace AzulClaro
 
         /////////////////////////////////////////////////////////////
 
+        private void InstantiateWorkerThread()
+        {
+            workerThread = new BackgroundWorker();
+            workerThread.DoWork += WorkerThread_DoWork;
+            workerThread.WorkerSupportsCancellation = true;
+        }
+        private void WorkerThread_DoWork(object sender, DoWorkEventArgs e)
+        {
+            while (!pausado)
+            {
+                Thread.Sleep(1000);
+
+                CondPartida est = verVez();
+                if (est == CondPartida.acabou)
+                {
+                    pausado = true;
+                    Invoke((MethodInvoker)delegate
+                    {
+                        textBox1.Text = " ACABOU É TETRA";
+                    });
+                }
+                else if (est == CondPartida.minhaVez)
+                {
+                    jogarAutomatico();
+                    listarPontos();
+                }
+
+                if (workerThread.CancellationPending)
+                {
+                    // this is important as it set the cancelled property of RunWorkerCompletedEventArgs to true
+                    e.Cancel = true;
+                    break;
+                }
+            }
+        }
+
+        /////////////////////////////////////////////////////////////
+
         //Pega os valores de partida.centro e partida.fabricas e separa em listas por quantidade
         void separaPorQuantidade()
         {
@@ -845,7 +938,7 @@ namespace AzulClaro
 
             //Adiciona no dicionario principal
             azulPorQtd.Add(quatidadeDeAzulejosPorFabrica, azulPorCor);
-        }
+        }        
     }
 }
 

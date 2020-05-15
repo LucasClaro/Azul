@@ -43,12 +43,12 @@
             this.lblErro = new System.Windows.Forms.Label();
             this.tmrRefresh = new System.Windows.Forms.Timer(this.components);
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.pcbParede43 = new System.Windows.Forms.PictureBox();
             this.pcbParede32 = new System.Windows.Forms.PictureBox();
             this.pcbParede21 = new System.Windows.Forms.PictureBox();
@@ -227,7 +227,6 @@
             // 
             this.tmrRefresh.Enabled = true;
             this.tmrRefresh.Interval = 7000;
-            this.tmrRefresh.Tick += new System.EventHandler(this.tmrRefresh_Tick);
             // 
             // groupBox1
             // 
@@ -243,41 +242,14 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Modelo";
             // 
-            // groupBox2
+            // label5
             // 
-            this.groupBox2.Location = new System.Drawing.Point(715, 400);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(623, 71);
-            this.groupBox2.TabIndex = 47;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Chão";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(237, 16);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(51, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Modelo 1";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(237, 62);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(51, 13);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Modelo 2";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(237, 108);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(51, 13);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "Modelo 3";
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(237, 212);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(51, 13);
+            this.label5.TabIndex = 4;
+            this.label5.Text = "Modelo 5";
             // 
             // label4
             // 
@@ -288,14 +260,41 @@
             this.label4.TabIndex = 3;
             this.label4.Text = "Modelo 4";
             // 
-            // label5
+            // label3
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(237, 212);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(51, 13);
-            this.label5.TabIndex = 4;
-            this.label5.Text = "Modelo 5";
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(237, 108);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(51, 13);
+            this.label3.TabIndex = 2;
+            this.label3.Text = "Modelo 3";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(237, 62);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(51, 13);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "Modelo 2";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(237, 16);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(51, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Modelo 1";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Location = new System.Drawing.Point(715, 400);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(623, 71);
+            this.groupBox2.TabIndex = 47;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Chão";
             // 
             // pcbParede43
             // 
@@ -664,6 +663,7 @@
             this.Name = "frmTabuleiro";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "frmTabuleiro";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmTabuleiro_FormClosing);
             this.Load += new System.EventHandler(this.frmTabuleiro_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
