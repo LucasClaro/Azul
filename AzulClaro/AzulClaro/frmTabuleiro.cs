@@ -96,9 +96,14 @@ namespace AzulClaro
             txtF = Jogo.LerFabricas(jogador.id, jogador.senha);
 
             if (txtF.Equals("")) { }
+            else if (txtF == "ERRO:Partida não está em jogo\r\n")
+            {
+                fimDeJogo();
+            }
             else if (txtF.Substring(0, 4) == "ERRO")
             {
                 this.erro = txtF.Substring(5);
+
                 this.Close();
                 return;
             }                        
@@ -435,7 +440,11 @@ namespace AzulClaro
         //        //jogarAutomatico();////////////////////////////
         //        //listarPontos();///////////////////////////////
         //    }
-        //}
+        //}        
+
+        //Dicionário (principal) que guarda <Quantidade de azulejos que quer, DicionarioCor>  ----> DicionarioCor<Id do azulejo (Cor) , Lista de compras possíveis >
+        Dictionary<int, Dictionary<int, List<Compra>>> azulPorQtd;
+        //Para recuperar um valor (Lista de compras) desse monstrinho usar tipo matriz azulPorQtd[Int de quantidade][Int de cor]
         private CondPartida verVez()
         {
             string txt = Jogo.VerificarVez(jogador.id, jogador.senha);
@@ -449,10 +458,6 @@ namespace AzulClaro
             else
                 return CondPartida.naoMinhaVez;
         }
-
-        //Dicionário (principal) que guarda <Quantidade de azulejos que quer, DicionarioCor>  ----> DicionarioCor<Id do azulejo (Cor) , Lista de compras possíveis >
-        Dictionary<int, Dictionary<int, List<Compra>>> azulPorQtd;
-        //Para recuperar um valor (Lista de compras) desse monstrinho usar tipo matriz azulPorQtd[Int de quantidade][Int de cor]
         private void jogarAutomatico()
         {
             compra = new Compra();
@@ -837,10 +842,7 @@ namespace AzulClaro
                 if (est == CondPartida.acabou)
                 {
                     pausado = true;
-                    Invoke((MethodInvoker)delegate
-                    {
-                        textBox1.Text = " ACABOU É TETRA";
-                    });
+                    fimDeJogo();                    
                 }
                 else if (est == CondPartida.minhaVez)
                 {
@@ -855,6 +857,16 @@ namespace AzulClaro
                     break;
                 }
             }
+        }
+
+        private void fimDeJogo()
+        {
+            Invoke((MethodInvoker)delegate
+            {
+                textBox1.Text = " ACABOU É TETRA\r\n";
+                string txt = Jogo.LerNarracao(partida.id);
+                textBox1.Text += txt.Substring(0, txt.IndexOf('\r'));
+            });
         }
 
         /////////////////////////////////////////////////////////////

@@ -225,6 +225,8 @@ namespace AzulClaro
                             jogador.bot = chkBot.Checked;
                         }
 
+                        partida.ListarJogadores();
+
                         frmTabuleiro tabuleiro = new frmTabuleiro(partida, jogador);
                         tabuleiro.ShowDialog();
 
