@@ -864,8 +864,8 @@ namespace AzulClaro
             Invoke((MethodInvoker)delegate
             {
                 textBox1.Text = " ACABOU É TETRA\r\n";
-                string txt = Jogo.LerNarracao(partida.id);
-                textBox1.Text += txt.Substring(0, txt.IndexOf('\r'));
+                string txt = Jogo.ListarJogadores(partida.id);
+                textBox1.Text += txt;
             });
         }
 
