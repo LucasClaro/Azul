@@ -840,8 +840,7 @@ namespace AzulClaro
 
                 CondPartida est = verVez();
                 if (est == CondPartida.acabou)
-                {
-                    pausado = true;
+                {                    
                     fimDeJogo();                    
                 }
                 else if (est == CondPartida.minhaVez)
@@ -866,6 +865,7 @@ namespace AzulClaro
                 textBox1.Text = " ACABOU É TETRA\r\n";
                 string txt = Jogo.ListarJogadores(partida.id);
                 textBox1.Text += txt;
+                pausado = true;
             });
         }
 
