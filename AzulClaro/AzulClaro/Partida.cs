@@ -167,6 +167,6 @@ namespace AzulClaro
             return false;
 
 
-        }//Vê se tal cor está disponível
+        }//Vê se tal cor está disponível        
     }
 }

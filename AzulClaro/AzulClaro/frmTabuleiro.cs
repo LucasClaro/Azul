@@ -422,29 +422,12 @@ namespace AzulClaro
             Jogar();
         }//Botão modelo 5: Chama jogar mandando 5 como modelo        
         
-        /////////////////////////////////////////////////////////////
-
-        //private void tmrRefresh_Tick(object sender, EventArgs e)
-        //{
-        //    CondPartida est = verVez();
-        //    if( est == CondPartida.acabou)
-        //    {
-        //        tmrRefresh.Enabled = false;
-        //        textBox1.Text = " ACABOU É TETRA";
-        //    }
-        //    else if(est == CondPartida.minhaVez)
-        //    {
-        //        //Thread th = new Thread(new ThreadStart(this.Thread_Segura));
-        //        //th.Start();
-
-        //        //jogarAutomatico();////////////////////////////
-        //        //listarPontos();///////////////////////////////
-        //    }
-        //}        
-
+        /////////////////////////////////////////////////////////////  
+        
         //Dicionário (principal) que guarda <Quantidade de azulejos que quer, DicionarioCor>  ----> DicionarioCor<Id do azulejo (Cor) , Lista de compras possíveis >
         Dictionary<int, Dictionary<int, List<Compra>>> azulPorQtd;
         //Para recuperar um valor (Lista de compras) desse monstrinho usar tipo matriz azulPorQtd[Int de quantidade][Int de cor]
+
         private CondPartida verVez()
         {
             string txt = Jogo.VerificarVez(jogador.id, jogador.senha);
@@ -499,9 +482,41 @@ namespace AzulClaro
                 }
             }
 
-            foreach (Compra c in listaCompras)
+            //int[] maisComum = corMaisComum();
+
+            //if (maisComum[1] > 5)
+            //{
+            //    for (int qtd = 5; qtd < 0; qtd--)
+            //    {
+            //        if (azulPorQtd[qtd][maisComum[0]].Count > 0)
+            //        {
+            //            compra.fabrica = azulPorQtd[c.qtd][c.azulejo].First().fabrica;
+            //            compra.tipo = azulPorQtd[c.qtd][c.azulejo].First().tipo;
+            //            compra.azulejo = c.azulejo;
+            //            compra.qtd = c.qtd;
+            //            compra.modelo = c.modelo;
+            //            Jogar();
+            //            return;
+            //        }
+            //        else
+            //        {
+            //            for (int i = 0; i < 5; i++)
+            //            {
+            //                compra.fabrica = azulPorQtd[c.qtd][c.azulejo].First().fabrica;
+            //                compra.tipo = azulPorQtd[c.qtd][c.azulejo].First().tipo;
+            //                compra.azulejo = c.azulejo;
+            //                compra.qtd = c.qtd;
+            //                compra.modelo = c.modelo;
+            //                Jogar();
+            //                return;
+            //            }
+            //        }
+            //    }
+            //}
+
+            foreach (Compra c in listaCompras)//Compra comum
             {
-                if(azulPorQtd[c.qtd][c.azulejo].Count > 0)
+                if (azulPorQtd[c.qtd][c.azulejo].Count > 0)
                 {
                     compra.fabrica = azulPorQtd[c.qtd][c.azulejo].First().fabrica;
                     compra.tipo = azulPorQtd[c.qtd][c.azulejo].First().tipo;
@@ -512,6 +527,7 @@ namespace AzulClaro
                     return;
                 }
             }
+        
 
             if (jogaComOqTem())
             {
@@ -687,6 +703,34 @@ namespace AzulClaro
 
             return pontos;
         }//Diz quantos pontos a linha vai fazer
+        private int[] corMaisComum()
+        {
+            int[] cores = new int[5];
+            int[] aux = new int[5];
+
+            foreach (Fabrica fabrica in partida.fabricas)
+            {
+                foreach (Azulejo azulejo in fabrica.azulejos)
+                {
+                    cores[azulejo.id - 1] += azulejo.quantidade;
+                }
+            }
+
+            foreach (Azulejo azulejo in this.partida.centro.azulejos)
+            {
+                cores[azulejo.id - 1] += azulejo.quantidade;
+            }
+
+            aux = (int[])cores.Clone();
+            Array.Sort(cores);
+            for (int i = 0; i < 5; i++)
+            {
+                cores[i] = Array.IndexOf(aux, cores[i]);
+                aux[cores[i]] = 42;
+            }
+
+            return cores;
+        }
         private bool semOpcaoCores()
         {
             List<int> Ids = new List<int>();
@@ -737,47 +781,99 @@ namespace AzulClaro
                 }
             }
 
+            List<Compra> lcFiltrada = new List<Compra>();
+
             for (int l = 4; l >= 0; l--)
             {
-                if (jogador.tabuleiro.verificaSeLinhaPreenchidaNaoCompleta(l))
+                foreach (Compra c in lc)
                 {
-                    foreach (Compra c in lc)
+                    if (jogador.tabuleiro.verificaSeLinhaPreenchidaNaoCompleta(l) && jogador.tabuleiro.modelo[l].id == c.azulejo || jogador.tabuleiro.verificaSeLinhaVazia(l) && jogador.tabuleiro.podeColocar(c.azulejo, l))
                     {
-                        if (jogador.tabuleiro.modelo[l].id == c.azulejo)
+                        Compra c2 = new Compra();
+                        c2.fabrica = c.fabrica;
+                        c2.tipo = c.tipo;
+                        c2.azulejo = c.azulejo;
+                        c2.qtd = c.qtd;
+                        c2.modelo = l + 1;
+                        int qtdNoModelo;
+                        if (jogador.tabuleiro.verificaSeLinhaVazia(l))
                         {
-                            compra.fabrica = c.fabrica;
-                            compra.tipo = c.tipo;
-                            compra.azulejo = c.azulejo;
-                            compra.qtd = c.qtd;
-                            compra.modelo = l + 1;
-                            Jogar();
-                            return true;
+                            qtdNoModelo = 0;
                         }
+                        else
+                        {
+                            qtdNoModelo = jogador.tabuleiro.modelo[l].quantidade;
+                        }
+                        c2.perda = (l + 1) - qtdNoModelo - c.qtd;
+                        lcFiltrada.Add(c2);
+                        //Jogar();
+                        //return true;
                     }
                 }
             }
 
-            for (int l = 4; l >= 0; l--)
+            lcFiltrada = lcFiltrada.OrderBy(h => h.perda).ToList();
+
+            if (lcFiltrada.Count > 0)
             {
-                if (jogador.tabuleiro.verificaSeLinhaVazia(l))
+                List<Compra> lista = new List<Compra>();
+                lista = lcFiltrada.Where(y => y.perda == 0).ToList();
+
+                if (lista.Count > 0)
                 {
-                    foreach (Compra c in lc)
+                    compra.azulejo = lista.First().azulejo;
+                    compra.fabrica = lista.First().fabrica;
+                    compra.modelo = lista.First().modelo;
+                    compra.qtd = lista.First().qtd;
+                    compra.tipo = lista.First().tipo;
+                    Jogar();
+                    return true;
+                }
+
+                for (int i = -1; i < -3; i--)
+                {
+                    lista = new List<Compra>();
+                    lista = lcFiltrada.Where(y => y.perda == i).ToList();
+                    if (lista.Count > 0)
                     {
-                        if (jogador.tabuleiro.podeColocar(c.azulejo, l))
-                        {
-                            compra.fabrica = c.fabrica;
-                            compra.tipo = c.tipo;
-                            compra.azulejo = c.azulejo;
-                            compra.qtd = c.qtd;
-                            compra.modelo = l+1;
-                            Jogar();
-                            return true;
-                        }
+                        compra.azulejo = lista.First().azulejo;
+                        compra.fabrica = lista.First().fabrica;
+                        compra.modelo = lista.First().modelo;
+                        compra.qtd = lista.First().qtd;
+                        compra.tipo = lista.First().tipo;
+                        Jogar();
+                        return true;
                     }
                 }
-            }
 
-            return false;
+                for (int i = 1; i <= 3; i++)
+                {
+                    lista = new List<Compra>();
+                    lista = lcFiltrada.Where(y => y.perda == i).ToList();
+                    if (lista.Count > 0)
+                    {
+                        compra.azulejo = lista.First().azulejo;
+                        compra.fabrica = lista.First().fabrica;
+                        compra.modelo = lista.First().modelo;
+                        compra.qtd = lista.First().qtd;
+                        compra.tipo = lista.First().tipo;
+                        Jogar();
+                        return true;
+                    }
+                }
+
+                compra.azulejo = lcFiltrada.First().azulejo;
+                compra.fabrica = lcFiltrada.First().fabrica;
+                compra.modelo = lcFiltrada.First().modelo;
+                compra.qtd = lcFiltrada.First().qtd;
+                compra.tipo = lcFiltrada.First().tipo;
+                Jogar();
+                return true;
+            }
+            else
+            {
+                return false;
+            }                
         }
         private void lidaComABaldada()
         {
@@ -857,7 +953,6 @@ namespace AzulClaro
                 }
             }
         }
-
         private void fimDeJogo()
         {
             Invoke((MethodInvoker)delegate

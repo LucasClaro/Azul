@@ -37,5 +37,11 @@ namespace AzulClaro
             return true;
         }
 
+        public int corMaisComum()
+        {
+            //int[] cores = new int[5];
+            return 1;
+        }
+
     }
 }

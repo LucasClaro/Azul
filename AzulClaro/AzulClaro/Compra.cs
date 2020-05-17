@@ -13,10 +13,7 @@ namespace AzulClaro
         public int azulejo { get; set; }
         public int qtd { get; set; }
         public int modelo { get; set; }
+        public int perda { get; set; }
     }
-    /*
-    public List<Compra> separaQuantidade(List<Fabrica> fabricas)
-    {
-        return;
-    }*/
+    
 }
