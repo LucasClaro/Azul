@@ -14,6 +14,15 @@ namespace AzulClaro
         public int qtd { get; set; }
         public int modelo { get; set; }
         public int perda { get; set; }
+
+        public Compra() { }
+        public Compra(string tipo, int fabrica, int azulejo, int modelo, int qtd)
+        {
+            this.tipo = tipo;
+            this.fabrica = fabrica;
+            this.azulejo = azulejo;
+            this.modelo = modelo;
+            this.qtd = qtd;
+        }
     }
-    
 }

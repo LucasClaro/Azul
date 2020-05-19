@@ -42,6 +42,5 @@ namespace AzulClaro
             //int[] cores = new int[5];
             return 1;
         }
-
     }
 }

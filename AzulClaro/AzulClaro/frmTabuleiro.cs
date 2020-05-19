@@ -24,6 +24,7 @@ namespace AzulClaro
         public Jogador jogador { get; set; }
         public Compra compra { get; set; }
         public List<Compra> listaCompras { get; set; }
+        public List<Compra> listaCompraColuna { get; set; }
         public bool pausado { get; set; }
 
         BackgroundWorker workerThread = null;
@@ -106,8 +107,7 @@ namespace AzulClaro
 
                 this.Close();
                 return;
-            }                        
-
+            }
             partida.preencherFabricas(txtF);//Preenche as fábricas do obj partida
            
         }//Configura Texto das fábricas e chama preencher fabricas da partida
@@ -197,7 +197,7 @@ namespace AzulClaro
                     {
                         this.Controls.Add(pcbAzul);//Adiciona no form
                         pcbAzul.BringToFront();//Puxa pra frente
-                    });                                                  
+                    });
 
                     //if (qtdAzul++ > 4)
                     //{
@@ -236,7 +236,7 @@ namespace AzulClaro
                         {
                             this.Controls.Add(pcbAzul);            //Adiciona no form
                             pcbAzul.BringToFront();                //Puxa pra frente
-                        });                        
+                        });
                     }
                 }
             }
@@ -318,9 +318,9 @@ namespace AzulClaro
             desenharCentro();
             desenharFabricas();
             desenharTabuleiro();
-        }//Função que tira os azulejos da tela a coloca de novo     
+        }//Função que tira os azulejos da tela a coloca de novo
         public void tirarAzulejos()
-        {            
+        {
             List<PictureBox> pcbs = Controls.OfType<PictureBox>().Where(pcb => pcb.Name.StartsWith("pcbFabricas") || pcb.Name.StartsWith("pcbModelo") || pcb.Name.StartsWith("pcbChao") || pcb.Name.StartsWith("pcbCentro")).ToList();
 
             pcbs.Remove(pcbs.Find(pcb => pcb.Name.Equals("pcbFabricas"))); //Remove o PictureBox do fundo (Fabricas)
@@ -333,7 +333,6 @@ namespace AzulClaro
                     pcbs[i].Image = null;//Deixa null a PictureBox
                     pcbs[i] = null;
                 });
-                                
             }
             //pcbs = null;
             GC.Collect();
@@ -347,11 +346,10 @@ namespace AzulClaro
             });
         }
 
-        /////////////////////////////////////////////////////////////                    
-
-        public void Jogar()
+        /////////////////////////////////////////////////////////////
+        public void Jogar(Compra c)
         {
-            string txt = Jogo.Jogar(jogador.id, jogador.senha, compra.tipo, compra.fabrica, compra.azulejo, compra.modelo);
+            string txt = Jogo.Jogar(jogador.id, jogador.senha, c.tipo, c.fabrica, c.azulejo, c.modelo);
             Invoke((MethodInvoker)delegate
             {
                 lblErro.Text = txt;
@@ -399,30 +397,30 @@ namespace AzulClaro
         private void btnModelo1_Click(object sender, EventArgs e)
         {
             compra.modelo = 1;
-            Jogar();
+            //Jogar();
         }//Botão modelo 1: Chama jogar mandando 1 como modelo
         private void btnModelo2_Click(object sender, EventArgs e)
         {
             compra.modelo = 2;
-            Jogar();
+            //Jogar();
         }//Botão modelo 2: Chama jogar mandando 2 como modelo
         private void btnModelo3_Click(object sender, EventArgs e)
         {
             compra.modelo = 3;
-            Jogar();
+            //Jogar();
         }//Botão modelo 3: Chama jogar mandando 3 como modelo
         private void btnModelo4_Click(object sender, EventArgs e)
         {
             compra.modelo = 4;
-            Jogar();
+            //Jogar();
         }//Botão modelo 4: Chama jogar mandando 4 como modelo
         private void btnModelo5_Click(object sender, EventArgs e)
         {
             compra.modelo = 5;
-            Jogar();
-        }//Botão modelo 5: Chama jogar mandando 5 como modelo        
+            //Jogar();
+        }//Botão modelo 5: Chama jogar mandando 5 como modelo
         
-        /////////////////////////////////////////////////////////////  
+        /////////////////////////////////////////////////////////////
         
         //Dicionário (principal) que guarda <Quantidade de azulejos que quer, DicionarioCor>  ----> DicionarioCor<Id do azulejo (Cor) , Lista de compras possíveis >
         Dictionary<int, Dictionary<int, List<Compra>>> azulPorQtd;
@@ -470,12 +468,8 @@ namespace AzulClaro
                     {
                         if (azulPorQtd[qtd][cor].Count > 0)
                         {
-                            compra.azulejo = azulPorQtd[qtd][cor].First().azulejo;
-                            compra.fabrica = azulPorQtd[qtd][cor].First().fabrica;
-                            compra.tipo = azulPorQtd[qtd][cor].First().tipo;
-                            compra.qtd = azulPorQtd[qtd][cor].First().qtd;
-                            compra.modelo = 0;
-                            Jogar();
+                            azulPorQtd[qtd][cor].First().modelo = 0;
+                            Jogar(azulPorQtd[qtd][cor].First());
                             return;
                         }
                     }
@@ -513,17 +507,25 @@ namespace AzulClaro
             //        }
             //    }
             //}
+            if(listaCompraColuna.Count > 0)
+            {
+                foreach (Compra c in listaCompraColuna)//Compra comum
+                {
+                    if (azulPorQtd[c.qtd][c.azulejo].Count > 0)
+                    {
+                        Compra com = new Compra(azulPorQtd[c.qtd][c.azulejo].First().tipo, azulPorQtd[c.qtd][c.azulejo].First().fabrica, c.azulejo, c.modelo, c.qtd);
+                        Jogar(com);
+                        return;
+                    }
+                }
+            }
 
             foreach (Compra c in listaCompras)//Compra comum
             {
                 if (azulPorQtd[c.qtd][c.azulejo].Count > 0)
                 {
-                    compra.fabrica = azulPorQtd[c.qtd][c.azulejo].First().fabrica;
-                    compra.tipo = azulPorQtd[c.qtd][c.azulejo].First().tipo;
-                    compra.azulejo = c.azulejo;
-                    compra.qtd = c.qtd;
-                    compra.modelo = c.modelo;
-                    Jogar();
+                    Compra com = new Compra(azulPorQtd[c.qtd][c.azulejo].First().tipo, azulPorQtd[c.qtd][c.azulejo].First().fabrica, c.azulejo, c.modelo, c.qtd);
+                    Jogar(com);
                     return;
                 }
             }
@@ -566,6 +568,7 @@ namespace AzulClaro
         }//Busca Linhas de Modelo incompletas
         private void listaComprasModelosVazios()
         {
+            listaCompraColuna = new List<Compra>();
             for (int l = 0; l < 5; l++)
             {
                 Compra MelhorCorLinha = new Compra();
@@ -579,6 +582,26 @@ namespace AzulClaro
                         if (!jogador.tabuleiro.parede[l,c])
                         {
                             int p = checarPontosAzul(l, c);
+                            if(p >= 10)
+                            {
+                                MelhorCorLinha.azulejo = Azulejo.VerCorNaParede(l, c);
+
+
+                                MelhorCorLinha.modelo = l + 1;
+                                MelhorCorLinha.qtd = l + 1;
+
+                                int qtdColuna = MelhorCorLinha.qtd;
+                                while (qtdColuna+3 >= 1)
+                                {
+                                    Compra com = new Compra();
+                                    com.azulejo = MelhorCorLinha.azulejo;
+                                    com.modelo = MelhorCorLinha.modelo;
+                                    com.qtd = qtdColuna;
+                                    listaCompraColuna.Add(com);
+                                    qtdColuna--;
+                                }
+                            }
+
                             if (p >= maisPontos)
                             {
                                 maisPontos = p;
@@ -617,6 +640,7 @@ namespace AzulClaro
             int pontos = 1;
             int vizinhos = 0;
             bool conectado = false;
+            int pontosLinha = 0;
 
             for (int i = 0; i < 5; i++)//Checa os pontos na linha
             {
@@ -660,6 +684,7 @@ namespace AzulClaro
 
             conectado = false;
             vizinhos = 0;
+            pontosLinha = pontos;
 
             for (int i = 0; i < 5; i++)//Checa os pontos na coluna
             {
@@ -700,6 +725,8 @@ namespace AzulClaro
                     }
                 }
             }
+
+            if (pontos - pontosLinha >= 4) pontos += 10;
 
             return pontos;
         }//Diz quantos pontos a linha vai fazer
@@ -821,12 +848,7 @@ namespace AzulClaro
 
                 if (lista.Count > 0)
                 {
-                    compra.azulejo = lista.First().azulejo;
-                    compra.fabrica = lista.First().fabrica;
-                    compra.modelo = lista.First().modelo;
-                    compra.qtd = lista.First().qtd;
-                    compra.tipo = lista.First().tipo;
-                    Jogar();
+                    Jogar(lista.First());
                     return true;
                 }
 
@@ -836,12 +858,7 @@ namespace AzulClaro
                     lista = lcFiltrada.Where(y => y.perda == i).ToList();
                     if (lista.Count > 0)
                     {
-                        compra.azulejo = lista.First().azulejo;
-                        compra.fabrica = lista.First().fabrica;
-                        compra.modelo = lista.First().modelo;
-                        compra.qtd = lista.First().qtd;
-                        compra.tipo = lista.First().tipo;
-                        Jogar();
+                        Jogar(lista.First());
                         return true;
                     }
                 }
@@ -852,22 +869,12 @@ namespace AzulClaro
                     lista = lcFiltrada.Where(y => y.perda == i).ToList();
                     if (lista.Count > 0)
                     {
-                        compra.azulejo = lista.First().azulejo;
-                        compra.fabrica = lista.First().fabrica;
-                        compra.modelo = lista.First().modelo;
-                        compra.qtd = lista.First().qtd;
-                        compra.tipo = lista.First().tipo;
-                        Jogar();
+                        Jogar(lista.First());
                         return true;
                     }
                 }
 
-                compra.azulejo = lcFiltrada.First().azulejo;
-                compra.fabrica = lcFiltrada.First().fabrica;
-                compra.modelo = lcFiltrada.First().modelo;
-                compra.qtd = lcFiltrada.First().qtd;
-                compra.tipo = lcFiltrada.First().tipo;
-                Jogar();
+                Jogar(lcFiltrada.First());
                 return true;
             }
             else
@@ -897,22 +904,14 @@ namespace AzulClaro
                 {
                     if (jogador.tabuleiro.verificaSeLinhaVazia(i) && jogador.tabuleiro.podeColocar(baldada.azulejo, i)) 
                     {
-                        compra.azulejo = baldada.azulejo;
-                        compra.fabrica = baldada.fabrica;
-                        compra.modelo = i + 1;
-                        compra.qtd = baldada.qtd;
-                        compra.tipo = baldada.tipo;
-                        Jogar();
+                        Compra c = new Compra(baldada.tipo, baldada.fabrica, baldada.azulejo, (i + 1), baldada.qtd);
+                        Jogar(c);
                         return;
                     }
-                    if (jogador.tabuleiro.modelo[i] != null && jogador.tabuleiro.modelo[i].id == baldada.azulejo)
+                    if (jogador.tabuleiro.verificaSeLinhaPreenchidaNaoCompleta(i) && jogador.tabuleiro.modelo[i].id == baldada.azulejo)
                     {
-                        compra.azulejo = baldada.azulejo;
-                        compra.fabrica = baldada.fabrica;
-                        compra.modelo = i + 1;
-                        compra.qtd = baldada.qtd;
-                        compra.tipo = baldada.tipo;
-                        Jogar();
+                        Compra c = new Compra(baldada.tipo, baldada.fabrica, baldada.azulejo, (i + 1), baldada.qtd);
+                        Jogar(c);
                         return;
                     }
 
