@@ -27,11 +27,7 @@ namespace AzulClaro
         public List<Compra> listaCompraColuna { get; set; }
         public bool pausado { get; set; }
 
-        BackgroundWorker workerThread = null;
-        
-
-        delegate void Bot();//////////////////
-
+        BackgroundWorker workerThread = null;     
 
         public frmTabuleiro(Partida partida, Jogador jogador)
         {
@@ -451,7 +447,7 @@ namespace AzulClaro
             listaComprasModelos();
             listaComprasModelosVazios();
 
-            listaCompras = listaCompras.OrderByDescending(l => l.qtd).ToList();
+            listaCompras = listaCompras.OrderByDescending(l => l.pontos).ToList();
 
             //Analisar os azulejos das fabricas
             //ver em qual modelo não tem nada, cabe ou completa
@@ -475,39 +471,8 @@ namespace AzulClaro
                     }
                 }
             }
-
-            //int[] maisComum = corMaisComum();
-
-            //if (maisComum[1] > 5)
-            //{
-            //    for (int qtd = 5; qtd < 0; qtd--)
-            //    {
-            //        if (azulPorQtd[qtd][maisComum[0]].Count > 0)
-            //        {
-            //            compra.fabrica = azulPorQtd[c.qtd][c.azulejo].First().fabrica;
-            //            compra.tipo = azulPorQtd[c.qtd][c.azulejo].First().tipo;
-            //            compra.azulejo = c.azulejo;
-            //            compra.qtd = c.qtd;
-            //            compra.modelo = c.modelo;
-            //            Jogar();
-            //            return;
-            //        }
-            //        else
-            //        {
-            //            for (int i = 0; i < 5; i++)
-            //            {
-            //                compra.fabrica = azulPorQtd[c.qtd][c.azulejo].First().fabrica;
-            //                compra.tipo = azulPorQtd[c.qtd][c.azulejo].First().tipo;
-            //                compra.azulejo = c.azulejo;
-            //                compra.qtd = c.qtd;
-            //                compra.modelo = c.modelo;
-            //                Jogar();
-            //                return;
-            //            }
-            //        }
-            //    }
-            //}
-            if(listaCompraColuna.Count > 0)
+            
+            if(listaCompraColuna.Count > 0)//Lista prioritária
             {
                 foreach (Compra c in listaCompraColuna)//Compra comum
                 {
@@ -546,22 +511,27 @@ namespace AzulClaro
             {
                 if (jogador.tabuleiro.verificaSeLinhaPreenchidaNaoCompleta(i))//confere se a linha tá prenchida mas não completa
                 {
-                    int qtd = (i + 1) - jogador.tabuleiro.modelo[i].quantidade;
+                    //int qtd = (i + 1) - jogador.tabuleiro.modelo[i].quantidade;
+                    int qtd = 5;
                     while (qtd >= 1)
                     {
                         Compra compra = new Compra();
                         compra.azulejo = jogador.tabuleiro.modelo[i].id;
                         compra.modelo = i+1;
                         compra.qtd = qtd;
+
+                        int perda = (i + 1) - jogador.tabuleiro.modelo[i].quantidade - compra.qtd;
+                        compra.pontos = checarPontosAzul(i, Azulejo.verColunaNaParede(i, compra.azulejo)) - perda;
+
                         listaCompras.Add(compra);
 
                         qtd--;
                     }
 
-                    Invoke((MethodInvoker)delegate
-                    {
-                        textBox1.Text += compra.qtd.ToString() + Azulejo.LembraCor(compra.azulejo, false) + " modelo " + (i + 1).ToString() + "\r\n";
-                    });
+                    //Invoke((MethodInvoker)delegate
+                    //{
+                    //    textBox1.Text += compra.qtd.ToString() + Azulejo.LembraCor(compra.azulejo, false) + " modelo " + (i + 1).ToString() + "\r\n";
+                    //});
                     
                 }
             }
@@ -582,6 +552,7 @@ namespace AzulClaro
                         if (!jogador.tabuleiro.parede[l,c])
                         {
                             int p = checarPontosAzul(l, c);
+
                             if(p >= 10)
                             {
                                 MelhorCorLinha.azulejo = Azulejo.VerCorNaParede(l, c);
@@ -623,14 +594,18 @@ namespace AzulClaro
                         c.azulejo = MelhorCorLinha.azulejo;
                         c.modelo = MelhorCorLinha.modelo;
                         c.qtd = qtd;
+
+                        int perda = (l + 1) - c.qtd;
+                        c.pontos = maisPontos - perda;
+
                         listaCompras.Add(c);
                         qtd--;
                     }
 
-                    Invoke((MethodInvoker)delegate
-                    {
-                        textBox1.Text += Azulejo.LembraCor(MelhorCorLinha.azulejo, false) + " modelo " + (l + 1).ToString() + "\r\n";
-                    });
+                    //Invoke((MethodInvoker)delegate
+                    //{
+                    //    textBox1.Text += Azulejo.LembraCor(MelhorCorLinha.azulejo, false) + " modelo " + (l + 1).ToString() + "\r\n";
+                    //});
                     
                 }
             }
@@ -729,7 +704,7 @@ namespace AzulClaro
             if (pontos - pontosLinha >= 4) pontos += 10;
 
             return pontos;
-        }//Diz quantos pontos a linha vai fazer
+        }//Retorna quantos pontos a linha vai fazer
         private int[] corMaisComum()
         {
             int[] cores = new int[5];
@@ -790,7 +765,7 @@ namespace AzulClaro
 
             return true;
 
-        }//Diz se você tem ainda como comprar algo
+        }//Retorna se você ainda tem como comprar algo
         private bool jogaComOqTem()
         {
             // partida.fabricas;
@@ -831,7 +806,8 @@ namespace AzulClaro
                         {
                             qtdNoModelo = jogador.tabuleiro.modelo[l].quantidade;
                         }
-                        c2.perda = (l + 1) - qtdNoModelo - c.qtd;
+                        int perda = (l + 1) - qtdNoModelo - c.qtd;
+                        c2.pontos = checarPontosAzul(l, Azulejo.verColunaNaParede(l, c2.azulejo));
                         lcFiltrada.Add(c2);
                         //Jogar();
                         //return true;
@@ -839,41 +815,10 @@ namespace AzulClaro
                 }
             }
 
-            lcFiltrada = lcFiltrada.OrderBy(h => h.perda).ToList();
+            lcFiltrada = lcFiltrada.OrderByDescending(h => h.pontos).ToList();
 
             if (lcFiltrada.Count > 0)
-            {
-                List<Compra> lista = new List<Compra>();
-                lista = lcFiltrada.Where(y => y.perda == 0).ToList();
-
-                if (lista.Count > 0)
-                {
-                    Jogar(lista.First());
-                    return true;
-                }
-
-                for (int i = -1; i < -3; i--)
-                {
-                    lista = new List<Compra>();
-                    lista = lcFiltrada.Where(y => y.perda == i).ToList();
-                    if (lista.Count > 0)
-                    {
-                        Jogar(lista.First());
-                        return true;
-                    }
-                }
-
-                for (int i = 1; i <= 3; i++)
-                {
-                    lista = new List<Compra>();
-                    lista = lcFiltrada.Where(y => y.perda == i).ToList();
-                    if (lista.Count > 0)
-                    {
-                        Jogar(lista.First());
-                        return true;
-                    }
-                }
-
+            {           
                 Jogar(lcFiltrada.First());
                 return true;
             }

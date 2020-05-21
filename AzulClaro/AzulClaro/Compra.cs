@@ -13,7 +13,7 @@ namespace AzulClaro
         public int azulejo { get; set; }
         public int qtd { get; set; }
         public int modelo { get; set; }
-        public int perda { get; set; }
+        public int pontos { get; set; }
 
         public Compra() { }
         public Compra(string tipo, int fabrica, int azulejo, int modelo, int qtd)
