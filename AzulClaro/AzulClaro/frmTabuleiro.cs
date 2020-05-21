@@ -704,7 +704,74 @@ namespace AzulClaro
             if (pontos - pontosLinha >= 4) pontos += 10;
 
             return pontos;
-        }//Retorna quantos pontos a linha vai fazer
+        }//Diz quantos pontos a linha vai fazer
+
+
+        //private void completaCor()
+        //{
+        //    for (int cor = 0; cor < 5; cor++)
+        //    {
+        //        int qtd = 0;
+        //        int linhaModelo = 0;
+        //        for (int l = 0; l < 5; l++)
+        //        {
+        //            if (jogador.tabuleiro.parede[l, checaPos(l, cor)])
+        //            {
+        //                qtd++;
+        //            }
+        //            else { linhaModelo = l; }
+        //        }
+        //        if (qtd == 4)
+        //        {
+        //            cor++;
+        //            linhaModelo = linhaModelo;
+        //            //eu tenho a cor e a linha que falta
+        //        }
+
+
+        //        //bool a0 = parede[0,checaPos(0,cor)];
+        //        //bool a1 = parede[1,checaPos(1,cor)];
+        //        //bool a2 = parede[2,checaPos(2,cor)];
+        //        //bool a3 = parede[3,checaPos(3,cor)];
+        //        //bool a4 = parede[4,checaPos(4,cor)];
+        //    }
+        //}
+
+        private bool completaCor(int l, int c)
+        {
+            int cor = Azulejo.VerCorNaParede(l, c);
+                
+            int qtd = 0;
+            //int linhaModelo = 0;
+            for (int i = 0; i < 5; i++)
+            {
+                if (jogador.tabuleiro.parede[i, checaPos(i, cor-1)])
+                {
+                    qtd++;
+                }
+            }
+
+            if (qtd == 4)
+            {
+                return true;
+            }
+
+            return false;
+            
+        }
+
+        private int checaPos(int pos, int cons)
+        {
+            if ((pos + cons) <= 4)
+            {
+                return (pos + cons);
+            }
+            else
+            {
+                return ((pos + cons) - 5);
+            }
+        }
+
         private int[] corMaisComum()
         {
             int[] cores = new int[5];
