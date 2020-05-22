@@ -446,7 +446,7 @@ namespace AzulClaro
             listaComprasModelos();
             listaComprasModelosVazios();
 
-            listaCompras = listaCompras.OrderByDescending(l => l.pontos).ToList();
+            listaCompras = listaCompras.OrderByDescending(l => l.pontos).ThenByDescending(l => l.qtd).ToList();
 
             //Analisar os azulejos das fabricas
             //ver em qual modelo não tem nada, cabe ou completa
@@ -572,7 +572,7 @@ namespace AzulClaro
                         }
                     }
 
-                    int qtd = 7;
+                    int qtd = 6;
                     while (qtd >= 1)
                     {
                         Compra c = new Compra();
@@ -866,7 +866,7 @@ namespace AzulClaro
                 }
             }
 
-            lcFiltrada = lcFiltrada.OrderByDescending(h => h.pontos).ToList();
+            lcFiltrada = lcFiltrada.OrderByDescending(h => h.pontos).ThenByDescending(h => h.qtd).ToList();
 
             if (lcFiltrada.Count > 0)
             {           
