@@ -506,7 +506,7 @@ namespace AzulClaro
                         compra.modelo = i+1;
                         compra.qtd = qtd;
 
-                        int perda = (i + 1) - jogador.tabuleiro.modelo[i].quantidade - compra.qtd;
+                        int perda = checarPerda((i + 1) - jogador.tabuleiro.modelo[i].quantidade - compra.qtd);
                         compra.pontos = checarPontosAzul(i, checaPos(i, compra.azulejo)) - perda;
 
                         listaCompras.Add(compra);
@@ -580,7 +580,7 @@ namespace AzulClaro
                         c.modelo = MelhorCorLinha.modelo;
                         c.qtd = qtd;
 
-                        int perda = (l + 1) - c.qtd;
+                        int perda = checarPerda((l + 1) - c.qtd);
                         c.pontos = maisPontos - perda;
 
                         listaCompras.Add(c);
@@ -691,6 +691,29 @@ namespace AzulClaro
 
             return pontos;
         }//Diz quantos pontos a linha vai fazer
+
+        private int checarPerda(int qtd)
+        {
+            int atual = jogador.tabuleiro.chao.Count;
+            int perda = 0;
+
+            for (int i = atual; i < atual + qtd; i++)
+            {
+                if (i >= 0 && i < 2){
+                    perda += 1;
+                }
+                else if (i >= 2 && i < 5)
+                {
+                    perda += 2;
+                }
+                else if (i >= 5 && i < 7)
+                {
+                    perda += 3;
+                }
+            }
+
+            return perda;
+        }
 
         //private void completaCor()
         //{
@@ -857,7 +880,7 @@ namespace AzulClaro
                         {
                             qtdNoModelo = jogador.tabuleiro.modelo[l].quantidade;
                         }
-                        int perda = (l + 1) - qtdNoModelo - c.qtd;
+                        int perda = checarPerda((l + 1) - qtdNoModelo - c.qtd);
                         c2.pontos = checarPontosAzul(l, checaPos(l, c2.azulejo));
                         lcFiltrada.Add(c2);
                         //Jogar();
