@@ -121,37 +121,5 @@ namespace AzulClaro
             return parede[linha, coluna];
         }
 
-        public static int verColunaNaParede(int linha, int cor)
-        {
-            int[,] parede = new int[5, 5];
-
-            parede[0, 1] = 0;
-            parede[0, 2] = 1;
-            parede[0, 3] = 2;
-            parede[0, 4] = 3;
-            parede[0, 5] = 4;
-            parede[1, 1] = 1;
-            parede[1, 2] = 2;
-            parede[1, 3] = 3;
-            parede[1, 4] = 4;
-            parede[1, 5] = 1;
-            parede[2, 1] = 2;
-            parede[2, 2] = 3;
-            parede[2, 3] = 4;
-            parede[2, 4] = 0;
-            parede[2, 5] = 1;
-            parede[3, 1] = 3;
-            parede[3, 2] = 4;
-            parede[3, 3] = 0;
-            parede[3, 4] = 1;
-            parede[3, 5] = 2;
-            parede[4, 1] = 4;
-            parede[4, 2] = 0;
-            parede[4, 3] = 1;
-            parede[4, 4] = 2;
-            parede[4, 5] = 3;
-
-            return parede[linha, cor];
-        }
     }
 }

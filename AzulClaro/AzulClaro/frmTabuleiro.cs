@@ -24,7 +24,6 @@ namespace AzulClaro
         public Jogador jogador { get; set; }
         public Compra compra { get; set; }
         public List<Compra> listaCompras { get; set; }
-        public List<Compra> listaCompraColuna { get; set; }
         public bool pausado { get; set; }
 
         BackgroundWorker workerThread = null;     
@@ -470,20 +469,7 @@ namespace AzulClaro
                         }
                     }
                 }
-            }
-            
-            if(listaCompraColuna.Count > 0)//Lista prioritária
-            {
-                foreach (Compra c in listaCompraColuna)//Compra comum
-                {
-                    if (azulPorQtd[c.qtd][c.azulejo].Count > 0)
-                    {
-                        Compra com = new Compra(azulPorQtd[c.qtd][c.azulejo].First().tipo, azulPorQtd[c.qtd][c.azulejo].First().fabrica, c.azulejo, c.modelo, c.qtd);
-                        Jogar(com);
-                        return;
-                    }
-                }
-            }
+            }        
 
             foreach (Compra c in listaCompras)//Compra comum
             {
@@ -521,7 +507,7 @@ namespace AzulClaro
                         compra.qtd = qtd;
 
                         int perda = (i + 1) - jogador.tabuleiro.modelo[i].quantidade - compra.qtd;
-                        compra.pontos = checarPontosAzul(i, Azulejo.verColunaNaParede(i, compra.azulejo)) - perda;
+                        compra.pontos = checarPontosAzul(i, checaPos(i, compra.azulejo)) - perda;
 
                         listaCompras.Add(compra);
 
@@ -538,7 +524,6 @@ namespace AzulClaro
         }//Busca Linhas de Modelo incompletas
         private void listaComprasModelosVazios()
         {
-            listaCompraColuna = new List<Compra>();
             for (int l = 0; l < 5; l++)
             {
                 Compra MelhorCorLinha = new Compra();
@@ -547,31 +532,30 @@ namespace AzulClaro
                 {
                     int maisPontos = 0;
                     for (int c = 0; c < 5; c++)
-                    {
-                        
+                    {                        
                         if (!jogador.tabuleiro.parede[l,c])
                         {
                             int p = checarPontosAzul(l, c);
 
-                            if(p >= 10)
-                            {
-                                MelhorCorLinha.azulejo = Azulejo.VerCorNaParede(l, c);
+                            //if(p >= 10)
+                            //{
+                            //    MelhorCorLinha.azulejo = Azulejo.VerCorNaParede(l, c);
 
 
-                                MelhorCorLinha.modelo = l + 1;
-                                MelhorCorLinha.qtd = l + 1;
+                            //    MelhorCorLinha.modelo = l + 1;
+                            //    MelhorCorLinha.qtd = l + 1;
 
-                                int qtdColuna = MelhorCorLinha.qtd;
-                                while (qtdColuna+3 >= 1)
-                                {
-                                    Compra com = new Compra();
-                                    com.azulejo = MelhorCorLinha.azulejo;
-                                    com.modelo = MelhorCorLinha.modelo;
-                                    com.qtd = qtdColuna;
-                                    listaCompraColuna.Add(com);
-                                    qtdColuna--;
-                                }
-                            }
+                            //    int qtdColuna = MelhorCorLinha.qtd;
+                            //    while (qtdColuna+3 >= 1)
+                            //    {
+                            //        Compra com = new Compra();
+                            //        com.azulejo = MelhorCorLinha.azulejo;
+                            //        com.modelo = MelhorCorLinha.modelo;
+                            //        com.qtd = qtdColuna;
+                            //        listaCompraColuna.Add(com);
+                            //        qtdColuna--;
+                            //    }
+                            //}
 
                             if (p >= maisPontos)
                             {
@@ -587,7 +571,8 @@ namespace AzulClaro
                             }
                         }
                     }
-                    int qtd = MelhorCorLinha.qtd;
+
+                    int qtd = 7;
                     while (qtd >= 1)
                     {
                         Compra c = new Compra();
@@ -701,11 +686,11 @@ namespace AzulClaro
                 }
             }
 
-            if (pontos - pontosLinha >= 4) pontos += 10;
+            if (pontos - pontosLinha >= 4) pontos += 7;
+            if (completaCor(linha, coluna)) pontos += 10;
 
             return pontos;
         }//Diz quantos pontos a linha vai fazer
-
 
         //private void completaCor()
         //{
@@ -745,7 +730,7 @@ namespace AzulClaro
             //int linhaModelo = 0;
             for (int i = 0; i < 5; i++)
             {
-                if (jogador.tabuleiro.parede[i, checaPos(i, cor-1)])
+                if (jogador.tabuleiro.parede[i, checaPos(i, cor)])
                 {
                     qtd++;
                 }
@@ -759,9 +744,9 @@ namespace AzulClaro
             return false;
             
         }
-
         private int checaPos(int pos, int cons)
         {
+            cons--;
             if ((pos + cons) <= 4)
             {
                 return (pos + cons);
@@ -771,7 +756,6 @@ namespace AzulClaro
                 return ((pos + cons) - 5);
             }
         }
-
         private int[] corMaisComum()
         {
             int[] cores = new int[5];
@@ -874,7 +858,7 @@ namespace AzulClaro
                             qtdNoModelo = jogador.tabuleiro.modelo[l].quantidade;
                         }
                         int perda = (l + 1) - qtdNoModelo - c.qtd;
-                        c2.pontos = checarPontosAzul(l, Azulejo.verColunaNaParede(l, c2.azulejo));
+                        c2.pontos = checarPontosAzul(l, checaPos(l, c2.azulejo));
                         lcFiltrada.Add(c2);
                         //Jogar();
                         //return true;
