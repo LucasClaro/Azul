@@ -506,7 +506,7 @@ namespace AzulClaro
                         compra.modelo = i+1;
                         compra.qtd = qtd;
 
-                        int perda = checarPerda((i + 1) - jogador.tabuleiro.modelo[i].quantidade - compra.qtd);
+                        int perda = checarPerda(jogador.tabuleiro.modelo[i].quantidade + compra.qtd - (i + 1));
                         compra.pontos = checarPontosAzul(i, checaPos(i, compra.azulejo)) - perda;
 
                         listaCompras.Add(compra);
@@ -580,7 +580,7 @@ namespace AzulClaro
                         c.modelo = MelhorCorLinha.modelo;
                         c.qtd = qtd;
 
-                        int perda = checarPerda((l + 1) - c.qtd);
+                        int perda = checarPerda(c.qtd - (l + 1));
                         c.pontos = maisPontos - perda;
 
                         listaCompras.Add(c);
@@ -880,7 +880,7 @@ namespace AzulClaro
                         {
                             qtdNoModelo = jogador.tabuleiro.modelo[l].quantidade;
                         }
-                        int perda = checarPerda((l + 1) - qtdNoModelo - c.qtd);
+                        int perda = checarPerda(qtdNoModelo + c.qtd - (l + 1));
                         c2.pontos = checarPontosAzul(l, checaPos(l, c2.azulejo));
                         lcFiltrada.Add(c2);
                         //Jogar();
