@@ -42,13 +42,6 @@
             this.lblCompra = new System.Windows.Forms.Label();
             this.lblErro = new System.Windows.Forms.Label();
             this.tmrRefresh = new System.Windows.Forms.Timer(this.components);
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.pcbParede43 = new System.Windows.Forms.PictureBox();
             this.pcbParede32 = new System.Windows.Forms.PictureBox();
             this.pcbParede21 = new System.Windows.Forms.PictureBox();
@@ -78,7 +71,35 @@
             this.pcbFabricas = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lblPontos = new System.Windows.Forms.Label();
-            this.groupBox1.SuspendLayout();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.panel7 = new System.Windows.Forms.Panel();
+            this.panel8 = new System.Windows.Forms.Panel();
+            this.panel9 = new System.Windows.Forms.Panel();
+            this.panel10 = new System.Windows.Forms.Panel();
+            this.panel11 = new System.Windows.Forms.Panel();
+            this.panel12 = new System.Windows.Forms.Panel();
+            this.panel13 = new System.Windows.Forms.Panel();
+            this.panel14 = new System.Windows.Forms.Panel();
+            this.panel15 = new System.Windows.Forms.Panel();
+            this.panel16 = new System.Windows.Forms.Panel();
+            this.panel17 = new System.Windows.Forms.Panel();
+            this.panel18 = new System.Windows.Forms.Panel();
+            this.panel19 = new System.Windows.Forms.Panel();
+            this.panel20 = new System.Windows.Forms.Panel();
+            this.panel21 = new System.Windows.Forms.Panel();
+            this.panel22 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pcbParede43)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcbParede32)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcbParede21)).BeginInit();
@@ -128,7 +149,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(1254, 70);
+            this.button1.Location = new System.Drawing.Point(1263, 535);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 3;
@@ -157,7 +178,7 @@
             // 
             // btnModelo1
             // 
-            this.btnModelo1.Location = new System.Drawing.Point(669, 70);
+            this.btnModelo1.Location = new System.Drawing.Point(1186, 594);
             this.btnModelo1.Name = "btnModelo1";
             this.btnModelo1.Size = new System.Drawing.Size(75, 23);
             this.btnModelo1.TabIndex = 14;
@@ -167,7 +188,7 @@
             // 
             // btnModelo2
             // 
-            this.btnModelo2.Location = new System.Drawing.Point(669, 99);
+            this.btnModelo2.Location = new System.Drawing.Point(1186, 623);
             this.btnModelo2.Name = "btnModelo2";
             this.btnModelo2.Size = new System.Drawing.Size(75, 23);
             this.btnModelo2.TabIndex = 15;
@@ -177,7 +198,7 @@
             // 
             // btnModelo3
             // 
-            this.btnModelo3.Location = new System.Drawing.Point(669, 128);
+            this.btnModelo3.Location = new System.Drawing.Point(1186, 652);
             this.btnModelo3.Name = "btnModelo3";
             this.btnModelo3.Size = new System.Drawing.Size(75, 23);
             this.btnModelo3.TabIndex = 16;
@@ -187,7 +208,7 @@
             // 
             // btnModelo4
             // 
-            this.btnModelo4.Location = new System.Drawing.Point(669, 157);
+            this.btnModelo4.Location = new System.Drawing.Point(1186, 681);
             this.btnModelo4.Name = "btnModelo4";
             this.btnModelo4.Size = new System.Drawing.Size(75, 23);
             this.btnModelo4.TabIndex = 17;
@@ -197,7 +218,7 @@
             // 
             // btnModelo5
             // 
-            this.btnModelo5.Location = new System.Drawing.Point(669, 186);
+            this.btnModelo5.Location = new System.Drawing.Point(1186, 710);
             this.btnModelo5.Name = "btnModelo5";
             this.btnModelo5.Size = new System.Drawing.Size(75, 23);
             this.btnModelo5.TabIndex = 18;
@@ -228,79 +249,11 @@
             this.tmrRefresh.Enabled = true;
             this.tmrRefresh.Interval = 7000;
             // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.label5);
-            this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Location = new System.Drawing.Point(825, 100);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(420, 300);
-            this.groupBox1.TabIndex = 46;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Modelo";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(237, 212);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(51, 13);
-            this.label5.TabIndex = 4;
-            this.label5.Text = "Modelo 5";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(237, 161);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(51, 13);
-            this.label4.TabIndex = 3;
-            this.label4.Text = "Modelo 4";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(237, 108);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(51, 13);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "Modelo 3";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(237, 62);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(51, 13);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Modelo 2";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(237, 16);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(51, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Modelo 1";
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Location = new System.Drawing.Point(715, 400);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(623, 71);
-            this.groupBox2.TabIndex = 47;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Chão";
-            // 
             // pcbParede43
             // 
             this.pcbParede43.Image = global::AzulClaro.Properties.Resources.a5;
             this.pcbParede43.InitialImage = null;
-            this.pcbParede43.Location = new System.Drawing.Point(1062, 770);
+            this.pcbParede43.Location = new System.Drawing.Point(1135, 303);
             this.pcbParede43.Name = "pcbParede43";
             this.pcbParede43.Size = new System.Drawing.Size(50, 50);
             this.pcbParede43.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -311,7 +264,7 @@
             // 
             this.pcbParede32.Image = global::AzulClaro.Properties.Resources.a5;
             this.pcbParede32.InitialImage = null;
-            this.pcbParede32.Location = new System.Drawing.Point(1012, 719);
+            this.pcbParede32.Location = new System.Drawing.Point(1085, 252);
             this.pcbParede32.Name = "pcbParede32";
             this.pcbParede32.Size = new System.Drawing.Size(50, 50);
             this.pcbParede32.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -322,7 +275,7 @@
             // 
             this.pcbParede21.Image = global::AzulClaro.Properties.Resources.a5;
             this.pcbParede21.InitialImage = null;
-            this.pcbParede21.Location = new System.Drawing.Point(960, 668);
+            this.pcbParede21.Location = new System.Drawing.Point(1033, 201);
             this.pcbParede21.Name = "pcbParede21";
             this.pcbParede21.Size = new System.Drawing.Size(50, 50);
             this.pcbParede21.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -333,7 +286,7 @@
             // 
             this.pcbParede10.Image = global::AzulClaro.Properties.Resources.a5;
             this.pcbParede10.InitialImage = null;
-            this.pcbParede10.Location = new System.Drawing.Point(909, 618);
+            this.pcbParede10.Location = new System.Drawing.Point(982, 151);
             this.pcbParede10.Name = "pcbParede10";
             this.pcbParede10.Size = new System.Drawing.Size(50, 50);
             this.pcbParede10.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -344,7 +297,7 @@
             // 
             this.pcbParede04.Image = global::AzulClaro.Properties.Resources.a5;
             this.pcbParede04.InitialImage = null;
-            this.pcbParede04.Location = new System.Drawing.Point(1114, 567);
+            this.pcbParede04.Location = new System.Drawing.Point(1187, 100);
             this.pcbParede04.Name = "pcbParede04";
             this.pcbParede04.Size = new System.Drawing.Size(50, 50);
             this.pcbParede04.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -355,7 +308,7 @@
             // 
             this.pcbParede42.Image = global::AzulClaro.Properties.Resources.a4;
             this.pcbParede42.InitialImage = null;
-            this.pcbParede42.Location = new System.Drawing.Point(1012, 770);
+            this.pcbParede42.Location = new System.Drawing.Point(1085, 303);
             this.pcbParede42.Name = "pcbParede42";
             this.pcbParede42.Size = new System.Drawing.Size(50, 50);
             this.pcbParede42.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -366,7 +319,7 @@
             // 
             this.pcbParede31.Image = global::AzulClaro.Properties.Resources.a4;
             this.pcbParede31.InitialImage = null;
-            this.pcbParede31.Location = new System.Drawing.Point(960, 719);
+            this.pcbParede31.Location = new System.Drawing.Point(1033, 252);
             this.pcbParede31.Name = "pcbParede31";
             this.pcbParede31.Size = new System.Drawing.Size(50, 50);
             this.pcbParede31.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -377,7 +330,7 @@
             // 
             this.pcbParede20.Image = global::AzulClaro.Properties.Resources.a4;
             this.pcbParede20.InitialImage = null;
-            this.pcbParede20.Location = new System.Drawing.Point(909, 668);
+            this.pcbParede20.Location = new System.Drawing.Point(982, 201);
             this.pcbParede20.Name = "pcbParede20";
             this.pcbParede20.Size = new System.Drawing.Size(50, 50);
             this.pcbParede20.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -388,7 +341,7 @@
             // 
             this.pcbParede14.Image = global::AzulClaro.Properties.Resources.a4;
             this.pcbParede14.InitialImage = null;
-            this.pcbParede14.Location = new System.Drawing.Point(1114, 618);
+            this.pcbParede14.Location = new System.Drawing.Point(1187, 151);
             this.pcbParede14.Name = "pcbParede14";
             this.pcbParede14.Size = new System.Drawing.Size(50, 50);
             this.pcbParede14.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -399,7 +352,7 @@
             // 
             this.pcbParede03.Image = global::AzulClaro.Properties.Resources.a4;
             this.pcbParede03.InitialImage = null;
-            this.pcbParede03.Location = new System.Drawing.Point(1062, 567);
+            this.pcbParede03.Location = new System.Drawing.Point(1135, 100);
             this.pcbParede03.Name = "pcbParede03";
             this.pcbParede03.Size = new System.Drawing.Size(50, 50);
             this.pcbParede03.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -410,7 +363,7 @@
             // 
             this.pcbParede41.Image = global::AzulClaro.Properties.Resources.a3;
             this.pcbParede41.InitialImage = null;
-            this.pcbParede41.Location = new System.Drawing.Point(960, 770);
+            this.pcbParede41.Location = new System.Drawing.Point(1033, 303);
             this.pcbParede41.Name = "pcbParede41";
             this.pcbParede41.Size = new System.Drawing.Size(50, 50);
             this.pcbParede41.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -421,7 +374,7 @@
             // 
             this.pcbParede30.Image = global::AzulClaro.Properties.Resources.a3;
             this.pcbParede30.InitialImage = null;
-            this.pcbParede30.Location = new System.Drawing.Point(909, 719);
+            this.pcbParede30.Location = new System.Drawing.Point(982, 252);
             this.pcbParede30.Name = "pcbParede30";
             this.pcbParede30.Size = new System.Drawing.Size(50, 50);
             this.pcbParede30.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -432,7 +385,7 @@
             // 
             this.pcbParede24.Image = global::AzulClaro.Properties.Resources.a3;
             this.pcbParede24.InitialImage = null;
-            this.pcbParede24.Location = new System.Drawing.Point(1114, 668);
+            this.pcbParede24.Location = new System.Drawing.Point(1187, 201);
             this.pcbParede24.Name = "pcbParede24";
             this.pcbParede24.Size = new System.Drawing.Size(50, 50);
             this.pcbParede24.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -443,7 +396,7 @@
             // 
             this.pcbParede13.Image = global::AzulClaro.Properties.Resources.a3;
             this.pcbParede13.InitialImage = null;
-            this.pcbParede13.Location = new System.Drawing.Point(1062, 618);
+            this.pcbParede13.Location = new System.Drawing.Point(1135, 151);
             this.pcbParede13.Name = "pcbParede13";
             this.pcbParede13.Size = new System.Drawing.Size(50, 50);
             this.pcbParede13.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -454,7 +407,7 @@
             // 
             this.pcbParede02.Image = global::AzulClaro.Properties.Resources.a3;
             this.pcbParede02.InitialImage = null;
-            this.pcbParede02.Location = new System.Drawing.Point(1012, 567);
+            this.pcbParede02.Location = new System.Drawing.Point(1085, 100);
             this.pcbParede02.Name = "pcbParede02";
             this.pcbParede02.Size = new System.Drawing.Size(50, 50);
             this.pcbParede02.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -465,7 +418,7 @@
             // 
             this.pcbParede40.Image = global::AzulClaro.Properties.Resources.a2;
             this.pcbParede40.InitialImage = null;
-            this.pcbParede40.Location = new System.Drawing.Point(909, 770);
+            this.pcbParede40.Location = new System.Drawing.Point(982, 303);
             this.pcbParede40.Name = "pcbParede40";
             this.pcbParede40.Size = new System.Drawing.Size(50, 50);
             this.pcbParede40.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -476,7 +429,7 @@
             // 
             this.pcbParede34.Image = global::AzulClaro.Properties.Resources.a2;
             this.pcbParede34.InitialImage = null;
-            this.pcbParede34.Location = new System.Drawing.Point(1114, 719);
+            this.pcbParede34.Location = new System.Drawing.Point(1187, 252);
             this.pcbParede34.Name = "pcbParede34";
             this.pcbParede34.Size = new System.Drawing.Size(50, 50);
             this.pcbParede34.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -487,7 +440,7 @@
             // 
             this.pcbParede23.Image = global::AzulClaro.Properties.Resources.a2;
             this.pcbParede23.InitialImage = null;
-            this.pcbParede23.Location = new System.Drawing.Point(1062, 667);
+            this.pcbParede23.Location = new System.Drawing.Point(1135, 200);
             this.pcbParede23.Name = "pcbParede23";
             this.pcbParede23.Size = new System.Drawing.Size(50, 50);
             this.pcbParede23.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -498,7 +451,7 @@
             // 
             this.pcbParede12.Image = global::AzulClaro.Properties.Resources.a2;
             this.pcbParede12.InitialImage = null;
-            this.pcbParede12.Location = new System.Drawing.Point(1012, 618);
+            this.pcbParede12.Location = new System.Drawing.Point(1085, 151);
             this.pcbParede12.Name = "pcbParede12";
             this.pcbParede12.Size = new System.Drawing.Size(50, 50);
             this.pcbParede12.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -509,7 +462,7 @@
             // 
             this.pcbParede44.Image = global::AzulClaro.Properties.Resources.a1;
             this.pcbParede44.InitialImage = null;
-            this.pcbParede44.Location = new System.Drawing.Point(1114, 770);
+            this.pcbParede44.Location = new System.Drawing.Point(1187, 303);
             this.pcbParede44.Name = "pcbParede44";
             this.pcbParede44.Size = new System.Drawing.Size(50, 50);
             this.pcbParede44.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -520,7 +473,7 @@
             // 
             this.pcbParede33.Image = global::AzulClaro.Properties.Resources.a1;
             this.pcbParede33.InitialImage = null;
-            this.pcbParede33.Location = new System.Drawing.Point(1062, 719);
+            this.pcbParede33.Location = new System.Drawing.Point(1135, 252);
             this.pcbParede33.Name = "pcbParede33";
             this.pcbParede33.Size = new System.Drawing.Size(50, 50);
             this.pcbParede33.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -531,7 +484,7 @@
             // 
             this.pcbParede22.Image = global::AzulClaro.Properties.Resources.a1;
             this.pcbParede22.InitialImage = null;
-            this.pcbParede22.Location = new System.Drawing.Point(1012, 668);
+            this.pcbParede22.Location = new System.Drawing.Point(1085, 201);
             this.pcbParede22.Name = "pcbParede22";
             this.pcbParede22.Size = new System.Drawing.Size(50, 50);
             this.pcbParede22.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -542,7 +495,7 @@
             // 
             this.pcbParede11.Image = global::AzulClaro.Properties.Resources.a1;
             this.pcbParede11.InitialImage = null;
-            this.pcbParede11.Location = new System.Drawing.Point(960, 618);
+            this.pcbParede11.Location = new System.Drawing.Point(1033, 151);
             this.pcbParede11.Name = "pcbParede11";
             this.pcbParede11.Size = new System.Drawing.Size(50, 50);
             this.pcbParede11.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -553,7 +506,7 @@
             // 
             this.pcbParede01.Image = global::AzulClaro.Properties.Resources.a2;
             this.pcbParede01.InitialImage = null;
-            this.pcbParede01.Location = new System.Drawing.Point(960, 567);
+            this.pcbParede01.Location = new System.Drawing.Point(1033, 100);
             this.pcbParede01.Name = "pcbParede01";
             this.pcbParede01.Size = new System.Drawing.Size(50, 50);
             this.pcbParede01.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -564,7 +517,7 @@
             // 
             this.pcbParede00.Image = global::AzulClaro.Properties.Resources.a1;
             this.pcbParede00.InitialImage = null;
-            this.pcbParede00.Location = new System.Drawing.Point(909, 567);
+            this.pcbParede00.Location = new System.Drawing.Point(982, 100);
             this.pcbParede00.Name = "pcbParede00";
             this.pcbParede00.Size = new System.Drawing.Size(50, 50);
             this.pcbParede00.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -574,7 +527,7 @@
             // pcbParede
             // 
             this.pcbParede.Image = global::AzulClaro.Properties.Resources.parede;
-            this.pcbParede.Location = new System.Drawing.Point(909, 567);
+            this.pcbParede.Location = new System.Drawing.Point(982, 100);
             this.pcbParede.Name = "pcbParede";
             this.pcbParede.Size = new System.Drawing.Size(255, 253);
             this.pcbParede.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -610,15 +563,303 @@
             this.lblPontos.TabIndex = 49;
             this.lblPontos.Text = "label1";
             // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.Transparent;
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Location = new System.Drawing.Point(900, 100);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(50, 50);
+            this.panel1.TabIndex = 50;
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.Transparent;
+            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Location = new System.Drawing.Point(900, 150);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(50, 50);
+            this.panel2.TabIndex = 51;
+            // 
+            // panel3
+            // 
+            this.panel3.BackColor = System.Drawing.Color.Transparent;
+            this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel3.Location = new System.Drawing.Point(900, 200);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(50, 50);
+            this.panel3.TabIndex = 51;
+            // 
+            // panel4
+            // 
+            this.panel4.BackColor = System.Drawing.Color.Transparent;
+            this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel4.Location = new System.Drawing.Point(900, 250);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(50, 50);
+            this.panel4.TabIndex = 51;
+            // 
+            // panel5
+            // 
+            this.panel5.BackColor = System.Drawing.Color.Transparent;
+            this.panel5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel5.Location = new System.Drawing.Point(800, 200);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(50, 50);
+            this.panel5.TabIndex = 52;
+            // 
+            // panel6
+            // 
+            this.panel6.BackColor = System.Drawing.Color.Transparent;
+            this.panel6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel6.Location = new System.Drawing.Point(750, 250);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(50, 50);
+            this.panel6.TabIndex = 51;
+            // 
+            // panel7
+            // 
+            this.panel7.BackColor = System.Drawing.Color.Transparent;
+            this.panel7.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel7.Location = new System.Drawing.Point(850, 200);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(50, 50);
+            this.panel7.TabIndex = 51;
+            // 
+            // panel8
+            // 
+            this.panel8.BackColor = System.Drawing.Color.Transparent;
+            this.panel8.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel8.Location = new System.Drawing.Point(850, 150);
+            this.panel8.Name = "panel8";
+            this.panel8.Size = new System.Drawing.Size(50, 50);
+            this.panel8.TabIndex = 51;
+            // 
+            // panel9
+            // 
+            this.panel9.BackColor = System.Drawing.Color.Transparent;
+            this.panel9.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel9.Location = new System.Drawing.Point(900, 300);
+            this.panel9.Name = "panel9";
+            this.panel9.Size = new System.Drawing.Size(50, 50);
+            this.panel9.TabIndex = 51;
+            // 
+            // panel10
+            // 
+            this.panel10.BackColor = System.Drawing.Color.Transparent;
+            this.panel10.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel10.Location = new System.Drawing.Point(800, 250);
+            this.panel10.Name = "panel10";
+            this.panel10.Size = new System.Drawing.Size(50, 50);
+            this.panel10.TabIndex = 51;
+            // 
+            // panel11
+            // 
+            this.panel11.BackColor = System.Drawing.Color.Transparent;
+            this.panel11.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel11.Location = new System.Drawing.Point(800, 300);
+            this.panel11.Name = "panel11";
+            this.panel11.Size = new System.Drawing.Size(50, 50);
+            this.panel11.TabIndex = 51;
+            // 
+            // panel12
+            // 
+            this.panel12.BackColor = System.Drawing.Color.Transparent;
+            this.panel12.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel12.Location = new System.Drawing.Point(850, 300);
+            this.panel12.Name = "panel12";
+            this.panel12.Size = new System.Drawing.Size(50, 50);
+            this.panel12.TabIndex = 51;
+            // 
+            // panel13
+            // 
+            this.panel13.BackColor = System.Drawing.Color.Transparent;
+            this.panel13.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel13.Location = new System.Drawing.Point(850, 250);
+            this.panel13.Name = "panel13";
+            this.panel13.Size = new System.Drawing.Size(50, 50);
+            this.panel13.TabIndex = 51;
+            // 
+            // panel14
+            // 
+            this.panel14.BackColor = System.Drawing.Color.Transparent;
+            this.panel14.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel14.Location = new System.Drawing.Point(750, 300);
+            this.panel14.Name = "panel14";
+            this.panel14.Size = new System.Drawing.Size(50, 50);
+            this.panel14.TabIndex = 53;
+            // 
+            // panel15
+            // 
+            this.panel15.BackColor = System.Drawing.Color.Transparent;
+            this.panel15.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel15.Location = new System.Drawing.Point(700, 300);
+            this.panel15.Name = "panel15";
+            this.panel15.Size = new System.Drawing.Size(50, 50);
+            this.panel15.TabIndex = 54;
+            // 
+            // panel16
+            // 
+            this.panel16.BackColor = System.Drawing.Color.Transparent;
+            this.panel16.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel16.Location = new System.Drawing.Point(700, 410);
+            this.panel16.Name = "panel16";
+            this.panel16.Size = new System.Drawing.Size(50, 50);
+            this.panel16.TabIndex = 55;
+            // 
+            // panel17
+            // 
+            this.panel17.BackColor = System.Drawing.Color.Transparent;
+            this.panel17.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel17.Location = new System.Drawing.Point(765, 410);
+            this.panel17.Name = "panel17";
+            this.panel17.Size = new System.Drawing.Size(50, 50);
+            this.panel17.TabIndex = 55;
+            // 
+            // panel18
+            // 
+            this.panel18.BackColor = System.Drawing.Color.Transparent;
+            this.panel18.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel18.Location = new System.Drawing.Point(830, 410);
+            this.panel18.Name = "panel18";
+            this.panel18.Size = new System.Drawing.Size(50, 50);
+            this.panel18.TabIndex = 55;
+            // 
+            // panel19
+            // 
+            this.panel19.BackColor = System.Drawing.Color.Transparent;
+            this.panel19.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel19.Location = new System.Drawing.Point(895, 410);
+            this.panel19.Name = "panel19";
+            this.panel19.Size = new System.Drawing.Size(50, 50);
+            this.panel19.TabIndex = 55;
+            // 
+            // panel20
+            // 
+            this.panel20.BackColor = System.Drawing.Color.Transparent;
+            this.panel20.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel20.Location = new System.Drawing.Point(960, 410);
+            this.panel20.Name = "panel20";
+            this.panel20.Size = new System.Drawing.Size(50, 50);
+            this.panel20.TabIndex = 55;
+            // 
+            // panel21
+            // 
+            this.panel21.BackColor = System.Drawing.Color.Transparent;
+            this.panel21.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel21.Location = new System.Drawing.Point(1025, 410);
+            this.panel21.Name = "panel21";
+            this.panel21.Size = new System.Drawing.Size(50, 50);
+            this.panel21.TabIndex = 55;
+            // 
+            // panel22
+            // 
+            this.panel22.BackColor = System.Drawing.Color.Transparent;
+            this.panel22.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel22.Location = new System.Drawing.Point(1090, 410);
+            this.panel22.Name = "panel22";
+            this.panel22.Size = new System.Drawing.Size(50, 50);
+            this.panel22.TabIndex = 55;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(717, 467);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(16, 13);
+            this.label1.TabIndex = 56;
+            this.label1.Text = "-1";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(782, 467);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(16, 13);
+            this.label2.TabIndex = 56;
+            this.label2.Text = "-1";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(847, 467);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(16, 13);
+            this.label3.TabIndex = 56;
+            this.label3.Text = "-2";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(912, 467);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(16, 13);
+            this.label4.TabIndex = 56;
+            this.label4.Text = "-2";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(977, 467);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(16, 13);
+            this.label5.TabIndex = 56;
+            this.label5.Text = "-2";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(1042, 467);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(16, 13);
+            this.label6.TabIndex = 56;
+            this.label6.Text = "-3";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(1107, 467);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(16, 13);
+            this.label7.TabIndex = 56;
+            this.label7.Text = "-3";
+            // 
             // frmTabuleiro
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1350, 920);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.panel22);
+            this.Controls.Add(this.panel21);
+            this.Controls.Add(this.panel20);
+            this.Controls.Add(this.panel19);
+            this.Controls.Add(this.panel18);
+            this.Controls.Add(this.panel17);
+            this.Controls.Add(this.panel16);
+            this.Controls.Add(this.panel15);
+            this.Controls.Add(this.panel14);
+            this.Controls.Add(this.panel10);
+            this.Controls.Add(this.panel11);
+            this.Controls.Add(this.panel12);
+            this.Controls.Add(this.panel13);
+            this.Controls.Add(this.panel6);
+            this.Controls.Add(this.panel7);
+            this.Controls.Add(this.panel8);
+            this.Controls.Add(this.panel9);
+            this.Controls.Add(this.panel5);
+            this.Controls.Add(this.panel4);
+            this.Controls.Add(this.panel3);
+            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.lblPontos);
             this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.pcbParede43);
             this.Controls.Add(this.pcbParede32);
             this.Controls.Add(this.pcbParede21);
@@ -665,8 +906,6 @@
             this.Text = "frmTabuleiro";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmTabuleiro_FormClosing);
             this.Load += new System.EventHandler(this.frmTabuleiro_Load);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pcbParede43)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcbParede32)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcbParede21)).EndInit();
@@ -742,14 +981,36 @@
         private System.Windows.Forms.PictureBox pcbParede21;
         private System.Windows.Forms.PictureBox pcbParede32;
         private System.Windows.Forms.PictureBox pcbParede43;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label lblPontos;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.Panel panel6;
+        private System.Windows.Forms.Panel panel7;
+        private System.Windows.Forms.Panel panel8;
+        private System.Windows.Forms.Panel panel9;
+        private System.Windows.Forms.Panel panel10;
+        private System.Windows.Forms.Panel panel11;
+        private System.Windows.Forms.Panel panel12;
+        private System.Windows.Forms.Panel panel13;
+        private System.Windows.Forms.Panel panel14;
+        private System.Windows.Forms.Panel panel15;
+        private System.Windows.Forms.Panel panel16;
+        private System.Windows.Forms.Panel panel17;
+        private System.Windows.Forms.Panel panel18;
+        private System.Windows.Forms.Panel panel19;
+        private System.Windows.Forms.Panel panel20;
+        private System.Windows.Forms.Panel panel21;
+        private System.Windows.Forms.Panel panel22;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label7;
     }
 }

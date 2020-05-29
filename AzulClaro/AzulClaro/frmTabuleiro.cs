@@ -220,7 +220,7 @@ namespace AzulClaro
                     {
                         PictureBox pcbAzul = new PictureBox(); //Azulejo
                         pcbAzul.Image = jogador.tabuleiro.modelo[i].image;
-                        pcbAzul.Location = new Point(1025 - 50 * j, 100 + (50 * i));
+                        pcbAzul.Location = new Point(900 - 50 * j, 100 + (50 * i));
                         Console.WriteLine(i + " " + jogador.tabuleiro.modelo[i].id + " x= " + (1025 - 50 * j) + " y= " + (100 + 50 * i));
                         pcbAzul.Width = 50;
                         pcbAzul.Height = 50;
@@ -257,7 +257,7 @@ namespace AzulClaro
             {
                 PictureBox pcbAzul = new PictureBox(); //Azulejo
                 pcbAzul.Image = azul.image;
-                pcbAzul.Location = new Point(715 + 50 * c, 410);
+                pcbAzul.Location = new Point(700 + 50 * c, 410);
                 pcbAzul.Width = 50;
                 pcbAzul.Height = 50;
                 pcbAzul.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -1063,7 +1063,7 @@ namespace AzulClaro
 
             //Adiciona no dicionario principal
             azulPorQtd.Add(quatidadeDeAzulejosPorFabrica, azulPorCor);
-        }        
+        }
     }
 }
 
