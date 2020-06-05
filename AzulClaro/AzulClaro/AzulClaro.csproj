@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{B612D001-38F7-4C1D-976C-B6A5384970FF}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <OutputType>WinExe</OutputType>
     <RootNamespace>AzulClaro</RootNamespace>
     <AssemblyName>AzulClaro</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
