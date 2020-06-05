@@ -72,6 +72,7 @@ namespace AzulClaro
             string txtF;
 
             txtF = Jogo.LerFabricas(jogador.id, jogador.senha);
+            Console.WriteLine("li as fábricas");
 
             if (txtF.Equals("")) { return "NAODEUERRO"; }
             else if (txtF.Substring(0, 4) == "ERRO")
@@ -90,6 +91,7 @@ namespace AzulClaro
             string txtF;
 
             txtF = Jogo.LerFabricas(jogador.id, jogador.senha);
+            Console.WriteLine("li as fábricas");
 
             if (txtF.Equals("")) { }
             else if (txtF == "ERRO:Partida não está em jogo\r\n")
@@ -155,6 +157,7 @@ namespace AzulClaro
         {
             string txtC;
             txtC = Jogo.LerCentro(jogador.id, jogador.senha);
+            Console.WriteLine("li o centro");
 
             if (txtC.Substring(0, 4) == "ERRO")
             {
@@ -221,7 +224,6 @@ namespace AzulClaro
                         PictureBox pcbAzul = new PictureBox(); //Azulejo
                         pcbAzul.Image = jogador.tabuleiro.modelo[i].image;
                         pcbAzul.Location = new Point(900 - 50 * j, 100 + (50 * i));
-                        Console.WriteLine(i + " " + jogador.tabuleiro.modelo[i].id + " x= " + (1025 - 50 * j) + " y= " + (100 + 50 * i));
                         pcbAzul.Width = 50;
                         pcbAzul.Height = 50;
                         pcbAzul.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -335,6 +337,7 @@ namespace AzulClaro
         public void listarPontos()
         {
             string txt = Jogo.ListarJogadores(partida.id);
+            Console.WriteLine("listei jogadores");
             Invoke((MethodInvoker)delegate
             {
                 lblPontos.Text = txt;
@@ -345,11 +348,20 @@ namespace AzulClaro
         public void Jogar(Compra c)
         {
             string txt = Jogo.Jogar(jogador.id, jogador.senha, c.tipo, c.fabrica, c.azulejo, c.modelo);
+            Console.WriteLine("joguei");
             Invoke((MethodInvoker)delegate
             {
                 lblErro.Text = txt;
             });
-            atualizarAzulejos();
+            CondPartida est = verVez();
+            if (est == CondPartida.acabou)
+            {
+                fimDeJogo();
+            }
+            else if (est == CondPartida.minhaVez)
+            {
+                atualizarAzulejos();
+            }
         }//Manda um pedido de compra
 
         /////////////////////////////////////////////////////////////
@@ -357,6 +369,7 @@ namespace AzulClaro
         private void btnVez_Click(object sender, EventArgs e)
         {
             lblVez.Text = Jogo.VerificarVez(jogador.id, jogador.senha);
+            Console.WriteLine("verifiquei vez");
         }//Botão Vez: printa a vez
         private void Button1_Click(object sender, EventArgs e)
         {
@@ -424,6 +437,7 @@ namespace AzulClaro
         private CondPartida verVez()
         {
             string txt = Jogo.VerificarVez(jogador.id, jogador.senha);
+            Console.WriteLine("verifiquei vez");
 
             string[] v = txt.Split(',');
             this.vez = Convert.ToInt32(v[1]);
@@ -691,7 +705,6 @@ namespace AzulClaro
 
             return pontos;
         }//Diz quantos pontos a linha vai fazer
-
         private int checarPerda(int qtd)
         {
             int atual = jogador.tabuleiro.chao.Count;
@@ -950,7 +963,7 @@ namespace AzulClaro
         {
             while (!pausado)
             {
-                Thread.Sleep(1000);
+                Thread.Sleep(7000);
 
                 CondPartida est = verVez();
                 if (est == CondPartida.acabou)
@@ -977,6 +990,7 @@ namespace AzulClaro
             {
                 textBox1.Text = " ACABOU É TETRA\r\n";
                 string txt = Jogo.ListarJogadores(partida.id);
+                Console.WriteLine("listei jogadores");
                 textBox1.Text += txt;
                 pausado = true;
             });

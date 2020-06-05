@@ -22,7 +22,8 @@ namespace AzulClaro
         {
             InitializeComponent();            
 
-            lblVersao.Text = "Versão: " + Jogo.Versao;//Exibe a versão da dll            
+            lblVersao.Text = "Versão: " + Jogo.Versao;//Exibe a versão da dll    
+            Console.WriteLine("Li a versão");
 
             ListarPartidas();//Já inicia o cliente com as partidas preenchidas
 
@@ -156,6 +157,7 @@ namespace AzulClaro
                 if (nome != "" && senha != "")//Tenta adicionar o jogador
                 {
                     txt = Jogo.EntrarPartida(id, nome, senha);//Cria o jogador e lê see Id e senha
+                    Console.WriteLine("Entrei na partida");
 
                     if (txt.Substring(0, 4) != "ERRO")//Confere se não houve erro ao entrar na Partida
                     {
@@ -204,6 +206,7 @@ namespace AzulClaro
                     if (partida.status == "A")
                     {
                         string txt = Jogo.IniciarPartida(Convert.ToInt32(txtIdjogador.Text), txtSenhaJogador.Text);
+                        Console.WriteLine("Iniciei a partida");
                         if (txt.Length <= 4)
                         {
                             partida.status = "J";
@@ -211,6 +214,7 @@ namespace AzulClaro
                     }
 
                     string vez = Jogo.VerificarVez(Convert.ToInt32(txtIdjogador.Text), txtSenhaJogador.Text);
+                    Console.WriteLine("Verifiquei a vez");
                     vez = vez.Substring(0, 1);
                     partida.status = vez;
 

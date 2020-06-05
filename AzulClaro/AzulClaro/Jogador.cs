@@ -25,6 +25,7 @@ namespace AzulClaro
 
 
             string txt = Jogo.LerTabuleiro(id, senha, this.id);
+            Console.WriteLine("li tabuleiro");
 
             txt = txt.Replace("\r", "");//corta o caracter /r do retorno
             string[] txtTabuleiro = txt.Split('\n');//Separa as linhas do retorno

@@ -23,6 +23,7 @@ namespace AzulClaro
             List<Partida> partidas = new List<Partida>();
 
             string txt = Jogo.ListarPartidas(status);//Recebe todas as partidas filtrando pelo status
+            Console.WriteLine("listei partidas");
 
             txt = txt.Replace("\r", "");//corta o caracter /r do retorno
             string[] txtPartidas = txt.Split('\n');//Separa as linhas do retorno
@@ -51,6 +52,7 @@ namespace AzulClaro
         {
             this.jogadores = new List<Jogador>();
             string txt = Jogo.ListarJogadores(this.id);//Recebe todas as partidas filtrando pelo status
+            Console.WriteLine("Listei jogadores");
             txt = txt.Replace("\r", "");//corta o caracter /r do retorno
             string[] jogadores = txt.Split('\n');//Separa as linhas do retorno              
 

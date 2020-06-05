@@ -33,6 +33,7 @@ namespace AzulClaro
             if (nome != "" && senha != "")//Cria a nova partida caso ambos estejam preenchidos
             {
                 erro = Jogo.CriarPartida(nome, senha);
+                Console.WriteLine("Criei partida");
 
                 if (erro.Length <= 4)
                 {
