@@ -521,7 +521,7 @@ namespace AzulClaro
                         compra.qtd = qtd;
 
                         int perda = checarPerda(jogador.tabuleiro.modelo[i].quantidade + compra.qtd - (i + 1));
-                        compra.pontos = checarPontosAzul(i, checaPos(i, compra.azulejo)) - perda;
+                        compra.pontos = checarPontosAzul(i, procuraColuna(i, compra.azulejo)) - perda;
 
                         listaCompras.Add(compra);
 
@@ -766,7 +766,7 @@ namespace AzulClaro
             //int linhaModelo = 0;
             for (int i = 0; i < 5; i++)
             {
-                if (jogador.tabuleiro.parede[i, checaPos(i, cor)])
+                if (jogador.tabuleiro.parede[i, procuraColuna(i, cor)])
                 {
                     qtd++;
                 }
@@ -780,16 +780,16 @@ namespace AzulClaro
             return false;
             
         }
-        private int checaPos(int pos, int cons)
+        private int procuraColuna(int linha, int cor)
         {
-            cons--;
-            if ((pos + cons) <= 4)
+            cor--;
+            if ((linha + cor) <= 4)
             {
-                return (pos + cons);
+                return (linha + cor);
             }
             else
             {
-                return ((pos + cons) - 5);
+                return ((linha + cor) - 5);
             }
         }
         private int[] corMaisComum()
@@ -894,7 +894,7 @@ namespace AzulClaro
                             qtdNoModelo = jogador.tabuleiro.modelo[l].quantidade;
                         }
                         int perda = checarPerda(qtdNoModelo + c.qtd - (l + 1));
-                        c2.pontos = checarPontosAzul(l, checaPos(l, c2.azulejo));
+                        c2.pontos = checarPontosAzul(l, procuraColuna(l, c2.azulejo));
                         lcFiltrada.Add(c2);
                         //Jogar();
                         //return true;
